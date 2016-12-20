@@ -18,7 +18,7 @@ namespace Tungsten.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public virtual ICollection<ApplicationUser> Mentors { get; set; }
-        public virtual ICollection<ApplicationUser> Stundents { get; set; }
+        public virtual ICollection<ApplicationUser> Students { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
     }
 }
