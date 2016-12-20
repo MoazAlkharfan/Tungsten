@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace Tungsten.Models
 {
@@ -19,8 +20,13 @@ namespace Tungsten.Models
             return userIdentity;
         }
 
-        [Required, ForeignKey("Group")]
-        public string GroupId { get; set; }
-        public Group Group { get; set; }
+        public string Name { get; set; }
+
+        [RegularExpression("^([0-9]{6}([-+]).*)$")]
+        public string SSN { get; set; }
+
+        public string Address { get; set; }
+
+        public virtual ICollection<Group> Groups { get; set; }
     }
 }

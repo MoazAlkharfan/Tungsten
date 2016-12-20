@@ -205,6 +205,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612201240543_Initial.cs" />
+    <Compile Include="Migrations\201612201240543_Initial.Designer.cs">
+      <DependentUpon>201612201240543_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612201317103_Additional User-Details.cs" />
+    <Compile Include="Migrations\201612201317103_Additional User-Details.Designer.cs">
+      <DependentUpon>201612201317103_Additional User-Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612201401549_Changes.cs" />
+    <Compile Include="Migrations\201612201401549_Changes.Designer.cs">
+      <DependentUpon>201612201401549_Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612201430141_MoarChanges.cs" />
+    <Compile Include="Migrations\201612201430141_MoarChanges.Designer.cs">
+      <DependentUpon>201612201430141_MoarChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Assignment.cs" />
@@ -1051,8 +1068,24 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Scripts\jquery.validate.min.js.map">
+      <DependentUpon>jquery.validate.min.js</DependentUpon>
+    </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612201240543_Initial.resx">
+      <DependentUpon>201612201240543_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201317103_Additional User-Details.resx">
+      <DependentUpon>201612201317103_Additional User-Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201401549_Changes.resx">
+      <DependentUpon>201612201401549_Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201430141_MoarChanges.resx">
+      <DependentUpon>201612201430141_MoarChanges.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
