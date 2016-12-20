@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Tungsten.Providers;
 using Tungsten.Models;
+using Tungsten.DataAccessLayer;
 
 namespace Tungsten
 {

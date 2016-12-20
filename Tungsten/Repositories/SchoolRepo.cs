@@ -18,7 +18,7 @@ namespace Tungsten.Repositories
 
         public SchoolRepo()
         {
-            db = new SchoolContext();
+            db = new ApplicationDbContext();
         }
 
         public void CreateGroup(Group group)

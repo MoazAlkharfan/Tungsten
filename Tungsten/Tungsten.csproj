@@ -197,8 +197,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="DataAccessLayer\ApplicationDbContext.cs" />
     <Compile Include="DataAccessLayer\ISchoolContext.cs" />
-    <Compile Include="DataAccessLayer\SchoolContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -212,7 +212,7 @@
     <Compile Include="Models\DescribedSection.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Lesson.cs" />
     <Compile Include="Models\Segment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
