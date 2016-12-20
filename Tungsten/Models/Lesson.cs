@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tungsten.Models
 {
@@ -9,7 +11,13 @@ namespace Tungsten.Models
             Id = Guid.NewGuid().ToString();
         }
 
+        [Key]
         public string Id { get; set; }
+        
+        [Required, ForeignKey("Course")]
+        public string CourseId { get; set; }
+        public Course Course { get; set; }
+
         public DateTime Time { get; set; }
         public string Classroom { get; set; }
     }
