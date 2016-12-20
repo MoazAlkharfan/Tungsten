@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Tungsten.DataAccessLayer;
+using Tungsten.Models;
 
 namespace Tungsten.Repositories
 {
@@ -20,79 +21,99 @@ namespace Tungsten.Repositories
             db = new SchoolContext();
         }
 
-        public void CreateGroup()
+        public void CreateGroup(Group group)
         {
-            throw new NotImplementedException();
+            db.Groups.Add(group);
+            db.SaveChanges();
         }
 
-        public void CreateCourse()
+        public void CreateCourse(Course course)
         {
-            throw new NotImplementedException();
+            db.Courses.Add(course);
+            db.SaveChanges();
         }
 
-        public void CreateSegment()
+        public void CreateSegment(Segment segment)
         {
-            throw new NotImplementedException();
+            db.Segments.Add(segment);
+            db.SaveChanges();
         }
 
-        public void CreateAssignment()
+        public void CreateAssignment(Assignment assignment)
         {
-            throw new NotImplementedException();
+            db.Assignments.Add(assignment);
+            db.SaveChanges();
         }
 
-        public void CreateLesson()
+        public void CreateLesson(Lesson lesson)
         {
-            throw new NotImplementedException();
+            db.Lessons.Add(lesson);
+            db.SaveChanges();
         }
 
-        public void RemoveGroup()
+        public void RemoveGroup(Group group)
         {
-            throw new NotImplementedException();
+            db.Groups.Remove(group);
+            db.SaveChanges();
         }
 
-        public void RemoveCourse()
+        public void RemoveCourse(Course course)
         {
-            throw new NotImplementedException();
+            db.Courses.Remove(course);
+            db.SaveChanges();
         }
 
-        public void RemoveSegment()
+        public void RemoveSegment(Segment segment)
         {
-            throw new NotImplementedException();
+            db.Segments.Remove(segment);
+            db.SaveChanges();
         }
 
-        public void RemoveAssignment()
+        public void RemoveAssignment(Assignment assignment)
         {
-            throw new NotImplementedException();
+            db.Assignments.Remove(assignment);
+            db.SaveChanges();
         }
 
-        public void RemoveLesson()
+        public void RemoveLesson(Lesson lesson)
         {
-            throw new NotImplementedException();
+            db.Lessons.Remove(lesson);
+            db.SaveChanges();
         }
 
-        public void EditGroup()
+        public void EditGroup(Group NewGroup)
         {
-            throw new NotImplementedException();
+            Group old = db.Groups.Find(NewGroup.Id);
+            old = NewGroup;
+            db.SaveChanges();
         }
 
-        public void EditCourse()
+        public void EditCourse(Course NewCourse)
         {
-            throw new NotImplementedException();
+            Course old = db.Courses.Find(NewCourse.Id);
+            old = NewCourse;
+            db.SaveChanges();
         }
 
-        public void EditSegment()
+        public void EditSegment(Segment NewSegment)
         {
-            throw new NotImplementedException();
+            Segment old = db.Segments.Find(NewSegment.Id);
+            old = NewSegment;
+            db.SaveChanges();
         }
 
-        public void EditAssignment()
+        public void EditAssignment(Assignment NewAssignment)
         {
-            throw new NotImplementedException();
+            Assignment old = db.Assignments.Find(NewAssignment.Id);
+            old = NewAssignment;
+            db.SaveChanges();
         }
 
-        public void EditLesson()
+        public void EditLesson(Lesson NewLesson)
         {
-            throw new NotImplementedException();
+            Lesson old = db.Lessons.Find(NewLesson.Id);
+            old = NewLesson;
+            db.SaveChanges();
         }
     }
 }
