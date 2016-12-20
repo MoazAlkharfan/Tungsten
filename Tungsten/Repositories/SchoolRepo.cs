@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Tungsten.DataAccessLayer;
 
 namespace Tungsten.Repositories
 {
     public class SchoolRepo : ISchoolRepo
     {
+        public ISchoolContext db;
+
+        public SchoolRepo(ISchoolContext repo)
+        {
+            db = repo;
+        }
+
+        public SchoolRepo()
+        {
+            db = new SchoolContext();
+        }
 
         public void CreateGroup()
         {
