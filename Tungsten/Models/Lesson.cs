@@ -18,7 +18,8 @@ namespace Tungsten.Models
         public string CourseId { get; set; }
         public Course Course { get; set; }
 
-        public DateTime Time { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
         public string Classroom { get; set; }
     }
 }
