@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Tungsten.Models
 {
-    public class Group : Entity<string>, DescribedSection
+    public class Group : Entity<string>
     {
         public Group()
         {
