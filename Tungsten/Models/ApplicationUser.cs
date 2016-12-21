@@ -27,6 +27,7 @@ namespace Tungsten.Models
 
         public string Address { get; set; }
 
+        public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
     }
 }

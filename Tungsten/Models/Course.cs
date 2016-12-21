@@ -20,7 +20,7 @@ namespace Tungsten.Models
         public Group Group { get; set; }
 
         public virtual ICollection<Segment> Segments { get; set; }
-        public virtual ICollection<ApplicationUser> Teachers { get; set; }
+        public virtual ICollection<ApplicationUser> Participants { get; set; }
         public virtual ICollection<Lesson> Lessons { get; set; }
         public string Subject { get; set; }
         public string Level { get; set; }
