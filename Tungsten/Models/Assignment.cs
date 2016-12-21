@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tungsten.Models
 {
-    public class Assignment : Entity<string>, DescribedSection
+    public class Assignment : Entity<string>
     {
         public Assignment()
         {

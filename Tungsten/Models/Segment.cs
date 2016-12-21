@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tungsten.Models
 {
-    public class Segment : Entity<string>, DescribedSection
+    public class Segment : Entity<string>
     {
         public Segment()
         {
