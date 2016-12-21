@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Tungsten.Attributes;
 using Microsoft.AspNet.Identity;
 using Tungsten.Models;
 using Tungsten.Repositories;
-using Tungsten.Attributes;
 
 namespace Tungsten.Controllers
 {
@@ -29,29 +29,38 @@ namespace Tungsten.Controllers
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
-                return RedirectToAction("PanelIndex");
+                return RedirectToAction("Index", "Groups");
 
             ViewBag.Title = "Home Page";
 
             return View();
         }
 
-        public ActionResult PanelIndex()
+        public ActionResult Dashboard()
         {
             return View();
         }
 
-        public JsonResult CreateCourse(Course course)
+        public ActionResult CreateCourse()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public JsonResult CreateCourse(Course newcourse)
         {
             if(ModelState.IsValid)
             {
-                repo.CreateCourse(course);
+                repo.CreateCourse(newcourse);
                 return Json(new { status = "Success" });
             }
             else
             {
-                return Json(new { status = "Error"});
+                return Json(new { status = "Fail"  });
             }
         }
     }
+
+
 }
