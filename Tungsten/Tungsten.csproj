@@ -163,6 +163,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -204,22 +209,6 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612201240543_Initial.cs" />
-    <Compile Include="Migrations\201612201240543_Initial.Designer.cs">
-      <DependentUpon>201612201240543_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612201317103_Additional User-Details.cs" />
-    <Compile Include="Migrations\201612201317103_Additional User-Details.Designer.cs">
-      <DependentUpon>201612201317103_Additional User-Details.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612201401549_Changes.cs" />
-    <Compile Include="Migrations\201612201401549_Changes.Designer.cs">
-      <DependentUpon>201612201401549_Changes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612201430141_MoarChanges.cs" />
-    <Compile Include="Migrations\201612201430141_MoarChanges.Designer.cs">
-      <DependentUpon>201612201430141_MoarChanges.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -1073,25 +1062,17 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612201240543_Initial.resx">
-      <DependentUpon>201612201240543_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612201317103_Additional User-Details.resx">
-      <DependentUpon>201612201317103_Additional User-Details.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612201401549_Changes.resx">
-      <DependentUpon>201612201401549_Changes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612201430141_MoarChanges.resx">
-      <DependentUpon>201612201430141_MoarChanges.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resource1.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
