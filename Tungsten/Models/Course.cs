@@ -11,9 +11,12 @@ namespace Tungsten.Models
         {
             Id = Guid.NewGuid().ToString();
         }
+
         [Key]
         public string Id { get; set; }
+        [Display(Name = "Namn")]
         public string Name { get; set; }
+        [Display(Name = "Beskrivning")]
         public string Description { get; set; }
 
         [Required, ForeignKey("Group")]

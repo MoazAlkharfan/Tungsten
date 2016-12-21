@@ -14,7 +14,9 @@ namespace Tungsten.Models
 
         [Key]
         public string Id { get; set; }
+        [Display(Name = "Namn")]
         public string Name { get; set; }
+        [Display(Name = "Beskrivning")]
         public string Description { get; set; }
         
         [Required, ForeignKey("Course")]
