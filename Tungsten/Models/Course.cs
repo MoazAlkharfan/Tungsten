@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tungsten.Models
 {
-    public class Course : Entity<string>, DescribedSection
+    public class Course : Entity<string>
     {
         public Course()
         {
@@ -13,7 +13,6 @@ namespace Tungsten.Models
         }
         [Key]
         public string Id { get; set; }
-        public string Name { get; set; }
         public string Description { get; set; }
 
         [Required, ForeignKey("Group")]
@@ -23,5 +22,7 @@ namespace Tungsten.Models
         public virtual ICollection<Segment> Segments { get; set; }
         public virtual ICollection<ApplicationUser> Teachers { get; set; }
         public virtual ICollection<Lesson> Lessons { get; set; }
+        public string Subject { get; set; }
+        public string Level { get; set; }
     }
 }
