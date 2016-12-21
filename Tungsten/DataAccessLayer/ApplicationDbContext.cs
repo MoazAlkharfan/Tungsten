@@ -25,5 +25,7 @@ namespace Tungsten.DataAccessLayer
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<Tungsten.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
