@@ -14,8 +14,8 @@ export class GroupService {
 
     getGroups(): Observable<IGroup[]> {
         return this._http.get('./Home/GetGroups')
-            .map((response: Response) => <IGroup[]>response.json())
-            .do(data => console.log('All Groups:' + JSON.stringify(data)));
+            .map((response: Response) => <IGroup[]>JSON.parse(String(response)))
+            .do(data => console.log(JSON.parse(String(data)).length));
     }
 
     private handleError(error: Response) {

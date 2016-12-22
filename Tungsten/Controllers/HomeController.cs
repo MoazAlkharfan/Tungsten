@@ -7,6 +7,7 @@ using Tungsten.Attributes;
 using Microsoft.AspNet.Identity;
 using Tungsten.Models;
 using Tungsten.Repositories;
+using Newtonsoft.Json;
 
 namespace Tungsten.Controllers
 {
@@ -34,7 +35,8 @@ namespace Tungsten.Controllers
         [AllowAnonymous]
         public JsonResult GetGroups()
         {
-            return Json(repo.GetGroups().ToList(), JsonRequestBehavior.AllowGet);
+            var settings = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
+            return Json(JsonConvert.SerializeObject(repo.GetGroups().ToList(), Formatting.Indented, settings), JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]
@@ -64,14 +66,14 @@ namespace Tungsten.Controllers
         [HttpPost]
         public JsonResult CreateCourse(Course newcourse)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 repo.CreateCourse(newcourse);
                 return Json(new { status = "Success" });
             }
             else
             {
-                return Json(new { status = "Fail"  });
+                return Json(new { status = "Fail" });
             }
         }
     }
