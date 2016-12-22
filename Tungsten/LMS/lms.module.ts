@@ -4,10 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-// Pages
-import { IndexPage } from './lms.component';
-import { AccountPage } from './account/lms.component';
-import { HomePage } from './home/HomePage.component';
+import 'rxjs/Rx';
+
+// Interfaces
+import { IGroup } from './interfaces/Group';
+
+// classes
+import { Group } from './classes/Group';
 
 // Services
 import { GroupService } from './services/GroupService';
@@ -15,9 +18,11 @@ import { GroupService } from './services/GroupService';
 // Components
 import { GroupsList } from './components/GroupsList/GroupsList';
 
+// Pages
+import { IndexPage } from './lms.component';
+import { AccountPage } from './account/lms.component';
+import { HomePage } from './home/HomePage.component';
 
-// Interfaces
-import { IGroup } from './interfaces/Group';
 
 @NgModule({
     imports: [
@@ -33,7 +38,8 @@ import { IGroup } from './interfaces/Group';
     declarations: [
         IndexPage,
         HomePage,
-        AccountPage
+        AccountPage,
+        GroupsList
     ],
     bootstrap: [IndexPage]
 })

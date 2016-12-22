@@ -2,18 +2,17 @@
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 import { IGroup } from '../interfaces/Group';
+import { Group } from '../classes/Group';
 
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
+
 
 @Injectable()
 export class GroupService {
     constructor(private _http: Http) { }
-
-    getGroups(): Observable<IGroup[]> {
+    
+    getGroups(): Observable<Group[]> {
         return this._http.get('./Home/GetGroups')
-            .map((response: Response) => <IGroup[]>response.json())
+            .map((response: Response) => <Group[]>response.json())
             .do(data => console.log('All Groups:' + JSON.stringify(data)));
     }
 
