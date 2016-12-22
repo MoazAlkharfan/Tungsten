@@ -11,9 +11,10 @@ using Newtonsoft.Json;
 
 namespace Tungsten.Controllers
 {
-    [ExtendedAuthorize]
+    //[ExtendedAuthorize]
     public class HomeController : Controller
     {
+        JsonSerializerSettings jss = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
         private ISchoolRepo repo;
 
         public HomeController()
@@ -35,8 +36,7 @@ namespace Tungsten.Controllers
         [AllowAnonymous]
         public JsonResult GetGroups()
         {
-            var settings = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
-            return Json(JsonConvert.SerializeObject(repo.GetGroups().ToList(), Formatting.Indented, settings), JsonRequestBehavior.AllowGet);
+            return Json(JsonConvert.SerializeObject(repo.GetGroups().ToList(), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]

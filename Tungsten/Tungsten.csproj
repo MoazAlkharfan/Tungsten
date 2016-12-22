@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201612211055259_notinitial.Designer.cs">
       <DependentUpon>201612211055259_notinitial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612221409503_new.cs" />
+    <Compile Include="Migrations\201612221409503_new.Designer.cs">
+      <DependentUpon>201612221409503_new.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -273,18 +277,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index-JustForReference-DeleteIt.html" />
+    <Content Include="LMS\components\GroupsList\GroupsList.css" />
     <Content Include="LMS\components\GroupsList\GroupsList.html" />
     <Content Include="LMS\index.css" />
     <Content Include="LMS\register\RegisterPage.html" />
     <Content Include="LMS\account\AccountPage.html" />
     <Content Include="LMS\index.html" />
     <Content Include="Reinforced.Typings.settings.xml" />
-    <Content Include="Scripts\App\app.component.html" />
-    <Content Include="Scripts\App\app.component.js" />
-    <Content Include="Scripts\App\app.module.js" />
-    <Content Include="Scripts\App\main.js" />
     <Content Include="typings.json" />
     <Content Include="tslint.json" />
+    <TypeScriptCompile Include="LMS\classes\Group.ts" />
     <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts" />
     <TypeScriptCompile Include="LMS\interfaces\Group.ts" />
     <TypeScriptCompile Include="LMS\register\lms.component.ts" />
@@ -317,9 +319,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="package.json" />
-    <Content Include="Scripts\App\main.js.map" />
-    <Content Include="Scripts\App\app.module.js.map" />
-    <Content Include="Scripts\App\app.component.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -382,9 +381,6 @@
     <Content Include="Views\Dashboard\Edit.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <TypeScriptCompile Include="LMS\services\GroupService.ts" />
-    <TypeScriptCompile Include="Scripts\App\app.component.ts" />
-    <TypeScriptCompile Include="Scripts\App\app.module.ts" />
-    <TypeScriptCompile Include="Scripts\App\main.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -400,6 +396,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612211055259_notinitial.resx">
       <DependentUpon>201612211055259_notinitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612221409503_new.resx">
+      <DependentUpon>201612221409503_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

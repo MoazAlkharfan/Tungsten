@@ -4,9 +4,6 @@ import { Observable } from 'rxjs/rx';
 import { IGroup } from '../interfaces/Group';
 
 import 'rxjs/rx';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GroupService {
@@ -14,8 +11,18 @@ export class GroupService {
 
     getGroups(): Observable<IGroup[]> {
         return this._http.get('./Home/GetGroups')
-            .map((response: Response) => <IGroup[]>JSON.parse(String(response)))
-            .do(data => console.log(JSON.parse(String(data)).length));
+            .do(this.logData)
+            .catch(this.handleError)
+            .map(this.extractData);
+    }
+
+    private logData(data) {
+        console.log(JSON.parse(String(data)).length);
+    }
+
+    private extractData(res: Response) {
+        let body = <IGroup[]>JSON.parse(res.json());
+        return body || [];
     }
 
     private handleError(error: Response) {

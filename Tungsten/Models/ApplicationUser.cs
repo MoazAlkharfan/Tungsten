@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Tungsten.Models
 {
@@ -29,5 +30,19 @@ namespace Tungsten.Models
 
         public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
+
+        [JsonIgnore]
+        public override string PasswordHash
+        {
+            get
+            {
+                return base.PasswordHash;
+            }
+
+            set
+            {
+                base.PasswordHash = value;
+            }
+        }
     }
 }

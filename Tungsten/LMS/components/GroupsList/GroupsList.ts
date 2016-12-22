@@ -5,7 +5,7 @@ import { IGroup } from '../../interfaces/Group';
 @Component({
     selector: 'lms-groups-list',
     templateUrl: './lms/components/GroupsList/GroupsList.html',
-    //styleUrls: ['./lms/components/GroupsList/GroupsList.css']
+    styleUrls: ['./lms/components/GroupsList/GroupsList.css']
 })
 export class GroupsList implements OnInit {
     Groups: IGroup[];
@@ -15,8 +15,11 @@ export class GroupsList implements OnInit {
 
     ngOnInit(): void {
         this._groupService.getGroups()
-            .subscribe(groups => this.Groups = groups,
-                        error => this.errorMessage = <any>error);
+            .subscribe(Groups => {
+                this.Groups = Groups;
+            },
+            error => this.errorMessage = <any>error);
+
     }
 
 }
