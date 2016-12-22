@@ -40,6 +40,31 @@ namespace Tungsten.Controllers
         }
 
         [AllowAnonymous]
+        public JsonResult GetGroup(string id)
+        {
+            if (id == "")
+                return null;
+
+            return Json(JsonConvert.SerializeObject(repo.FindGroup(id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        public JsonResult CreateGroup(Group group)
+        {
+            if (group == null)
+                return null;
+
+            if (repo.CreateGroup(group))
+            {
+                return Json(JsonConvert.SerializeObject(repo.FindGroup(group.Id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(JsonConvert.SerializeObject(group, Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)

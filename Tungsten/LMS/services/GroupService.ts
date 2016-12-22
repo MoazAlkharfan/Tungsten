@@ -13,20 +13,44 @@ export class GroupService {
         return this._http.get('./Home/GetGroups')
             .do(this.logData)
             .catch(this.handleError)
-            .map(this.extractData);
+            .map(this.extractGroups);
+    }
+
+    getGroupById(id: string): Observable<IGroup> {
+        return this._http.post('./Home/GetGroup/', id)
+            .do(this.logData)
+            .catch(this.handleError)
+            .map(this.extractGroup);
+    }
+
+    createGroup(group: IGroup) {
+        return this._http.post('./Home/CreateGroup/', group)
+            .do(this.logData)
+            .catch(this.handleError);
+    }
+
+    deleteGroup(id: string) {
+        return this._http.post('./Home/DeleteGroup', id)
+            .do(this.logData)
+            .catch(this.handleError);
     }
 
     private logData(data) {
-        console.log(JSON.parse(String(data)).length);
-    }
-
-    private extractData(res: Response) {
-        let body = <IGroup[]>JSON.parse(res.json());
-        return body || [];
+        //console.log(String(data));
     }
 
     private handleError(error: Response) {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
+    }
+
+    private extractGroups(res: Response) {
+        let body = <IGroup[]>JSON.parse(res.json());
+        return body || [];
+    }
+
+    private extractGroup(res: Response) {
+        let body = <IGroup>JSON.parse(res.json());
+        return body || null;
     }
 }

@@ -31,10 +31,19 @@ namespace Tungsten.Repositories
             return db.Groups.FirstOrDefault(g => g.Id == id);
         }
 
-        public void CreateGroup(Group group)
+        public bool CreateGroup(Group group)
         {
-            db.Groups.Add(group);
-            db.SaveChanges();
+            try
+            {
+                db.Groups.Add(group);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
         }
 
         public void CreateCourse(Course course)

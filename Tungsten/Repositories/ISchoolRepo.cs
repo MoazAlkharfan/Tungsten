@@ -10,7 +10,7 @@ namespace Tungsten.Repositories
     public interface ISchoolRepo
     {
         // Create
-        void CreateGroup(Group group);
+        bool CreateGroup(Group group);
         void CreateCourse(Course course);
         void CreateSegment(Segment segment);
         void CreateAssignment(Assignment assignment);

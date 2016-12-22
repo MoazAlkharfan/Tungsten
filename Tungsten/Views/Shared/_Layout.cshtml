@@ -19,7 +19,7 @@
     <meta name="description" content="The description of my page" />
 </head>
 <body>
-    <lms-index [isUserLoggedin]="@User.Identity.IsAuthenticated" [UserName]="@User.Identity.Name">Loading...</lms-index>
+    <lms-index [loginstatus]="@User.Identity.IsAuthenticated" [username]="@User.Identity.Name">Loading...</lms-index>
 
     @RenderBody()
 
