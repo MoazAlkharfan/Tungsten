@@ -7,6 +7,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System;
+using System.Web.UI.WebControls;
 
 namespace Tungsten.Models
 {
@@ -34,15 +36,62 @@ namespace Tungsten.Models
         [JsonIgnore]
         public override string PasswordHash
         {
-            get
-            {
-                return base.PasswordHash;
-            }
+            get { return base.PasswordHash; }
+            set { base.PasswordHash = value; }
+        }
 
-            set
-            {
-                base.PasswordHash = value;
-            }
+        [JsonIgnore]
+        public override ICollection<IdentityUserClaim> Claims
+        {
+            get { return base.Claims; }
+        }
+
+        [JsonIgnore]
+        public override bool EmailConfirmed
+        {
+            get { return base.EmailConfirmed; }
+            set { base.EmailConfirmed = value; }
+        }
+
+        [JsonIgnore]
+        public override bool LockoutEnabled
+        {
+            get { return base.LockoutEnabled; }
+            set { base.LockoutEnabled = value; }
+        }
+
+        [JsonIgnore]
+        public override DateTime? LockoutEndDateUtc
+        {
+            get { return base.LockoutEndDateUtc; }
+            set { base.LockoutEndDateUtc = value; }
+        }
+
+        [JsonIgnore]
+        public override ICollection<IdentityUserLogin> Logins
+        {
+            get { return base.Logins; }
+        }
+
+        [JsonIgnore]
+        public override bool PhoneNumberConfirmed
+        {
+            get { return base.PhoneNumberConfirmed; }
+            set { base.PhoneNumberConfirmed = value; }
+        }
+
+        [JsonIgnore]
+        public override string SecurityStamp
+        {
+            get { return base.SecurityStamp; }
+            set { base.SecurityStamp = value; }
+        }
+
+        [JsonIgnore]
+        public override bool TwoFactorEnabled
+        {
+            get { return base.TwoFactorEnabled; }
+            set { base.TwoFactorEnabled = value; }
         }
     }
 }
