@@ -1,15 +1,16 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 import { IGroup } from '../interfaces/Group';
 
+import 'rxjs/rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GroupService {
-    constructor(private _http: Http) { }
+    constructor( @Inject(Http) private _http: Http) { }
 
     getGroups(): Observable<IGroup[]> {
         return this._http.get('./Home/GetGroups')

@@ -33,7 +33,8 @@ import { IGroup } from './interfaces/Group';
     declarations: [
         IndexPage,
         HomePage,
-        AccountPage
+        AccountPage,
+        GroupsList
     ],
     bootstrap: [IndexPage]
 })
