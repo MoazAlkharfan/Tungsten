@@ -31,5 +31,7 @@ namespace Tungsten.Repositories
         void EditLesson(Lesson NewLesson);
 
         // Get
+        Group FindGroup(string id);
+        IEnumerable<Group> GetGroups();
     }
 }

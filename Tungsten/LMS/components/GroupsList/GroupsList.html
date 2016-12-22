@@ -1,0 +1,28 @@
+﻿<table>
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let group of Groups">
+            <td>
+                {{group.Id}}
+            </td>
+            <td>
+                {{group.Name}}
+            </td>
+            <td>
+                {{group.Description}}
+            </td>
+        </tr>
+    </tbody>
+</table>

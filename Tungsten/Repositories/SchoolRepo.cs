@@ -21,6 +21,16 @@ namespace Tungsten.Repositories
             db = new ApplicationDbContext();
         }
 
+        public IEnumerable<Group> GetGroups()
+        {
+            return db.Groups;
+        }
+
+        public Group FindGroup(string id)
+        {
+            return db.Groups.FirstOrDefault(g => g.Id == id);
+        }
+
         public void CreateGroup(Group group)
         {
             db.Groups.Add(group);
