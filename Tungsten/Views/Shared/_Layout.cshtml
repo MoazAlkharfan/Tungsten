@@ -19,7 +19,7 @@
     <meta name="description" content="The description of my page" />
 </head>
 <body>
-    <lms-index isloggedin="@User.Identity.IsAuthenticated.ToString().ToLower()" [username]="@User.Identity.Name">Loading...</lms-index>
+    <lms-index isloggedin="@User.Identity.IsAuthenticated.ToString().ToLower()" username="@User.Identity.Name">Loading...</lms-index>
 
     @RenderBody()
     @Scripts.Render("~/bundles/jquery")
