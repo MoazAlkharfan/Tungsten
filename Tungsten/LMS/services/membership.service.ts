@@ -17,7 +17,7 @@ export class MembershipService {
 
         this.accountService.set(this._accountRegisterAPI);
         
-        return this.accountService.post(JSON.stringify(newUser));
+        return this.accountService.post(newUser);
     }
 
     login(creds: User) {

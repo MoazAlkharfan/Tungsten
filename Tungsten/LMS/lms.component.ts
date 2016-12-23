@@ -1,6 +1,7 @@
-﻿import { Component, Input, OnInit, ElementRef, Inject } from '@angular/core';
+﻿import { Component, Input, OnInit, ElementRef, Inject, ViewChild, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { GroupService } from './services/GroupService';
 import { MembershipService } from './services/membership.service';
+import { Login } from './components/Login/Login';
 
 @Component({
     selector: 'lms-index',
@@ -8,11 +9,15 @@ import { MembershipService } from './services/membership.service';
     styleUrls: ['./LMS/index.css'],
     providers: [GroupService]
 })
-export class IndexPage implements OnInit {
+export class IndexPage implements OnInit, AfterViewChecked {
     isuserloggedin: boolean;
+    username: string;
+    @ViewChild(Login) LoginView: Login;
 
-    constructor( @Inject(ElementRef) private elementRef: ElementRef, @Inject(MembershipService) public membershipService: MembershipService,) {
+    constructor( @Inject(ElementRef) private elementRef: ElementRef, @Inject(MembershipService) public membershipService: MembershipService, @Inject(ChangeDetectorRef) public changeDetectorRef: ChangeDetectorRef) {
+        this.username = this.elementRef.nativeElement.getAttribute('username');
         this.isuserloggedin = this.elementRef.nativeElement.getAttribute('isloggedin');
+
     }
     
     isUserLoggedIn(): boolean {
@@ -22,6 +27,7 @@ export class IndexPage implements OnInit {
     getUserName(): string {
         if (this.isUserLoggedIn()) {
             var _user = this.membershipService.getLoggedInUser();
+            console.log(_user.Username);
             return _user.Username;
         }
         else
@@ -34,17 +40,20 @@ export class IndexPage implements OnInit {
                 localStorage.removeItem('user');
             },
             error => console.error('Error: ' + error),
-            () => { });
+            () => { this.isuserloggedin = false; });
     }
     
+    ngAfterViewChecked() {
+        if (this.LoginView && this.LoginView.LoggedIn && this.isuserloggedin != this.LoginView.LoggedIn)
+            this.isuserloggedin = this.LoginView.LoggedIn;
 
-    
-    @Input() username: string;
+        this.changeDetectorRef.detectChanges();
+    }
 
     //console.log(this.isuserloggedin);
 
     ngOnInit(): void {
-        console.log('Loggedin:');
-        console.log(this.isuserloggedin);
+        //console.log('Loggedin:');
+        //console.log(this.isuserloggedin);
     }
 }

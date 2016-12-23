@@ -67,8 +67,8 @@ namespace Tungsten.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-                return RedirectToAction("Index", "Groups");
+            //if (User.Identity.IsAuthenticated)
+             //   return RedirectToAction("Index", "Groups");
 
             ViewBag.Title = "Home Page";
             ViewBag.IsAuthenticated = User.Identity.IsAuthenticated;
