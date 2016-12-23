@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Inject, Input, ElementRef, ViewChild, Renderer, Directive } from '@angular/core';
+﻿import { Component, OnInit, Inject, Input, ElementRef, ViewChild, Renderer, Directive, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from '../../classes/User';
@@ -28,8 +28,9 @@ export class Login implements OnInit {
     @Input() LoginPanelIsOpen: boolean;
     Timeout: number;
     @ViewChild('usernameInput') usernameInput: Inputter;
-    private _user: User;
+    public _user: User;
     LoggedIn: boolean;
+    @Output() userUpdated = new EventEmitter();
 
     constructor( @Inject(MembershipService) public membershipService: MembershipService,
         //public notificationService: NotificationService,
@@ -66,6 +67,7 @@ export class Login implements OnInit {
             error => console.error('Error: ' + <any>error),
             () => {
                 if (_authenticationResult.Succeeded) {
+                    this.userUpdated.emit(this._user);
                     localStorage.setItem('user', JSON.stringify(this._user));
                     this.router.navigate(['home']);
                 }

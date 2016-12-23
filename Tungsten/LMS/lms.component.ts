@@ -16,13 +16,12 @@ export class IndexPage implements OnInit, AfterViewChecked {
     @ViewChild(Login) LoginView: Login;
 
     constructor( @Inject(ElementRef) private elementRef: ElementRef, @Inject(MembershipService) public membershipService: MembershipService, @Inject(ChangeDetectorRef) public changeDetectorRef: ChangeDetectorRef) {
-        this.user = this.membershipService.getLoggedInUser();
+        this.user = this.membershipService.getLoggedInUser() || new User("", "");
         this.isuserloggedin = this.isUserLoggedIn();
 
     }
     
     isUserLoggedIn(): boolean {
-        console.log('this.isUserLoggedIn() = ' + this.membershipService.isUserAuthenticated());
         return this.membershipService.isUserAuthenticated();
     }
 
@@ -32,7 +31,7 @@ export class IndexPage implements OnInit, AfterViewChecked {
                 localStorage.removeItem('user');
             },
             error => console.error('Error: ' + error),
-            () => { this.isuserloggedin = false; console.log('login view should be displayed!'); });
+            () => { this.isuserloggedin = false; });
     }
     
     ngAfterViewChecked() {
@@ -40,6 +39,10 @@ export class IndexPage implements OnInit, AfterViewChecked {
             this.isuserloggedin = this.LoginView.LoggedIn;
 
         this.changeDetectorRef.detectChanges();
+    }
+
+    userUpdated(user: User) {
+        this.user = user;
     }
 
     //console.log(this.isuserloggedin);
