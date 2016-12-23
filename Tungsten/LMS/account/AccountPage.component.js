@@ -6,15 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var HomePage = (function () {
-    function HomePage() {
+var AccountPage = (function () {
+    function AccountPage() {
     }
-    return HomePage;
+    return AccountPage;
 }());
-HomePage = __decorate([
+AccountPage = __decorate([
     core_1.Component({
-        templateUrl: './LMS/home/HomePage.html'
+        templateUrl: './lms/account/AccountPage.html'
     })
-], HomePage);
-exports.HomePage = HomePage;
-//# sourceMappingURL=HomePage.component.js.map
+], AccountPage);
+exports.AccountPage = AccountPage;
+//# sourceMappingURL=AccountPage.component.js.map

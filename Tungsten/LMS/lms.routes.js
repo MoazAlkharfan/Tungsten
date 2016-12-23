@@ -1,14 +1,13 @@
 "use strict";
-var router_1 = require('@angular/router');
-var HomePage_component_1 = require('./home/HomePage.component');
-exports.routes = [
+var router_1 = require("@angular/router");
+var AccountPage_component_1 = require("./account/AccountPage.component");
+var HomePage_component_1 = require("./home/HomePage.component");
+var register_component_1 = require("./register/register.component");
+var routes = [
+    { path: 'register', component: register_component_1.RegisterPage },
+    { path: 'account', component: AccountPage_component_1.AccountPage },
     { path: '', component: HomePage_component_1.HomePage },
-    { path: '**', redirectTo: '', pathMatch: 'full' },
-    { path: '/1', component: HomePage_component_1.HomePage },
-    { path: 'index', component: HomePage_component_1.HomePage },
-    { path: 'account', component: HomePage_component_1.HomePage }
+    { path: '**', redirectTo: '', pathMatch: 'full' } // not found
 ];
-exports.APP_ROUTER_PROVIDERS = [
-    router_1.provideRoutes(exports.routes)
-];
+exports.LMS_Routes = router_1.RouterModule.forRoot(routes);
 //# sourceMappingURL=lms.routes.js.map

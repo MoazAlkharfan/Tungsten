@@ -19,7 +19,7 @@ namespace Tungsten.Migrations
         protected override void Seed(Tungsten.DataAccessLayer.ApplicationDbContext context)
         {
             // To start clean run: 
-            //Update -Database -TargetMigration:0 -Force | Add-Migration Initial -Force | Update-Database -Force
+            //Update-Database -TargetMigration:0 -Force | Add-Migration Initial -Force | Update-Database -Force
 
             // To Use Debugger on Seed method uncomment:
             //if (System.Diagnostics.Debugger.IsAttached == false)
@@ -29,10 +29,16 @@ namespace Tungsten.Migrations
             var userManager = new UserManager<ApplicationUser>(userStore);
 
             var group1 = new Group { Participants = new List<ApplicationUser>(), Name = "9B", Description = "" };
+            var group2 = new Group { Participants = new List<ApplicationUser>(), Name = "9A", Description = "" };
+            var group3 = new Group { Participants = new List<ApplicationUser>(), Name = "9C", Description = "" };
+            var group4 = new Group { Participants = new List<ApplicationUser>(), Name = "8A", Description = "Dålig klass" };
 
             context.Groups.AddOrUpdate(
                 g => g.Name,
-                group1
+                group1,
+                group2,
+                group3,
+                group4
             );
 
             var student1 = new ApplicationUser { Groups = new List<Group>(), UserName = "haxxxor33", Name = "Victor Jonsson", PhoneNumber = "+46701234567", Email = "haxxxor33@fakemail.com", Address = "Södra Gågatan 33, 93791 Burträsk", SSN = "010322-8634" };
@@ -83,6 +89,12 @@ namespace Tungsten.Migrations
 
             group1.Participants.Add(teacher1);
 
+
+            Course course1 = new Course() { Subject = "Mathematics",        Level = "6", GroupId = group2.Id, Description = "High-school math", Participants = new List<ApplicationUser>() };
+            Course course2 = new Course() { Subject = "History",            Level = "6", GroupId = group2.Id, Description = "High-school history", Participants = new List<ApplicationUser>() };
+            Course course3 = new Course() { Subject = "Sexual Education",   Level = "6", GroupId = group2.Id, Description = "High-school prom", Participants = new List<ApplicationUser>() };
+            Course course4 = new Course() { Subject = "Chemistry",          Level = "6", GroupId = group2.Id, Description = "High-school nap", Participants = new List<ApplicationUser>() };
+
             context.Courses.AddOrUpdate(
                 c => c.Subject,
                 new Course
@@ -96,7 +108,15 @@ namespace Tungsten.Migrations
                         teacher1
                     }
                 }
+
             );
+
+            Lesson lesson1 = new Lesson() { Classroom = "Stora salen", CourseId = course2.Id, StartTime = DateTime.Now, EndTime = DateTime.MaxValue };
+            Lesson lesson2 = new Lesson() { Classroom = "Lilla salen", CourseId = course2.Id, StartTime = DateTime.Now, EndTime = DateTime.MaxValue };
+            Lesson lesson3 = new Lesson() { Classroom = "Mellansalen", CourseId = course3.Id, StartTime = DateTime.Now, EndTime = DateTime.MaxValue };
+            Lesson lesson4 = new Lesson() { Classroom = "Microsalen", CourseId = course4.Id, StartTime = DateTime.Now, EndTime = DateTime.MaxValue };
+            Lesson lesson5 = new Lesson() { Classroom = "MEGASALEN", CourseId = course4.Id, StartTime = DateTime.Now, EndTime = DateTime.MaxValue };
+
         }
     }
 }
