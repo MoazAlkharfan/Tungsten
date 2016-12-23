@@ -38,7 +38,6 @@ export class DataService {
         }
         else
             return this.http.post(this._baseUri, data)
-                .do(this.logData)
                 .catch(this.handleError);
     }
 
