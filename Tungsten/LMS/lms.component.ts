@@ -2,6 +2,7 @@
 import { GroupService } from './services/GroupService';
 import { MembershipService } from './services/membership.service';
 import { Login } from './components/Login/Login';
+import { User } from './classes/User';
 
 @Component({
     selector: 'lms-index',
@@ -11,27 +12,18 @@ import { Login } from './components/Login/Login';
 })
 export class IndexPage implements OnInit, AfterViewChecked {
     isuserloggedin: boolean;
-    username: string;
+    user: User;
     @ViewChild(Login) LoginView: Login;
 
     constructor( @Inject(ElementRef) private elementRef: ElementRef, @Inject(MembershipService) public membershipService: MembershipService, @Inject(ChangeDetectorRef) public changeDetectorRef: ChangeDetectorRef) {
-        this.username = this.elementRef.nativeElement.getAttribute('username');
-        this.isuserloggedin = this.elementRef.nativeElement.getAttribute('isloggedin');
+        this.user = this.membershipService.getLoggedInUser();
+        this.isuserloggedin = this.isUserLoggedIn();
 
     }
     
     isUserLoggedIn(): boolean {
+        console.log('this.isUserLoggedIn() = ' + this.membershipService.isUserAuthenticated());
         return this.membershipService.isUserAuthenticated();
-    }
-
-    getUserName(): string {
-        if (this.isUserLoggedIn()) {
-            var _user = this.membershipService.getLoggedInUser();
-            console.log(_user.Username);
-            return _user.Username;
-        }
-        else
-            return 'Account';
     }
 
     logout(): void {
@@ -40,7 +32,7 @@ export class IndexPage implements OnInit, AfterViewChecked {
                 localStorage.removeItem('user');
             },
             error => console.error('Error: ' + error),
-            () => { this.isuserloggedin = false; });
+            () => { this.isuserloggedin = false; console.log('login view should be displayed!'); });
     }
     
     ngAfterViewChecked() {
