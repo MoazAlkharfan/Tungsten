@@ -54,7 +54,7 @@ export class DataService {
     }
 
     private extractData(res: Response) {
-        let body = <any>JSON.parse(res.json());
+        let body = <any>res.json();
         console.log('logging body');
         console.log(body);
         return body || [];
