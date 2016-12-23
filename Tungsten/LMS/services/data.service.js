@@ -10,6 +10,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
+var Observable_1 = require("rxjs/Observable");
 var DataService = (function () {
     function DataService(http) {
         this.http = http;
@@ -21,13 +22,21 @@ var DataService = (function () {
     DataService.prototype.get = function (page) {
         var uri = this._baseUri + page.toString() + '/' + this._pageSize.toString();
         return this.http.get(uri)
-            .map(function (response) { return response; });
+            .do(this.logData)
+            .map(function (response) {
+            console.log(response);
+            return response.json();
+        });
     };
     DataService.prototype.post = function (data, mapJson) {
         if (mapJson === void 0) { mapJson = true; }
-        if (mapJson)
+        if (mapJson) {
+            console.log('FromPostMethod data.service.ts');
+            console.log(data);
             return this.http.post(this._baseUri, data)
-                .map(function (response) { return response.json(); });
+                .catch(this.handleError)
+                .map(this.extractData);
+        }
         else
             return this.http.post(this._baseUri, data);
     };
@@ -38,6 +47,20 @@ var DataService = (function () {
     DataService.prototype.deleteResource = function (resource) {
         return this.http.delete(resource)
             .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.extractData = function (res) {
+        var body = JSON.parse(res.json());
+        console.log('logging body');
+        console.log(body);
+        return body || [];
+    };
+    DataService.prototype.logData = function (data) {
+        console.log('Response from post data.service.ts');
+        console.log(JSON.parse(data));
+    };
+    DataService.prototype.handleError = function (error) {
+        console.error(error);
+        return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
     return DataService;
 }());

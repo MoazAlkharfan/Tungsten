@@ -24,7 +24,7 @@ var MembershipService = (function () {
     };
     MembershipService.prototype.login = function (creds) {
         this.accountService.set(this._accountLoginAPI);
-        return this.accountService.post(JSON.stringify(creds));
+        return this.accountService.post(JSON.stringify(creds), true);
     };
     MembershipService.prototype.logout = function () {
         this.accountService.set(this._accountLogoutAPI);

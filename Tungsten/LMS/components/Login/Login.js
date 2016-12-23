@@ -56,10 +56,13 @@ var Login = (function () {
     Login.prototype.login = function () {
         var _this = this;
         var _authenticationResult = new operationResult_1.OperationResult(false, '');
+        console.log('From loginMethod login.ts');
+        console.log(this._user);
         this.membershipService.login(this._user)
             .subscribe(function (res) {
             _authenticationResult.Succeeded = res.Succeeded;
             _authenticationResult.Message = res.Message;
+            console.log(res);
         }, function (error) { return console.error('Error: ' + error); }, function () {
             if (_authenticationResult.Succeeded) {
                 localStorage.setItem('user', JSON.stringify(_this._user));
@@ -69,6 +72,7 @@ var Login = (function () {
             }
             console.log(_authenticationResult);
         });
+        //console.log(_authenticationResult);
     };
     ;
     return Login;
