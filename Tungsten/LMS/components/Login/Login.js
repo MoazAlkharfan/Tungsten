@@ -35,9 +35,11 @@ var Login = (function () {
         router) {
         this.membershipService = membershipService;
         this.router = router;
+        this.userUpdated = new core_1.EventEmitter();
     }
     Login.prototype.ngOnInit = function () {
         this._user = new User_1.User('', '');
+        this.LoggedIn = this.membershipService.isUserAuthenticated();
     };
     Login.prototype.OpenPanel = function () {
         this.LoginPanelIsOpen = true;
@@ -56,21 +58,19 @@ var Login = (function () {
     Login.prototype.login = function () {
         var _this = this;
         var _authenticationResult = new operationResult_1.OperationResult(false, '');
-        console.log('From loginMethod login.ts');
-        console.log(this._user);
         this.membershipService.login(this._user)
             .subscribe(function (res) {
             _authenticationResult.Succeeded = res.Succeeded;
             _authenticationResult.Message = res.Message;
-            console.log(res);
         }, function (error) { return console.error('Error: ' + error); }, function () {
             if (_authenticationResult.Succeeded) {
+                _this.userUpdated.emit(_this._user);
                 localStorage.setItem('user', JSON.stringify(_this._user));
                 _this.router.navigate(['home']);
             }
             else {
             }
-            console.log(_authenticationResult);
+            _this.LoggedIn = _authenticationResult.Succeeded;
         });
         //console.log(_authenticationResult);
     };
@@ -83,6 +83,9 @@ __decorate([
 __decorate([
     core_1.ViewChild('usernameInput')
 ], Login.prototype, "usernameInput", void 0);
+__decorate([
+    core_1.Output()
+], Login.prototype, "userUpdated", void 0);
 Login = __decorate([
     core_1.Component({
         selector: 'lms-login',

@@ -31,14 +31,13 @@ var DataService = (function () {
     DataService.prototype.post = function (data, mapJson) {
         if (mapJson === void 0) { mapJson = true; }
         if (mapJson) {
-            console.log('FromPostMethod data.service.ts');
-            console.log(data);
             return this.http.post(this._baseUri, data)
                 .catch(this.handleError)
                 .map(this.extractData);
         }
         else
-            return this.http.post(this._baseUri, data);
+            return this.http.post(this._baseUri, data)
+                .catch(this.handleError);
     };
     DataService.prototype.delete = function (id) {
         return this.http.delete(this._baseUri + '/' + id.toString())
@@ -49,14 +48,12 @@ var DataService = (function () {
             .map(function (response) { return response.json(); });
     };
     DataService.prototype.extractData = function (res) {
-        var body = JSON.parse(res.json());
-        console.log('logging body');
-        console.log(body);
+        var body = res.json();
         return body || [];
     };
     DataService.prototype.logData = function (data) {
         console.log('Response from post data.service.ts');
-        console.log(JSON.parse(data));
+        console.log(data);
     };
     DataService.prototype.handleError = function (error) {
         console.error(error);

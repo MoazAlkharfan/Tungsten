@@ -20,11 +20,11 @@ var MembershipService = (function () {
     }
     MembershipService.prototype.register = function (newUser) {
         this.accountService.set(this._accountRegisterAPI);
-        return this.accountService.post(JSON.stringify(newUser));
+        return this.accountService.post(newUser);
     };
     MembershipService.prototype.login = function (creds) {
         this.accountService.set(this._accountLoginAPI);
-        return this.accountService.post(JSON.stringify(creds), true);
+        return this.accountService.post(creds);
     };
     MembershipService.prototype.logout = function () {
         this.accountService.set(this._accountLogoutAPI);
