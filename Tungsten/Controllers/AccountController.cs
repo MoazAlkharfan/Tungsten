@@ -386,11 +386,12 @@ namespace Tungsten.Controllers
         //
         // POST: /Account/LogOff
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return Json(new { Succeeded = true, Message = "Should be loggedoff!" });
+            //return RedirectToAction("Index", "Home");
         }
 
         //

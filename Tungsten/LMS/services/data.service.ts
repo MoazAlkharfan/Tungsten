@@ -32,15 +32,14 @@ export class DataService {
     post(data?: any, mapJson: boolean = true) {
         
         if (mapJson) {
-            console.log('FromPostMethod data.service.ts');
-            console.log(data);
             return this.http.post(this._baseUri, data)
                 .catch(this.handleError)
                 .map(this.extractData);
         }
-            
         else
-            return this.http.post(this._baseUri, data);
+            return this.http.post(this._baseUri, data)
+                .do(this.logData)
+                .catch(this.handleError);
     }
 
     delete(id: number) {
@@ -54,15 +53,13 @@ export class DataService {
     }
 
     private extractData(res: Response) {
-        let body = <any>JSON.parse(res.json());
-        console.log('logging body');
-        console.log(body);
+        let body = <any>res.json();
         return body || [];
     }
 
     private logData(data) {
         console.log('Response from post data.service.ts');
-        console.log(JSON.parse(data));
+        console.log(data);
     }
 
     private handleError(error: Response) {

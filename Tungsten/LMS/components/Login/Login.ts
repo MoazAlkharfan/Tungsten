@@ -29,14 +29,16 @@ export class Login implements OnInit {
     Timeout: number;
     @ViewChild('usernameInput') usernameInput: Inputter;
     private _user: User;
-
-    ngOnInit() {
-        this._user = new User('', '');
-    }
+    LoggedIn: boolean;
 
     constructor( @Inject(MembershipService) public membershipService: MembershipService,
         //public notificationService: NotificationService,
         @Inject(Router) public router: Router) { }
+
+    ngOnInit() {
+        this._user = new User('', '');
+        this.LoggedIn = this.membershipService.isUserAuthenticated();
+    }
 
     OpenPanel(): void {
         this.LoginPanelIsOpen = true;
@@ -56,13 +58,10 @@ export class Login implements OnInit {
 
     login(): void {
         var _authenticationResult: OperationResult = new OperationResult(false, '');
-        console.log('From loginMethod login.ts');
-        console.log(this._user);
         this.membershipService.login(this._user)
             .subscribe(res => {
                 _authenticationResult.Succeeded = res.Succeeded;
                 _authenticationResult.Message = res.Message;
-                console.log(res);
             },
             error => console.error('Error: ' + <any>error),
             () => {
@@ -73,7 +72,7 @@ export class Login implements OnInit {
                 else {
                     
                 }
-                console.log(_authenticationResult);
+                this.LoggedIn = _authenticationResult.Succeeded;
             });
         //console.log(_authenticationResult);
     };
