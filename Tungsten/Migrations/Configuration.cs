@@ -19,7 +19,7 @@ namespace Tungsten.Migrations
         protected override void Seed(Tungsten.DataAccessLayer.ApplicationDbContext context)
         {
             // To start clean run: 
-            //Update -Database -TargetMigration:0 -Force | Add-Migration Initial -Force | Update-Database -Force
+            //Update-Database -TargetMigration:0 -Force | Add-Migration Initial -Force | Update-Database -Force
 
             // To Use Debugger on Seed method uncomment:
             //if (System.Diagnostics.Debugger.IsAttached == false)

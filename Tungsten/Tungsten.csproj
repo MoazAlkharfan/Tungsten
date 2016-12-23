@@ -234,9 +234,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612221432191_Initial.cs" />
-    <Compile Include="Migrations\201612221432191_Initial.Designer.cs">
-      <DependentUpon>201612221432191_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201612231004126_Initial.cs" />
+    <Compile Include="Migrations\201612231004126_Initial.Designer.cs">
+      <DependentUpon>201612231004126_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -258,10 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Angular2Readme-IMPORTANT.txt" />
-    <Content Include="App_Data\LMSDb.mdf" />
-    <Content Include="App_Data\LMSDb_log.ldf">
-      <DependentUpon>LMSDb.mdf</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -271,6 +267,8 @@
     <Content Include="index-JustForReference-DeleteIt.html" />
     <Content Include="LMS\components\GroupsList\GroupsList.css" />
     <Content Include="LMS\components\GroupsList\GroupsList.html" />
+    <Content Include="LMS\components\Login\Login.css" />
+    <Content Include="LMS\components\Login\Login.html" />
     <Content Include="LMS\index.css" />
     <Content Include="LMS\register\RegisterPage.html" />
     <Content Include="LMS\account\AccountPage.html" />
@@ -279,10 +277,15 @@
     <Content Include="typings.json" />
     <Content Include="tslint.json" />
     <TypeScriptCompile Include="LMS\classes\Group.ts" />
+    <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
+    <TypeScriptCompile Include="LMS\classes\Registration.ts" />
+    <TypeScriptCompile Include="LMS\classes\User.ts" />
+    <TypeScriptCompile Include="LMS\components\account.component.ts" />
     <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts" />
+    <TypeScriptCompile Include="LMS\components\Login\Login.ts" />
+    <TypeScriptCompile Include="LMS\register\register.component.ts" />
     <TypeScriptCompile Include="LMS\interfaces\Group.ts" />
-    <TypeScriptCompile Include="LMS\register\lms.component.ts" />
-    <TypeScriptCompile Include="LMS\account\lms.component.ts" />
+    <TypeScriptCompile Include="LMS\account\AccountPage.component.ts" />
     <Content Include="LMS\home\HomePage.html" />
     <TypeScriptCompile Include="LMS\home\HomePage.component.ts" />
     <TypeScriptCompile Include="LMS\lms.component.ts" />
@@ -311,6 +314,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="package.json" />
+    <Content Include="LMS\components\Register\register.component.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -372,7 +376,9 @@
     <Content Include="Views\Dashboard\Details.cshtml" />
     <Content Include="Views\Dashboard\Edit.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <TypeScriptCompile Include="LMS\services\data.service.ts" />
     <TypeScriptCompile Include="LMS\services\GroupService.ts" />
+    <TypeScriptCompile Include="LMS\services\membership.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -382,8 +388,12 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612221432191_Initial.resx">
-      <DependentUpon>201612221432191_Initial.cs</DependentUpon>
+    <Folder Include="App_Data\" />
+    <Folder Include="LMS\login\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612231004126_Initial.resx">
+      <DependentUpon>201612231004126_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
