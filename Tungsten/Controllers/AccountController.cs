@@ -78,7 +78,7 @@ namespace Tungsten.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return Json(new { Succeeded = true, Message = "Login Success" });
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -86,7 +86,7 @@ namespace Tungsten.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return Json(new { Succeeded = false, Message = "Login Failed" });
             }
         }
 
@@ -161,8 +161,7 @@ namespace Tungsten.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    return Json(new { Succeeded = true, Message = "Register Success" });
                 }
                 AddErrors(result);
             }

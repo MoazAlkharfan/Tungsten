@@ -4,7 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+
 import 'rxjs/Rx';
+
+// Routes
+import { LMS_Routes } from './lms.routes';
 
 // Interfaces
 import { IGroup } from './interfaces/Group';
@@ -14,14 +18,19 @@ import { Group } from './classes/Group';
 
 // Services
 import { GroupService } from './services/GroupService';
+import { DataService } from './services/data.service';
+import { MembershipService } from './services/membership.service';
 
 // Components
 import { GroupsList } from './components/GroupsList/GroupsList';
+import { Login } from './components/Login/Login';
 
 // Pages
 import { IndexPage } from './lms.component';
-import { AccountPage } from './account/lms.component';
+import { AccountPage } from './account/AccountPage.component';
 import { HomePage } from './home/HomePage.component';
+import { RegisterPage } from './register/register.component';
+
 
 
 @NgModule({
@@ -29,18 +38,18 @@ import { HomePage } from './home/HomePage.component';
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot([
-            { path: 'account', component: AccountPage },
-            { path: '', component: HomePage }, // / base url
-            { path: '**', redirectTo: '', pathMatch: 'full' } // not found
-        ])
+        LMS_Routes
     ],
     declarations: [
         IndexPage,
         HomePage,
         AccountPage,
-        GroupsList
+        RegisterPage,
+        GroupsList,
+        Login
+
     ],
-    bootstrap: [IndexPage]
+    bootstrap: [IndexPage],
+    providers: [GroupService, DataService, MembershipService]
 })
 export class AppModule { }
