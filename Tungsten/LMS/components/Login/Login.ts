@@ -56,13 +56,15 @@ export class Login implements OnInit {
 
     login(): void {
         var _authenticationResult: OperationResult = new OperationResult(false, '');
-
+        console.log('From loginMethod login.ts');
+        console.log(this._user);
         this.membershipService.login(this._user)
             .subscribe(res => {
                 _authenticationResult.Succeeded = res.Succeeded;
                 _authenticationResult.Message = res.Message;
+                console.log(res);
             },
-            error => console.error('Error: ' + error),
+            error => console.error('Error: ' + <any>error),
             () => {
                 if (_authenticationResult.Succeeded) {
                     localStorage.setItem('user', JSON.stringify(this._user));
@@ -73,5 +75,6 @@ export class Login implements OnInit {
                 }
                 console.log(_authenticationResult);
             });
+        //console.log(_authenticationResult);
     };
 }
