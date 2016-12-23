@@ -18,7 +18,6 @@ export class IndexPage implements OnInit, AfterViewChecked {
     constructor( @Inject(ElementRef) private elementRef: ElementRef, @Inject(MembershipService) public membershipService: MembershipService, @Inject(ChangeDetectorRef) public changeDetectorRef: ChangeDetectorRef) {
         this.user = this.membershipService.getLoggedInUser() || new User("", "");
         this.isuserloggedin = this.isUserLoggedIn();
-
     }
     
     isUserLoggedIn(): boolean {
@@ -50,5 +49,6 @@ export class IndexPage implements OnInit, AfterViewChecked {
     ngOnInit(): void {
         //console.log('Loggedin:');
         //console.log(this.isuserloggedin);
+        console.log(document.getElementById('antiForgeryForm').childNodes[1].value);
     }
 }

@@ -6,8 +6,10 @@ import { IndexPage } from './lms.component';
 import { AccountPage } from './account/AccountPage.component';
 import { HomePage } from './home/HomePage.component';
 import { RegisterPage } from './register/register.component';
+import { Dashboard } from './dashboard/dashboard.component';
 
 const routes: Routes = [
+    { path: 'dashboard', component: Dashboard },
     { path: 'register', component: RegisterPage },
     { path: 'account', component: AccountPage },
     { path: '', component: HomePage }, // / base url

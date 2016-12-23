@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ItendityCodeAlong.Models
+namespace Tungsten.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

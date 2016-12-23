@@ -1,4 +1,4 @@
-﻿import { Http, Response } from '@angular/http';
+﻿import { Http, Response, Headers } from '@angular/http';
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
@@ -10,7 +10,14 @@ export class DataService {
     public _baseUri: string;
 
     constructor( @Inject(Http) public http: Http) {
+        //this.http._defaultOptions.headers.set('__requestverificationtoken', document.getElementById('antiForgeryForm').childNodes[1].nodeValue.toString());
+    }
 
+    createAuthorizationHeader(headers: Headers) {
+        var antiForgeryToken = document.getElementById('antiForgeryForm').childNodes[1].nodeValue;
+        console.log(antiForgeryToken);
+        //headers.append('Authorization', 'Basic ' +
+        //    btoa('username:password'));
     }
 
     set(baseUri: string, pageSize?: number): void {

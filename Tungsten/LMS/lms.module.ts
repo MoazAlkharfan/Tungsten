@@ -30,6 +30,7 @@ import { IndexPage } from './lms.component';
 import { AccountPage } from './account/AccountPage.component';
 import { HomePage } from './home/HomePage.component';
 import { RegisterPage } from './register/register.component';
+import { Dashboard } from './dashboard/dashboard.component';
 
 
 
@@ -45,6 +46,7 @@ import { RegisterPage } from './register/register.component';
         HomePage,
         AccountPage,
         RegisterPage,
+        Dashboard,
         GroupsList,
         Login
 

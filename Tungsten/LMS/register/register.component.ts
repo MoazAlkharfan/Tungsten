@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Registration } from '../classes/registration';
 import { OperationResult } from '../classes//operationResult';
 import { MembershipService } from '../services/membership.service';
+import { Login } from '../components/Login/Login';
 
 @Component({
     selector: 'register',
@@ -31,7 +32,8 @@ export class RegisterPage implements OnInit {
             error => console.error('Error: ' + error),
             () => {
                 if (_registrationResult.Succeeded) {
-                    this.router.navigate(['account/login']);
+                    console.log('Registration Successful');
+                    this.router.navigate(['home']);
                 }
                 else {
 

@@ -69,7 +69,7 @@ export class Login implements OnInit {
                 if (_authenticationResult.Succeeded) {
                     this.userUpdated.emit(this._user);
                     localStorage.setItem('user', JSON.stringify(this._user));
-                    this.router.navigate(['home']);
+                    this.router.navigate(['/dashboard']);
                 }
                 else {
                     
