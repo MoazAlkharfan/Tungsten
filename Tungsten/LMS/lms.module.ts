@@ -27,28 +27,30 @@ import { Login } from './components/Login/Login';
 
 // Pages
 import { IndexPage } from './lms.component';
-import { AccountPage } from './account/AccountPage.component';
-import { HomePage } from './home/HomePage.component';
-import { RegisterPage } from './register/register.component';
-import { Dashboard } from './dashboard/dashboard.component';
+import { AccountPage } from './pages/account/AccountPage.component';
+import { HomePage } from './pages/home/HomePage.component';
+import { RegisterPage } from './pages/register/register.component';
+import { Dashboard } from './pages/dashboard/dashboard.module';
 
-
+// directives
+import { Autofocus } from './directives/autofocus';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        LMS_Routes
+        LMS_Routes,
+        Dashboard
     ],
     declarations: [
         IndexPage,
         HomePage,
         AccountPage,
         RegisterPage,
-        Dashboard,
         GroupsList,
-        Login
+        Login,
+        Autofocus
 
     ],
     bootstrap: [IndexPage],

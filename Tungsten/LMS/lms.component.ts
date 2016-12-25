@@ -12,11 +12,11 @@ import { User } from './classes/User';
 })
 export class IndexPage implements OnInit, AfterViewChecked {
     isuserloggedin: boolean;
-    user: User;
+    public user: User;
     @ViewChild(Login) LoginView: Login;
 
     constructor( @Inject(ElementRef) private elementRef: ElementRef, @Inject(MembershipService) public membershipService: MembershipService, @Inject(ChangeDetectorRef) public changeDetectorRef: ChangeDetectorRef) {
-        this.user = this.membershipService.getLoggedInUser() || new User("", "");
+        this.user = this.membershipService.getLoggedInUser() || new User('', '', '', '', []);
         this.isuserloggedin = this.isUserLoggedIn();
     }
     
@@ -30,7 +30,10 @@ export class IndexPage implements OnInit, AfterViewChecked {
                 localStorage.removeItem('user');
             },
             error => console.error('Error: ' + error),
-            () => { this.isuserloggedin = false; });
+            () => {
+                this.isuserloggedin = false;
+                this.user = new User('', '', '', '', []);
+            });
     }
     
     ngAfterViewChecked() {
@@ -40,15 +43,18 @@ export class IndexPage implements OnInit, AfterViewChecked {
         this.changeDetectorRef.detectChanges();
     }
 
-    userUpdated(user: User) {
-        this.user = user;
+    userUpdated(updatedUser: User) {
+        this.user = updatedUser;
     }
 
+    public getUser(): User {
+        return this.user;
+    }
     //console.log(this.isuserloggedin);
 
     ngOnInit(): void {
-        //console.log('Loggedin:');
-        //console.log(this.isuserloggedin);
-        console.log(document.getElementById('antiForgeryForm').childNodes[1].value);
+        // this is the antiforgery token DON't REMOVE
+        console.log('Anti Forgery Token passed from the razor Home/Index View');
+        console.log(document.getElementById('antiForgeryForm').childNodes[1].attributes.getNamedItem("value").nodeValue);
     }
 }

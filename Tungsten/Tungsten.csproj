@@ -223,7 +223,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Attributes\ExtendedAuthorize.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataAccessLayer\ApplicationDbContext.cs" />
@@ -273,16 +272,22 @@
       <DependentUpon>Login.html</DependentUpon>
     </Content>
     <Content Include="LMS\components\Login\Login.html" />
+    <Content Include="LMS\pages\dashboard\index.html" />
+    <Content Include="LMS\pages\dashboard\Pages\home\homepage.html" />
     <Content Include="LMS\index.css" />
-    <Content Include="LMS\register\RegisterPage.html" />
-    <Content Include="LMS\account\AccountPage.html" />
+    <Content Include="LMS\pages\register\RegisterPage.html" />
+    <Content Include="LMS\pages\account\AccountPage.html" />
     <Content Include="LMS\index.html" />
     <Content Include="Reinforced.Typings.settings.xml" />
     <Content Include="typings.json" />
     <Content Include="tslint.json" />
-    <TypeScriptCompile Include="LMS\account\AccountPage.component.ts">
+    <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.routes.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\homepage.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\account\AccountPage.component.ts">
       <DependentUpon>AccountPage.html</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="LMS\classes\ChangeInfo.ts" />
     <TypeScriptCompile Include="LMS\classes\Group.ts" />
     <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
     <TypeScriptCompile Include="LMS\classes\Registration.ts" />
@@ -294,16 +299,14 @@
     <TypeScriptCompile Include="LMS\components\Login\Login.ts">
       <DependentUpon>Login.html</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="LMS\dashboard\dashboard.component.ts">
-      <SubType>Code</SubType>
-      <DependentUpon>dashboard.component.html</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="LMS\home\HomePage.component.ts">
+    <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.module.ts" />
+    <TypeScriptCompile Include="LMS\directives\autofocus.ts" />
+    <TypeScriptCompile Include="LMS\pages\home\HomePage.component.ts">
       <DependentUpon>HomePage.html</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="LMS\register\register.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\register\register.component.ts" />
     <TypeScriptCompile Include="LMS\interfaces\Group.ts" />
-    <Content Include="LMS\home\HomePage.html" />
+    <Content Include="LMS\pages\home\HomePage.html" />
     <TypeScriptCompile Include="LMS\lms.component.ts" />
     <TypeScriptCompile Include="LMS\lms.module.ts" />
     <TypeScriptCompile Include="LMS\lms.routes.ts" />
@@ -330,7 +333,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="package.json" />
-    <Content Include="LMS\dashboard\dashboard.component.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

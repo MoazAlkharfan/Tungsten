@@ -8,6 +8,8 @@ using Tungsten.Models;
 using System.Web;
 using System;
 using System.Linq;
+using System.Web.Security;
+using System.Collections.Generic;
 
 namespace Tungsten.Controllers
 {
@@ -50,6 +52,24 @@ namespace Tungsten.Controllers
                 _userManager = value;
             }
         }
+        /// <summary>
+        /// Gets the user info for the logged in user
+        /// </summary>
+        /// <returns>
+        ///     Anonymous { Name, Username, Email, Roels[] } as Json
+        /// </returns>
+        [Authorize]
+        public async Task<ActionResult> GetUserInfo()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var user = new {
+                Name = User.Identity.Name,
+                Username = User.Identity.GetUserName(),
+                Email = UserManager.GetEmailAsync(currentUserId).Result,
+                Roles = await UserManager.GetRolesAsync(currentUserId)
+            };
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
 
         ////
         //// GET: /Account/Login
@@ -75,10 +95,11 @@ namespace Tungsten.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
                 case SignInStatus.Success:
-                    return Json(new { Succeeded = true, Message = "Login Success" });
+                    return Json(new { Succeeded = true, Message = "Login Success"/*, UserRole = Roles.GetRolesForUser(model.Username)*/ });
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

@@ -1,8 +1,8 @@
 ﻿<div [ngSwitch]="LoginPanelIsOpen">
-    <a *ngSwitchCase="false" (click)="OpenPanel()" href="#">Login</a>
+    <button *ngSwitchCase="false" (click)="OpenPanel()">Login</button>
     <form *ngSwitchCase="true" #loginForm="ngForm">
-        <input focusonload="true" type="text" placeholder="User Name" (blur)="ClosePanel()" (click)="StopHidingPanel()" [(ngModel)]="_user.Username" name="username" required />
-        <input focusonload="true" type="password" placeholder="Password" (blur)="ClosePanel()" (click)="StopHidingPanel()" [(ngModel)]="_user.Password" name="password" required />
+        <input type="text" placeholder="User Name" (blur)="ClosePanel()" (focus)="StopHidingPanel()" [(ngModel)]="_user.Username" name="username" [autofocus] required />
+        <input type="password" placeholder="Password" (blur)="ClosePanel()" (focus)="StopHidingPanel()" [(ngModel)]="_user.Password" name="password" required />
         <div class="checkbox">
             <label>
                 <input type="checkbox" [(ngModel)]="_user.RememberMe" name="remember"> Remember me

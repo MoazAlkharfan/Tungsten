@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../../classes/User';
 import { OperationResult } from '../../classes/operationResult';
 import { MembershipService } from '../../services/membership.service';
+import { Autofocus } from '../../directives/autofocus';
 
 @Directive({
     selector: 'input[type=text][focusonload=true]'
@@ -37,9 +38,13 @@ export class Login implements OnInit {
         @Inject(Router) public router: Router) { }
 
     ngOnInit() {
-        this._user = new User('', '');
+        this._user = new User('', '', '', '', []);
         this.LoggedIn = this.membershipService.isUserAuthenticated();
     }
+
+    eventHandler(key) {
+        console.log(key);
+    } 
 
     OpenPanel(): void {
         this.LoginPanelIsOpen = true;
@@ -61,21 +66,32 @@ export class Login implements OnInit {
         var _authenticationResult: OperationResult = new OperationResult(false, '');
         this.membershipService.login(this._user)
             .subscribe(res => {
-                _authenticationResult.Succeeded = res.Succeeded;
-                _authenticationResult.Message = res.Message;
+                _authenticationResult = res;
             },
             error => console.error('Error: ' + <any>error),
             () => {
                 if (_authenticationResult.Succeeded) {
-                    this.userUpdated.emit(this._user);
-                    localStorage.setItem('user', JSON.stringify(this._user));
-                    this.router.navigate(['/dashboard']);
+                    this.membershipService.getUserInfo(this._user)
+                        .subscribe(ress => {
+                            this._user = ress;
+                        },
+                        error => console.error('Error: ' + <any>error),
+                        () => {
+
+                            this._user.Password = '';
+                            this.userUpdated.emit(this._user);
+
+                            localStorage.setItem('user', JSON.stringify(this._user));
+                            this.router.navigate(['/dashboard']);
+
+                            this.LoggedIn = _authenticationResult.Succeeded;
+                        });
                 }
                 else {
-                    
+                    // login unsuccessful
                 }
-                this.LoggedIn = _authenticationResult.Succeeded;
+                
+                
             });
-        //console.log(_authenticationResult);
     };
 }

@@ -10,7 +10,8 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a [routerLink]="['/']">Home</a></li>
+                <li><a [routerLink]="['']">Home</a></li>
+                <li *ngIf="user.Username"><a [routerLink]="['dashboard']">Dashboard</a></li>
             </ul>
             <div [ngSwitch]="isuserloggedin">
                 <ul class="nav navbar-nav navbar-right" *ngSwitchCase="true">
@@ -31,7 +32,7 @@
     </div>
 </div>
 <div class="container body-content">
-    <router-outlet></router-outlet>
+    <router-outlet></router-outlet> <!-- Angular Rounting -->
     <hr />
     <footer>
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

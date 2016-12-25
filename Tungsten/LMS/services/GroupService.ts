@@ -2,6 +2,7 @@
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 import { IGroup } from '../interfaces/Group';
+import { DataService } from './data.service';
 
 import 'rxjs/rx';
 
@@ -14,6 +15,7 @@ export class GroupService {
             .do(this.logData)
             .catch(this.handleError)
             .map(this.extractGroups);
+
     }
 
     getGroupById(id: string): Observable<IGroup> {

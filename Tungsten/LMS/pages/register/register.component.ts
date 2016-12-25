@@ -1,14 +1,14 @@
 ﻿import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Registration } from '../classes/registration';
-import { OperationResult } from '../classes//operationResult';
-import { MembershipService } from '../services/membership.service';
-import { Login } from '../components/Login/Login';
+import { Registration } from '../../classes/registration';
+import { OperationResult } from '../../classes//operationResult';
+import { MembershipService } from '../../services/membership.service';
+import { Login } from '../../components/Login/Login';
 
 @Component({
     selector: 'register',
     providers: [MembershipService], 
-    templateUrl: './lms/register/RegisterPage.html'
+    templateUrl: './lms/pages/register/RegisterPage.html'
 })
 export class RegisterPage implements OnInit {
 

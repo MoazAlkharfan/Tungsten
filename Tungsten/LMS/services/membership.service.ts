@@ -27,7 +27,7 @@ export class MembershipService {
 
     logout() {
         this.accountService.set(this._accountLogoutAPI);
-        return this.accountService.post(null, false);
+        return this.accountService.post(null);
     }
 
     isUserAuthenticated(): boolean {
@@ -43,9 +43,14 @@ export class MembershipService {
 
         if (this.isUserAuthenticated()) {
             var _userData = JSON.parse(localStorage.getItem('user'));
-            _user = new User(_userData.Username, _userData.Password);
+            _user = <User>_userData;
         }
 
         return _user;
+    }
+
+    getUserInfo(_user: User) {
+        this.accountService.set("/Account/GetUserInfo/");
+        return this.accountService.post(_user);
     }
 }

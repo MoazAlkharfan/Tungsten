@@ -2,6 +2,6 @@
 
 
 @Component({
-    templateUrl: './LMS/home/HomePage.html'
+    templateUrl: './LMS/pages/home/HomePage.html'
 })
 export class HomePage { }
