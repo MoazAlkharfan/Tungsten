@@ -35,6 +35,10 @@ import { Dashboard } from './pages/dashboard/dashboard.module';
 // directives
 import { Autofocus } from './directives/autofocus';
 
+// Routing Guards
+import { isAuthenticatedGuard } from './services/guards/isAuthenticated';
+
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -51,9 +55,8 @@ import { Autofocus } from './directives/autofocus';
         GroupsList,
         Login,
         Autofocus
-
     ],
     bootstrap: [IndexPage],
-    providers: [GroupService, DataService, MembershipService]
+    providers: [GroupService, DataService, MembershipService, isAuthenticatedGuard]
 })
 export class AppModule { }

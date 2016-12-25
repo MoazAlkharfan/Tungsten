@@ -8,10 +8,14 @@ import { HomePage } from './pages/home/HomePage.component';
 import { RegisterPage } from './pages/register/register.component';
 import { Dashboard_Index } from './pages/dashboard/dashboard.component';
 
+// Routing Guards
+import { isAuthenticatedGuard } from './services/guards/isAuthenticated';
+
+
 const routes: Routes = [
-    { path: 'dashboard', component: Dashboard_Index },
+    { path: 'dashboard', component: Dashboard_Index, canActivate: [isAuthenticatedGuard] },
     { path: 'register', component: RegisterPage },
-    { path: 'account', component: AccountPage },
+    { path: 'account', component: AccountPage, canActivate: [isAuthenticatedGuard] },
     { path: '', component: HomePage }, // / base url
     { path: '**', redirectTo: '', pathMatch: 'full' } // not found
 ];

@@ -10,6 +10,8 @@ export class MembershipService {
     private _accountRegisterAPI: string = '/Account/Register/';
     private _accountLoginAPI: string = '/Account/Login/';
     private _accountLogoutAPI: string = '/Account/LogOff/';
+    private _accountUserInfo: string = '/Account/GetUserInfo/';
+
 
     constructor( @Inject(DataService) public accountService: DataService) { }
 
@@ -50,7 +52,9 @@ export class MembershipService {
     }
 
     getUserInfo(_user: User) {
-        this.accountService.set("/Account/GetUserInfo/");
+        this.accountService.set(this._accountUserInfo);
         return this.accountService.post(_user);
     }
+
+
 }
