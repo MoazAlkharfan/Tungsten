@@ -396,6 +396,7 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <TypeScriptCompile Include="LMS\services\data.service.ts" />
     <TypeScriptCompile Include="LMS\services\GroupService.ts" />
+    <TypeScriptCompile Include="LMS\services\guards\isAuthenticated.ts" />
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
   </ItemGroup>
   <ItemGroup>
