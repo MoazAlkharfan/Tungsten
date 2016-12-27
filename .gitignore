@@ -7,8 +7,8 @@
 *.sln.docstates
 
 # User-specific folders
-Tungsten/Tungsten/LMS/**.*.js
-Tungsten/Tungsten/LMS/**.*.map.js
+Tungsten/Tungsten/LMS/**/*.js
+Tungsten/Tungsten/LMS/**/*.map.js
 
 # Build results
 [Dd]ebug/
