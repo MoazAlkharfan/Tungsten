@@ -273,6 +273,7 @@
     </Content>
     <Content Include="LMS\components\Login\Login.html" />
     <Content Include="LMS\pages\dashboard\index.html" />
+    <Content Include="LMS\pages\dashboard\Pages\groups\groups.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\homepage.html" />
     <Content Include="LMS\index.css" />
     <Content Include="LMS\pages\register\RegisterPage.html" />
@@ -283,6 +284,7 @@
     <Content Include="tslint.json" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.routes.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\groups\groups.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\homepage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\account\AccountPage.component.ts">
       <DependentUpon>AccountPage.html</DependentUpon>
