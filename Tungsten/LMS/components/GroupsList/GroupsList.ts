@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class GroupsList implements OnInit {
     Groups: IGroup[];
-    errorMessage: string;
 
     constructor( @Inject(GroupService) private _groupService: GroupService,
         @Inject(Router) private router: Router) { }
@@ -20,7 +19,7 @@ export class GroupsList implements OnInit {
             .subscribe(Groups => {
                 this.Groups = Groups;
             },
-            error => this.errorMessage = <any>error);
+            error => console.error(error));
     }
 
     logGroupId(id) {

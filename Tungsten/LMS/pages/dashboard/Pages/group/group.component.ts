@@ -1,17 +1,39 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+import { GroupService } from '../../../../services/groupservice';
+
+import 'rxjs/add/operator/switchMap';
+
 @Component({
-    templateUrl: './lms/pages/dashboard/pages/group/group.component.html'
+    templateUrl: './lms/pages/dashboard/pages/group/group.component.html',
+    providers: [GroupService]
 })
 export class GroupPage implements OnInit {
-    constructor( @Inject(ActivatedRoute) private route: ActivatedRoute) { };
+    private Group;
+
+    constructor(
+        @Inject(ActivatedRoute) private route: ActivatedRoute,
+        @Inject(GroupService) private _GroupService: GroupService
+        ) { };
 
         ngOnInit() {
             let id = this.route.snapshot.params['id'];
-            //this.route.params.switchMap((params) => {
-            //    console.log(params);
-            //});
-            console.log(id);
+            
+            this._GroupService.getGroupById(id)
+                .subscribe((group) => { console.log(group); this.Group = group; },
+                error => console.error(error),
+                () => {
+                    console.log('call success');
+                    console.log(this.Group);
+                });
+
+            
+            
+            //if(id)
+            
+            
+            
+            
         }
 }

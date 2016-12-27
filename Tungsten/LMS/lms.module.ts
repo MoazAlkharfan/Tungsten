@@ -21,7 +21,7 @@ import { GroupService } from './services/GroupService';
 import { DataService } from './services/data.service';
 import { MembershipService } from './services/membership.service';
 import { AccountService } from './services/account.service';
-//import { UserAnnouncer } from './services/UserAnnouncer';
+import { UserAnnouncer } from './services/UserAnnouncer';
 
 // Components
 import { GroupsList } from './components/GroupsList/GroupsList';
@@ -59,6 +59,6 @@ import { isAuthenticatedGuard } from './services/guards/isAuthenticated';
         Autofocus
     ],
     bootstrap: [IndexPage],
-    providers: [/*UserAnnouncer, */GroupService, DataService, MembershipService, isAuthenticatedGuard, AccountService]
+    providers: [UserAnnouncer, GroupService, DataService, MembershipService, isAuthenticatedGuard, AccountService]
 })
 export class AppModule { }

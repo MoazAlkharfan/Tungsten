@@ -11,7 +11,7 @@ export class GroupService {
     constructor( @Inject(Http) private _http: Http) { }
 
     getGroups(): Observable<IGroup[]> {
-        return this._http.get('./Home/GetGroups')
+        return this._http.get('/Home/GetGroups')
             .do(this.logData)
             .catch(this.handleError)
             .map(this.extractGroups);
@@ -19,26 +19,27 @@ export class GroupService {
     }
 
     getGroupById(id: string): Observable<IGroup> {
-        return this._http.post('./Home/GetGroup/', id)
+        return this._http.post('/Home/GetGroup/', { id: id })
             .do(this.logData)
             .catch(this.handleError)
             .map(this.extractGroup);
     }
 
     createGroup(group: IGroup) {
-        return this._http.post('./Home/CreateGroup/', group)
-            .do(this.logData)
-            .catch(this.handleError);
+        return this._http.post('/Home/CreateGroup/', group)
+            //.do(this.logData)
+            .catch(this.handleError)
+            .map(this.extractGroup);
     }
 
     deleteGroup(id: string) {
-        return this._http.post('./Home/DeleteGroup', id)
+        return this._http.post('/Home/DeleteGroup', id)
             .do(this.logData)
             .catch(this.handleError);
     }
 
     private logData(data) {
-        //console.log(String(data));
+        console.log(String(data));
     }
 
     private handleError(error: Response) {

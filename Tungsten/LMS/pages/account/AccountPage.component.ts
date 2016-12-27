@@ -9,8 +9,7 @@ import { UserAnnouncer } from '../../services/UserAnnouncer';
 
 
 @Component({
-    templateUrl: './lms/pages/account/AccountPage.html',
-    providers: [UserAnnouncer]
+    templateUrl: './lms/pages/account/AccountPage.html'
 })
 export class AccountPage implements OnInit {
     user: User;

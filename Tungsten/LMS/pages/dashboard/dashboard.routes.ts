@@ -6,6 +6,7 @@ import { HomePage } from './pages/home/homepage.component';
 import { Dashboard_Index } from './dashboard.component';
 import { GroupsPage } from './pages/groups/groups.component';
 import { GroupPage } from './pages/group/group.component';
+import { CreateGroup } from './pages/creategroup/creategroup.component';
 
 // Routing Guards
 import { isAuthenticatedGuard } from '../../services/guards/isAuthenticated';
@@ -17,7 +18,8 @@ const routes: Routes = [
         [
             { path: '', component: HomePage, outlet: 'dashboard' }, // base url
             { path: 'groups', component: GroupsPage, outlet: 'dashboard' },
-            { path: 'group/:id', component: GroupPage, outlet: 'dashboard' }
+            { path: 'group/:id', component: GroupPage, outlet: 'dashboard' },
+            { path: 'creategroup', component: CreateGroup, outlet: 'dashboard' }
         ]
     }
 ];

@@ -22,7 +22,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right" *ngSwitchCase="false" >
                     <!--<li><a [routerLink]="['/register']">Register</a></li>-->
-                    <li><lms-login [LoginPanelIsOpen]="false" (userUpdated)="userUpdated($event)"></lms-login></li>
+                    <li><lms-login [LoginPanelIsOpen]="false" (userUpdated)="userUpdated($event)" [_UserAnnouncer]="_UserAnnouncer"></lms-login></li>
                 </ul>
             </div>
         </div>

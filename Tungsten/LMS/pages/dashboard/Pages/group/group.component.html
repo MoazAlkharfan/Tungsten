@@ -1,11 +1,11 @@
-﻿<table>
+﻿<table *ngIf="Group">
     <thead>
         <tr>
             <th>
                 Course Id
             </th>
             <th>
-                Name
+                Subject
             </th>
             <th>
                 Descreption
@@ -13,15 +13,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr *ngFor="let Course of Group.Courses">
             <td>
-                Course.Id
+                {{Course.Id}}
             </td>
             <td>
-                Course.Name
+                {{Course.Subject}}
             </td>
             <td>
-                Course.Descreption
+                {{Course.Description}}
             </td>
         </tr>
     </tbody>

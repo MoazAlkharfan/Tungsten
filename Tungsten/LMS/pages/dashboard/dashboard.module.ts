@@ -10,12 +10,14 @@ import { Dashboard_Index } from './dashboard.component';
 import { HomePage } from './pages/home/homepage.component';
 import { GroupsPage } from './pages/groups/groups.component';
 import { GroupPage } from './pages/group/group.component';
+import { CreateGroup } from './pages/creategroup/creategroup.component';
 
 // components
 import { GroupsList } from '../../components/groupslist/GroupsList';
 
 // services
 import { UserAnnouncer } from '../../services/UserAnnouncer';
+import { GroupService } from '../../services/groupservice';
 
 @NgModule({
     imports: [
@@ -29,10 +31,12 @@ import { UserAnnouncer } from '../../services/UserAnnouncer';
         HomePage,
         GroupPage,
         GroupsPage,
-        GroupsList
+        GroupsList,
+        CreateGroup
     ],
     providers: [
-        UserAnnouncer
+        UserAnnouncer,
+        GroupService
     ]
 })
 export class Dashboard { }

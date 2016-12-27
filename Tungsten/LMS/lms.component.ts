@@ -21,7 +21,7 @@ export class IndexPage implements OnInit, AfterViewChecked {
     constructor( @Inject(ElementRef) private elementRef: ElementRef,
         @Inject(MembershipService) public membershipService: MembershipService,
         @Inject(ChangeDetectorRef) public changeDetectorRef: ChangeDetectorRef,
-        @Inject(UserAnnouncer) private broadcaster: UserAnnouncer
+        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer
 
     ) {
         this.user = this.membershipService.getLoggedInUser() || new User('', '', '', '', []);
@@ -67,11 +67,12 @@ export class IndexPage implements OnInit, AfterViewChecked {
         console.log('Anti Forgery Token passed from the razor Home/Index View');
         console.log(document.getElementById('antiForgeryForm').childNodes[1].attributes.getNamedItem("value").nodeValue);
 
-        this.broadcaster.user.subscribe(
+        this.subscription = this._UserAnnouncer.userAnnounced.subscribe(
             user => {
+                console.log('user from lms.component event:')
                 console.log(this.user);
                 this.user = user;
-                
+
             }
         );
     }
