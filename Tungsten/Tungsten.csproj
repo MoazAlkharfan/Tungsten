@@ -242,6 +242,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\EditViewModel.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -274,7 +275,8 @@
     <Content Include="LMS\components\Login\Login.html" />
     <Content Include="LMS\pages\dashboard\index.html" />
     <Content Include="LMS\pages\dashboard\Pages\groups\groups.component.html" />
-    <Content Include="LMS\pages\dashboard\Pages\home\homepage.html" />
+    <Content Include="LMS\pages\dashboard\Pages\group\group.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\home\homepage.component.html" />
     <Content Include="LMS\index.css" />
     <Content Include="LMS\pages\register\RegisterPage.html" />
     <Content Include="LMS\pages\account\AccountPage.html" />
@@ -282,9 +284,12 @@
     <Content Include="Reinforced.Typings.settings.xml" />
     <Content Include="typings.json" />
     <Content Include="tslint.json" />
+    <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
+    <TypeScriptCompile Include="LMS\classes\EditModel.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.routes.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\groups\groups.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\group\group.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\homepage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\account\AccountPage.component.ts">
       <DependentUpon>AccountPage.html</DependentUpon>
@@ -396,6 +401,7 @@
     <Content Include="Views\Dashboard\Details.cshtml" />
     <Content Include="Views\Dashboard\Edit.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <TypeScriptCompile Include="LMS\services\account.service.ts" />
     <TypeScriptCompile Include="LMS\services\data.service.ts" />
     <TypeScriptCompile Include="LMS\services\GroupService.ts" />
     <TypeScriptCompile Include="LMS\services\guards\isAuthenticated.ts" />

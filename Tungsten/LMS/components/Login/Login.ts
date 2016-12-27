@@ -5,9 +5,11 @@ import { User } from '../../classes/User';
 import { OperationResult } from '../../classes/operationResult';
 import { MembershipService } from '../../services/membership.service';
 import { Autofocus } from '../../directives/autofocus';
+import { UserAnnouncer } from '../../services/userannouncer';
 
 @Directive({
-    selector: 'input[type=text][focusonload=true]'
+    selector: 'input[type=text][focusonload=true]',
+    providers: [UserAnnouncer]
 })
 class Inputter {
     constructor( @Inject(Renderer) public renderer: Renderer, @Inject(ElementRef) public elementRef: ElementRef) {
@@ -23,7 +25,7 @@ class Inputter {
     selector: 'lms-login',
     templateUrl: './lms/components/Login/Login.html',
     styleUrls: ['./lms/components/Login/Login.css'],
-    providers: [Inputter]
+    providers: [Inputter, UserAnnouncer]
 })
 export class Login implements OnInit {
     @Input() LoginPanelIsOpen: boolean;
@@ -35,7 +37,8 @@ export class Login implements OnInit {
 
     constructor( @Inject(MembershipService) public membershipService: MembershipService,
         //public notificationService: NotificationService,
-        @Inject(Router) public router: Router) { }
+        @Inject(Router) public router: Router,
+        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer) { }
 
     ngOnInit() {
         this._user = new User('', '', '', '', []);
@@ -79,6 +82,7 @@ export class Login implements OnInit {
                         () => {
 
                             this._user.Password = '';
+                            //this._UserAnnouncer.announceUser(this._user);
                             this.userUpdated.emit(this._user);
 
                             localStorage.setItem('user', JSON.stringify(this._user));
