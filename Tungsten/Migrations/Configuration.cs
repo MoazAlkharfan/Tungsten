@@ -28,10 +28,11 @@ namespace Tungsten.Migrations
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new UserManager<ApplicationUser>(userStore);
 
-            var group1 = new Group { Participants = new List<ApplicationUser>(), Name = "9B", Description = "" };
-            var group2 = new Group { Participants = new List<ApplicationUser>(), Name = "9A", Description = "" };
-            var group3 = new Group { Participants = new List<ApplicationUser>(), Name = "9C", Description = "" };
+            var group1 = new Group { Participants = new List<ApplicationUser>(), Name = "9B", Description = "Konstig klass" };
+            var group2 = new Group { Participants = new List<ApplicationUser>(), Name = "9A", Description = "Bra klass" };
+            var group3 = new Group { Participants = new List<ApplicationUser>(), Name = "9C", Description = "Medioker klass" };
             var group4 = new Group { Participants = new List<ApplicationUser>(), Name = "8A", Description = "Dålig klass" };
+
 
             context.Groups.AddOrUpdate(
                 g => g.Name,
@@ -40,6 +41,7 @@ namespace Tungsten.Migrations
                 group3,
                 group4
             );
+
 
             var student1 = new ApplicationUser { Groups = new List<Group>(), UserName = "haxxxor33", Name = "Victor Jonsson", PhoneNumber = "+46701234567", Email = "haxxxor33@fakemail.com", Address = "Södra Gågatan 33, 93791 Burträsk", SSN = "010322-8634" };
             var student2 = new ApplicationUser { Groups = new List<Group>(), UserName = "elite120", Name = "Johan Andersson", PhoneNumber = "+46701852567", Email = "elite120@fakemail.com", Address = "Norra Gågatan 12, 93791 Burträsk", SSN = "010421-3124" };
@@ -50,7 +52,7 @@ namespace Tungsten.Migrations
             var student7 = new ApplicationUser { Groups = new List<Group>(), UserName = "martinpettersson", Name = "Martin Pettersson", PhoneNumber = "+46701235468", Email = "martinpettersson@fakemail.com", Address = "Bakgatan 34, 93791 Burträsk", SSN = "010727-8212" };
             var student8 = new ApplicationUser { Groups = new List<Group>(), UserName = "petterisbest", Name = "Niclas Jonsson", PhoneNumber = "+46701315648", Email = "petterisbest@fakemail.com", Address = "Södragatan  11, 93791 Burträsk", SSN = "011124-3578" };
             var student9 = new ApplicationUser { Groups = new List<Group>(), UserName = "trekkzer", Name = "Jon Pärsson", PhoneNumber = "+46701275321", Email = "trekkzer@fakemail.com", Address = "Patrikgränd 1, 93791 Burträsk", SSN = "010625-9545" };
-                                                 
+
             var teacher1 = new ApplicationUser { Groups = new List<Group>(), UserName = "lena.lundmark", Name = "Lena Lundmark", PhoneNumber = "+46703334567", Email = "lena.lundmark@skola.com", Address = "Tvärsövergatan 39, 93793 Burträsk", SSN = "531124-4375" };
 
 
@@ -77,6 +79,7 @@ namespace Tungsten.Migrations
                 userManager.AddToRole(teacher1.Id, "Teacher");
             }
 
+
             group1.Participants.Add(student1);
             group1.Participants.Add(student2);
             group1.Participants.Add(student3);
@@ -90,33 +93,38 @@ namespace Tungsten.Migrations
             group1.Participants.Add(teacher1);
 
 
-            Course course1 = new Course() { Subject = "Mathematics",        Level = "6", GroupId = group2.Id, Description = "High-school math", Participants = new List<ApplicationUser>() };
-            Course course2 = new Course() { Subject = "History",            Level = "6", GroupId = group2.Id, Description = "High-school history", Participants = new List<ApplicationUser>() };
-            Course course3 = new Course() { Subject = "Sexual Education",   Level = "6", GroupId = group2.Id, Description = "High-school prom", Participants = new List<ApplicationUser>() };
-            Course course4 = new Course() { Subject = "Chemistry",          Level = "6", GroupId = group2.Id, Description = "High-school nap", Participants = new List<ApplicationUser>() };
+            var course1 = new Course { Subject = "English", Level = "6", GroupId = group1.Id, Description = "Advanced English", Participants = new List<ApplicationUser> { teacher1 } };
+            var course2 = new Course { Subject = "Mathematics", Level = "6", GroupId = group2.Id, Description = "High-school math", Participants = new List<ApplicationUser>() };
+            var course3 = new Course { Subject = "History", Level = "6", GroupId = group2.Id, Description = "High-school history", Participants = new List<ApplicationUser>() };
+            var course4 = new Course { Subject = "Sexual Education", Level = "6", GroupId = group2.Id, Description = "High-school prom", Participants = new List<ApplicationUser>() };
+            var course5 = new Course { Subject = "Chemistry", Level = "6", GroupId = group2.Id, Description = "High-school nap", Participants = new List<ApplicationUser>() };
+
 
             context.Courses.AddOrUpdate(
                 c => c.Subject,
-                new Course
-                {
-                    Subject = "English",
-                    Level = "6",
-                    GroupId = group1.Id,
-                    Description = "Advanced English",
-                    Participants = new List<ApplicationUser>
-                    {
-                        teacher1
-                    }
-                }
-
+                course1,
+                course2,
+                course3,
+                course4,
+                course5
             );
 
-            Lesson lesson1 = new Lesson() { Classroom = "Stora salen", CourseId = course2.Id, StartTime = DateTime.Now, EndTime = DateTime.MaxValue };
-            Lesson lesson2 = new Lesson() { Classroom = "Lilla salen", CourseId = course2.Id, StartTime = DateTime.Now, EndTime = DateTime.MaxValue };
-            Lesson lesson3 = new Lesson() { Classroom = "Mellansalen", CourseId = course3.Id, StartTime = DateTime.Now, EndTime = DateTime.MaxValue };
-            Lesson lesson4 = new Lesson() { Classroom = "Microsalen", CourseId = course4.Id, StartTime = DateTime.Now, EndTime = DateTime.MaxValue };
-            Lesson lesson5 = new Lesson() { Classroom = "MEGASALEN", CourseId = course4.Id, StartTime = DateTime.Now, EndTime = DateTime.MaxValue };
 
+            var lesson1 = new Lesson() { Classroom = "Stora salen", CourseId = course2.Id, StartTime = DateTime.Parse("Tue, 27 Dec 2016 09:10:00"), EndTime = DateTime.Parse("Tue, 27 Dec 2016 09:40:00") };
+            var lesson2 = new Lesson() { Classroom = "Lilla salen", CourseId = course2.Id, StartTime = DateTime.Parse("Tue, 27 Dec 2016 09:50:00"), EndTime = DateTime.Parse("Tue, 27 Dec 2016 10:50:00") };
+            var lesson3 = new Lesson() { Classroom = "Mellansalen", CourseId = course3.Id, StartTime = DateTime.Parse("Wed, 28 Dec 2016 10:10:00"), EndTime = DateTime.Parse("Wed, 28 Dec 2016 11:30:00") };
+            var lesson4 = new Lesson() { Classroom = "Microsalen", CourseId = course4.Id, StartTime  = DateTime.Parse("Thu, 29 Dec 2016 12:30:00"), EndTime = DateTime.Parse("Thu, 29 Dec 2016 14:00:00") };
+            var lesson5 = new Lesson() { Classroom = "MEGASALEN", CourseId = course4.Id, StartTime   = DateTime.Parse("Fri, 30 Dec 2016 09:00:00"), EndTime = DateTime.Parse("Fri, 30 Dec 2016 10:20:00") };
+
+
+            context.Lessons.AddOrUpdate(
+                l => l.StartTime,
+                lesson1,
+                lesson2,
+                lesson3,
+                lesson4,
+                lesson5
+            );
         }
     }
 }
