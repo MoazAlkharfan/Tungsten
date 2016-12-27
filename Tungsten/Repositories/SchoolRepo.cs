@@ -31,6 +31,11 @@ namespace Tungsten.Repositories
             return db.Groups.FirstOrDefault(g => g.Id == id);
         }
 
+        public Course FindCourse(string id)
+        {
+            return db.Courses.FirstOrDefault(c => c.Id == id);
+        }
+
         public bool CreateGroup(Group group)
         {
             try

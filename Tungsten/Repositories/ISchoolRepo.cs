@@ -33,5 +33,7 @@ namespace Tungsten.Repositories
         // Get
         Group FindGroup(string id);
         IEnumerable<Group> GetGroups();
+
+        Course FindCourse(string id);
     }
 }

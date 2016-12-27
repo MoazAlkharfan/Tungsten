@@ -24,7 +24,7 @@ export class GroupPage implements OnInit {
                 .subscribe((group) => { this.Group = group; },
                 error => console.error(error),
                 () => {
-                    console.log(this.Group);
+                    //console.log(this.Group);
                 });
 
             

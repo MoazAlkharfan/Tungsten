@@ -12,7 +12,7 @@ export class GroupService {
 
     getGroups(): Observable<IGroup[]> {
         return this._http.get('/Home/GetGroups')
-            .do(this.logData)
+            //.do(this.logData)
             .catch(this.handleError)
             .map(this.extractGroups);
 
@@ -20,7 +20,7 @@ export class GroupService {
 
     getGroupById(id: string): Observable<IGroup> {
         return this._http.post('/Home/GetGroup/', { id: id })
-            .do(this.logData)
+            //.do(this.logData)
             .catch(this.handleError)
             .map(this.extractGroup);
     }

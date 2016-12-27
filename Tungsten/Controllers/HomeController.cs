@@ -79,7 +79,7 @@ namespace Tungsten.Controllers
 
             if (repo.CreateCourse(course))
             {
-                return Json(JsonConvert.SerializeObject(repo.FindGroup(course.Id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+                return Json(JsonConvert.SerializeObject(repo.FindCourse(course.Id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
             }
             else
             {
