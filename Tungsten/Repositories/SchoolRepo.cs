@@ -46,10 +46,18 @@ namespace Tungsten.Repositories
             
         }
 
-        public void CreateCourse(Course course)
+        public bool CreateCourse(Course course)
         {
-            db.Courses.Add(course);
-            db.SaveChanges();
+            try
+            {
+                db.Courses.Add(course);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void CreateSegment(Segment segment)

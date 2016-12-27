@@ -11,7 +11,7 @@ namespace Tungsten.Repositories
     {
         // Create
         bool CreateGroup(Group group);
-        void CreateCourse(Course course);
+        bool CreateCourse(Course course);
         void CreateSegment(Segment segment);
         void CreateAssignment(Assignment assignment);
         void CreateLesson(Lesson lesson);

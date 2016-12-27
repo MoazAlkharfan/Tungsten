@@ -33,13 +33,13 @@ namespace Tungsten.Controllers
             return RedirectToAction("Index");
         }
 
-        [AllowAnonymous]
+        
         public JsonResult GetGroups()
         {
             return Json(JsonConvert.SerializeObject(repo.GetGroups().ToList(), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
         }
 
-        [AllowAnonymous]
+        
         public JsonResult GetGroup(string id)
         {
             if (id == "")
@@ -56,7 +56,7 @@ namespace Tungsten.Controllers
             return JsonConvert.SerializeObject(repo.FindGroup(id).Schedule, Formatting.None, jss);
         }
 
-        [AllowAnonymous]
+        
         public JsonResult CreateGroup(Group group)
         {
             if (group == null)
@@ -69,6 +69,21 @@ namespace Tungsten.Controllers
             else
             {
                 return Json(JsonConvert.SerializeObject(group, Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult CreateCourse(Course course)
+        {
+            if (course == null)
+                return null;
+
+            if (repo.CreateCourse(course))
+            {
+                return Json(JsonConvert.SerializeObject(repo.FindGroup(course.Id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(JsonConvert.SerializeObject(course, Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -89,26 +104,7 @@ namespace Tungsten.Controllers
         {
             return View();
         }
-
-        public ActionResult CreateCourse()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public JsonResult CreateCourse(Course newcourse)
-        {
-            if (ModelState.IsValid)
-            {
-                repo.CreateCourse(newcourse);
-                return Json(new { status = "Success" });
-            }
-            else
-            {
-                return Json(new { status = "Fail" });
-            }
-        }
+        
     }
 
 

@@ -21,10 +21,9 @@ export class GroupPage implements OnInit {
             let id = this.route.snapshot.params['id'];
             
             this._GroupService.getGroupById(id)
-                .subscribe((group) => { console.log(group); this.Group = group; },
+                .subscribe((group) => { this.Group = group; },
                 error => console.error(error),
                 () => {
-                    console.log('call success');
                     console.log(this.Group);
                 });
 

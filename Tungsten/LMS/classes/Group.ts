@@ -1,7 +1,7 @@
 ﻿import { IGroup } from '../interfaces/Group';
 
 export class Group implements IGroup {
-    Id: number;
+    Id: string;
     Name: string;
     Description: string;
 

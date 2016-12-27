@@ -11,6 +11,7 @@ import { HomePage } from './pages/home/homepage.component';
 import { GroupsPage } from './pages/groups/groups.component';
 import { GroupPage } from './pages/group/group.component';
 import { CreateGroup } from './pages/creategroup/creategroup.component';
+import { CreateCourse } from './pages/createcourse/createcourse.component';
 
 // components
 import { GroupsList } from '../../components/groupslist/GroupsList';
@@ -18,6 +19,7 @@ import { GroupsList } from '../../components/groupslist/GroupsList';
 // services
 import { UserAnnouncer } from '../../services/UserAnnouncer';
 import { GroupService } from '../../services/groupservice';
+import { CourseService } from '../../services/course.service';
 
 @NgModule({
     imports: [
@@ -32,11 +34,13 @@ import { GroupService } from '../../services/groupservice';
         GroupPage,
         GroupsPage,
         GroupsList,
-        CreateGroup
+        CreateGroup,
+        CreateCourse
     ],
     providers: [
         UserAnnouncer,
-        GroupService
+        GroupService,
+        CourseService
     ]
 })
 export class Dashboard { }

@@ -274,6 +274,7 @@
     <Content Include="LMS\index.html" />
     <Content Include="LMS\pages\account\AccountPage.html" />
     <Content Include="LMS\pages\dashboard\index.html" />
+    <Content Include="LMS\pages\dashboard\Pages\createcourse\createcourse.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\creategroup\creategroup.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\groups\groups.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\group\group.component.html" />
@@ -384,6 +385,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="LMS\classes\ChangeInfo.ts" />
+    <TypeScriptCompile Include="LMS\classes\Course.ts" />
     <TypeScriptCompile Include="LMS\classes\EditModel.ts" />
     <TypeScriptCompile Include="LMS\classes\Group.ts" />
     <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
@@ -393,6 +395,7 @@
     <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts" />
     <TypeScriptCompile Include="LMS\components\Login\Login.ts" />
     <TypeScriptCompile Include="LMS\directives\autofocus.ts" />
+    <TypeScriptCompile Include="LMS\interfaces\Course.ts" />
     <TypeScriptCompile Include="LMS\interfaces\Group.ts" />
     <TypeScriptCompile Include="LMS\lms.component.ts" />
     <TypeScriptCompile Include="LMS\lms.module.ts" />
@@ -402,6 +405,7 @@
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.module.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.routes.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\createcourse\createcourse.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\creategroup\creategroup.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\groups\groups.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\group\group.component.ts" />
@@ -409,6 +413,7 @@
     <TypeScriptCompile Include="LMS\pages\home\HomePage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\register\register.component.ts" />
     <TypeScriptCompile Include="LMS\services\account.service.ts" />
+    <TypeScriptCompile Include="LMS\services\course.service.ts" />
     <TypeScriptCompile Include="LMS\services\data.service.ts" />
     <TypeScriptCompile Include="LMS\services\GroupService.ts" />
     <TypeScriptCompile Include="LMS\services\guards\isAuthenticated.ts" />
