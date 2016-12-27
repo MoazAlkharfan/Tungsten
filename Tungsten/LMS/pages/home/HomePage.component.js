@@ -5,16 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var core_1 = require('@angular/core');
-var RegisterPage = (function () {
-    function RegisterPage() {
+var core_1 = require("@angular/core");
+var HomePage = (function () {
+    function HomePage() {
     }
-    RegisterPage = __decorate([
-        core_1.Component({
-            templateUrl: './lms/register/RegisterPage.html'
-        })
-    ], RegisterPage);
-    return RegisterPage;
+    return HomePage;
 }());
-exports.RegisterPage = RegisterPage;
-//# sourceMappingURL=lms.component.js.map
+HomePage = __decorate([
+    core_1.Component({
+        templateUrl: './LMS/pages/home/HomePage.html'
+    })
+], HomePage);
+exports.HomePage = HomePage;
+//# sourceMappingURL=HomePage.component.js.map

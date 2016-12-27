@@ -18,7 +18,7 @@ var IndexPage = (function () {
         this.elementRef = elementRef;
         this.membershipService = membershipService;
         this.changeDetectorRef = changeDetectorRef;
-        this.user = this.membershipService.getLoggedInUser() || new User_1.User("", "");
+        this.user = this.membershipService.getLoggedInUser() || new User_1.User('', '', '', '', []);
         this.isuserloggedin = this.isUserLoggedIn();
     }
     IndexPage.prototype.isUserLoggedIn = function () {
@@ -29,20 +29,27 @@ var IndexPage = (function () {
         this.membershipService.logout()
             .subscribe(function (res) {
             localStorage.removeItem('user');
-        }, function (error) { return console.error('Error: ' + error); }, function () { _this.isuserloggedin = false; });
+        }, function (error) { return console.error('Error: ' + error); }, function () {
+            _this.isuserloggedin = false;
+            _this.user = new User_1.User('', '', '', '', []);
+        });
     };
     IndexPage.prototype.ngAfterViewChecked = function () {
         if (this.LoginView && this.LoginView.LoggedIn && this.isuserloggedin != this.LoginView.LoggedIn)
             this.isuserloggedin = this.LoginView.LoggedIn;
         this.changeDetectorRef.detectChanges();
     };
-    IndexPage.prototype.userUpdated = function (user) {
-        this.user = user;
+    IndexPage.prototype.userUpdated = function (updatedUser) {
+        this.user = updatedUser;
+    };
+    IndexPage.prototype.getUser = function () {
+        return this.user;
     };
     //console.log(this.isuserloggedin);
     IndexPage.prototype.ngOnInit = function () {
-        //console.log('Loggedin:');
-        //console.log(this.isuserloggedin);
+        // this is the antiforgery token DON't REMOVE
+        console.log('Anti Forgery Token passed from the razor Home/Index View');
+        console.log(document.getElementById('antiForgeryForm').childNodes[1].attributes.getNamedItem("value").nodeValue);
     };
     return IndexPage;
 }());

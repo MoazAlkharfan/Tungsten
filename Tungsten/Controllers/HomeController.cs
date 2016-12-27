@@ -47,6 +47,14 @@ namespace Tungsten.Controllers
 
             return Json(JsonConvert.SerializeObject(repo.FindGroup(id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
         }
+        
+        public string GetSchedule(string id)
+        {
+            if (id == "")
+                return null;
+
+            return JsonConvert.SerializeObject(repo.FindGroup(id).Schedule, Formatting.None, jss);
+        }
 
         [AllowAnonymous]
         public JsonResult CreateGroup(Group group)

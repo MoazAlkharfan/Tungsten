@@ -6,15 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var HomePage = (function () {
-    function HomePage() {
+var Dashboard_Index = (function () {
+    function Dashboard_Index() {
     }
-    return HomePage;
+    return Dashboard_Index;
 }());
-HomePage = __decorate([
+Dashboard_Index = __decorate([
     core_1.Component({
-        templateUrl: './LMS/home/HomePage.html'
+        templateUrl: './lms/pages/dashboard/index.html'
     })
-], HomePage);
-exports.HomePage = HomePage;
-//# sourceMappingURL=HomePage.component.js.map
+], Dashboard_Index);
+exports.Dashboard_Index = Dashboard_Index;
+//# sourceMappingURL=dashboard.component.js.map

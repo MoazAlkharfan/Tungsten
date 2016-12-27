@@ -14,41 +14,39 @@ var Observable_1 = require("rxjs/Observable");
 var DataService = (function () {
     function DataService(http) {
         this.http = http;
+        // we need to derieve a class from Http and use it to inject the authentication token into the header
+        // so we send it whenever we make a request to the server
+        //this.http._defaultOptions.headers.set('__requestverificationtoken', document.getElementById('antiForgeryForm').childNodes[1].nodeValue.toString());
     }
-    DataService.prototype.set = function (baseUri, pageSize) {
-        this._baseUri = baseUri;
-        this._pageSize = pageSize;
+    DataService.prototype.createAuthorizationHeader = function (headers) {
+        var antiForgeryToken = document.getElementById('antiForgeryForm').childNodes[1].attributes.getNamedItem("value").nodeValue;
+        console.log(antiForgeryToken);
+        //headers.append('Authorization', 'Basic ' +
+        //    btoa('username:password'));
     };
-    DataService.prototype.get = function (page) {
-        var uri = this._baseUri + page.toString() + '/' + this._pageSize.toString();
-        return this.http.get(uri)
+    DataService.prototype.set = function (baseUri) {
+        this._baseUri = baseUri;
+    };
+    DataService.prototype.get = function (data) {
+        return this.http.get(this._baseUri, data)
             .do(this.logData)
             .map(function (response) {
             console.log(response);
             return response.json();
         });
     };
-    DataService.prototype.post = function (data, mapJson) {
-        if (mapJson === void 0) { mapJson = true; }
-        if (mapJson) {
-            return this.http.post(this._baseUri, data)
-                .catch(this.handleError)
-                .map(this.extractData);
-        }
-        else
-            return this.http.post(this._baseUri, data)
-                .catch(this.handleError);
+    DataService.prototype.post = function (data) {
+        return this.http.post(this._baseUri, data)
+            .catch(this.handleError)
+            .map(this.extractData);
     };
     DataService.prototype.delete = function (id) {
         return this.http.delete(this._baseUri + '/' + id.toString())
             .map(function (response) { return response.json(); });
     };
-    DataService.prototype.deleteResource = function (resource) {
-        return this.http.delete(resource)
-            .map(function (response) { return response.json(); });
-    };
     DataService.prototype.extractData = function (res) {
         var body = res.json();
+        //console.log(body);
         return body || [];
     };
     DataService.prototype.logData = function (data) {

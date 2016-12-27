@@ -10,9 +10,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var registration_1 = require("../classes/registration");
-var operationResult_1 = require("../classes//operationResult");
-var membership_service_1 = require("../services/membership.service");
+var registration_1 = require("../../classes/registration");
+var operationResult_1 = require("../../classes//operationResult");
+var membership_service_1 = require("../../services/membership.service");
 var RegisterPage = (function () {
     function RegisterPage(membershipService, router) {
         this.membershipService = membershipService;
@@ -30,7 +30,8 @@ var RegisterPage = (function () {
             _registrationResult.Message = res.Message;
         }, function (error) { return console.error('Error: ' + error); }, function () {
             if (_registrationResult.Succeeded) {
-                _this.router.navigate(['account/login']);
+                console.log('Registration Successful');
+                _this.router.navigate(['home']);
             }
             else {
             }
@@ -43,7 +44,7 @@ RegisterPage = __decorate([
     core_1.Component({
         selector: 'register',
         providers: [membership_service_1.MembershipService],
-        templateUrl: './lms/register/RegisterPage.html'
+        templateUrl: './lms/pages/register/RegisterPage.html'
     }),
     __param(0, core_1.Inject(membership_service_1.MembershipService)),
     __param(1, core_1.Inject(router_1.Router))

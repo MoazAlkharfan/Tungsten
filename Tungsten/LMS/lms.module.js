@@ -21,9 +21,14 @@ var GroupsList_1 = require("./components/GroupsList/GroupsList");
 var Login_1 = require("./components/Login/Login");
 // Pages
 var lms_component_1 = require("./lms.component");
-var AccountPage_component_1 = require("./account/AccountPage.component");
-var HomePage_component_1 = require("./home/HomePage.component");
-var register_component_1 = require("./register/register.component");
+var AccountPage_component_1 = require("./pages/account/AccountPage.component");
+var HomePage_component_1 = require("./pages/home/HomePage.component");
+var register_component_1 = require("./pages/register/register.component");
+var dashboard_module_1 = require("./pages/dashboard/dashboard.module");
+// directives
+var autofocus_1 = require("./directives/autofocus");
+// Routing Guards
+var isAuthenticated_1 = require("./services/guards/isAuthenticated");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -35,7 +40,8 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             http_1.HttpModule,
-            lms_routes_1.LMS_Routes
+            lms_routes_1.LMS_Routes,
+            dashboard_module_1.Dashboard
         ],
         declarations: [
             lms_component_1.IndexPage,
@@ -43,10 +49,11 @@ AppModule = __decorate([
             AccountPage_component_1.AccountPage,
             register_component_1.RegisterPage,
             GroupsList_1.GroupsList,
-            Login_1.Login
+            Login_1.Login,
+            autofocus_1.Autofocus
         ],
         bootstrap: [lms_component_1.IndexPage],
-        providers: [GroupService_1.GroupService, data_service_1.DataService, membership_service_1.MembershipService]
+        providers: [GroupService_1.GroupService, data_service_1.DataService, membership_service_1.MembershipService, isAuthenticated_1.isAuthenticatedGuard]
     })
 ], AppModule);
 exports.AppModule = AppModule;

@@ -10,13 +10,13 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var core_1 = require("@angular/core");
 var data_service_1 = require("./data.service");
-var User_1 = require("../classes/User");
 var MembershipService = (function () {
     function MembershipService(accountService) {
         this.accountService = accountService;
         this._accountRegisterAPI = '/Account/Register/';
         this._accountLoginAPI = '/Account/Login/';
         this._accountLogoutAPI = '/Account/LogOff/';
+        this._accountUserInfo = '/Account/GetUserInfo/';
     }
     MembershipService.prototype.register = function (newUser) {
         this.accountService.set(this._accountRegisterAPI);
@@ -28,7 +28,7 @@ var MembershipService = (function () {
     };
     MembershipService.prototype.logout = function () {
         this.accountService.set(this._accountLogoutAPI);
-        return this.accountService.post(null, false);
+        return this.accountService.post(null);
     };
     MembershipService.prototype.isUserAuthenticated = function () {
         var _user = localStorage.getItem('user');
@@ -41,9 +41,13 @@ var MembershipService = (function () {
         var _user;
         if (this.isUserAuthenticated()) {
             var _userData = JSON.parse(localStorage.getItem('user'));
-            _user = new User_1.User(_userData.Username, _userData.Password);
+            _user = _userData;
         }
         return _user;
+    };
+    MembershipService.prototype.getUserInfo = function (_user) {
+        this.accountService.set(this._accountUserInfo);
+        return this.accountService.post(_user);
     };
     return MembershipService;
 }());
