@@ -264,55 +264,21 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index-JustForReference-DeleteIt.html" />
-    <Content Include="LMS\components\GroupsList\GroupsList.css">
-      <DependentUpon>GroupsList.html</DependentUpon>
-    </Content>
+    <Content Include="LMS\components\GroupsList\GroupsList.css" />
     <Content Include="LMS\components\GroupsList\GroupsList.html" />
-    <Content Include="LMS\components\Login\Login.css">
-      <DependentUpon>Login.html</DependentUpon>
-    </Content>
+    <Content Include="LMS\components\Login\Login.css" />
     <Content Include="LMS\components\Login\Login.html" />
+    <Content Include="LMS\index.css" />
+    <Content Include="LMS\index.html" />
+    <Content Include="LMS\pages\account\AccountPage.html" />
     <Content Include="LMS\pages\dashboard\index.html" />
     <Content Include="LMS\pages\dashboard\Pages\groups\groups.component.html" />
-    <Content Include="LMS\pages\dashboard\Pages\home\homepage.html" />
-    <Content Include="LMS\index.css" />
+    <Content Include="LMS\pages\dashboard\Pages\home\homepage.component.html" />
+    <Content Include="LMS\pages\home\HomePage.html" />
     <Content Include="LMS\pages\register\RegisterPage.html" />
-    <Content Include="LMS\pages\account\AccountPage.html" />
-    <Content Include="LMS\index.html" />
     <Content Include="Reinforced.Typings.settings.xml" />
     <Content Include="typings.json" />
     <Content Include="tslint.json" />
-    <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.component.ts" />
-    <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.routes.ts" />
-    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\groups\groups.component.ts" />
-    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\homepage.component.ts" />
-    <TypeScriptCompile Include="LMS\pages\account\AccountPage.component.ts">
-      <DependentUpon>AccountPage.html</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="LMS\classes\ChangeInfo.ts" />
-    <TypeScriptCompile Include="LMS\classes\Group.ts" />
-    <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
-    <TypeScriptCompile Include="LMS\classes\Registration.ts" />
-    <TypeScriptCompile Include="LMS\classes\User.ts" />
-    <TypeScriptCompile Include="LMS\components\account.component.ts" />
-    <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts">
-      <DependentUpon>GroupsList.html</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="LMS\components\Login\Login.ts">
-      <DependentUpon>Login.html</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.module.ts" />
-    <TypeScriptCompile Include="LMS\directives\autofocus.ts" />
-    <TypeScriptCompile Include="LMS\pages\home\HomePage.component.ts">
-      <DependentUpon>HomePage.html</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="LMS\pages\register\register.component.ts" />
-    <TypeScriptCompile Include="LMS\interfaces\Group.ts" />
-    <Content Include="LMS\pages\home\HomePage.html" />
-    <TypeScriptCompile Include="LMS\lms.component.ts" />
-    <TypeScriptCompile Include="LMS\lms.module.ts" />
-    <TypeScriptCompile Include="LMS\lms.routes.ts" />
-    <TypeScriptCompile Include="LMS\main.ts" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -396,10 +362,6 @@
     <Content Include="Views\Dashboard\Details.cshtml" />
     <Content Include="Views\Dashboard\Edit.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <TypeScriptCompile Include="LMS\services\data.service.ts" />
-    <TypeScriptCompile Include="LMS\services\GroupService.ts" />
-    <TypeScriptCompile Include="LMS\services\guards\isAuthenticated.ts" />
-    <TypeScriptCompile Include="LMS\services\membership.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -415,6 +377,34 @@
     <EmbeddedResource Include="Migrations\201612231233504_Initial.resx">
       <DependentUpon>201612231233504_Initial.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="LMS\classes\ChangeInfo.ts" />
+    <TypeScriptCompile Include="LMS\classes\Group.ts" />
+    <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
+    <TypeScriptCompile Include="LMS\classes\Registration.ts" />
+    <TypeScriptCompile Include="LMS\classes\User.ts" />
+    <TypeScriptCompile Include="LMS\components\account.component.ts" />
+    <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts" />
+    <TypeScriptCompile Include="LMS\components\Login\Login.ts" />
+    <TypeScriptCompile Include="LMS\directives\autofocus.ts" />
+    <TypeScriptCompile Include="LMS\interfaces\Group.ts" />
+    <TypeScriptCompile Include="LMS\lms.component.ts" />
+    <TypeScriptCompile Include="LMS\lms.module.ts" />
+    <TypeScriptCompile Include="LMS\lms.routes.ts" />
+    <TypeScriptCompile Include="LMS\main.ts" />
+    <TypeScriptCompile Include="LMS\pages\account\AccountPage.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.module.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.routes.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\groups\groups.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\homepage.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\home\HomePage.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\register\register.component.ts" />
+    <TypeScriptCompile Include="LMS\services\data.service.ts" />
+    <TypeScriptCompile Include="LMS\services\GroupService.ts" />
+    <TypeScriptCompile Include="LMS\services\guards\isAuthenticated.ts" />
+    <TypeScriptCompile Include="LMS\services\membership.service.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
