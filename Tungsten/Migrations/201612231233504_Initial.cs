@@ -40,9 +40,9 @@ namespace Tungsten.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         Description = c.String(),
-                        GroupId = c.String(nullable: false, maxLength: 128),
                         Subject = c.String(),
                         Level = c.String(),
+                        GroupId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Groups", t => t.GroupId, cascadeDelete: true)
