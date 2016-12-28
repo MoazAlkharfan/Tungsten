@@ -41,7 +41,7 @@ namespace Tungsten.Models
         /// <summary>
         /// ScheduleSegments for all lessons in a Group
         /// </summary>
-        public IEnumerable<ScheduleSegment> GetSchedule =>
+        public IEnumerable<ScheduleSegment> Schedule =>
                 from course in Courses
                     from lesson in course.Lessons
                         orderby lesson.StartTime

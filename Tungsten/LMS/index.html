@@ -17,15 +17,12 @@
                 <ul class="nav navbar-nav navbar-right" *ngSwitchCase="true">
                     <li>
                         <a [routerLink]="['/account']">{{user.Username}}</a>
-                        <!--@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })-->
                     </li>
                     <li><a [routerLink]="['/']" (click)="logout()">Log off</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" *ngSwitchCase="false" >
-                    <li><a [routerLink]="['/register']">Register</a></li>
-                    <li><lms-login [LoginPanelIsOpen]="false" (userUpdated)="userUpdated($event)"></lms-login></li>
-                    <!--<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>-->
-                    <!--<li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>-->
+                    <!--<li><a [routerLink]="['/register']">Register</a></li>-->
+                    <li><lms-login [LoginPanelIsOpen]="false" (userUpdated)="userUpdated($event)" [_UserAnnouncer]="_UserAnnouncer"></lms-login></li>
                 </ul>
             </div>
         </div>

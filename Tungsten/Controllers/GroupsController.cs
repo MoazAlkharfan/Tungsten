@@ -8,29 +8,28 @@ using Tungsten.Repositories;
 
 namespace Tungsten.Controllers
 {
+    [Authorize(Roles = "Administrator, Teacher")]
     public class GroupsController : Controller
     {
         private ISchoolRepo repository;
 
         public GroupsController(ISchoolRepo repo)
         {
-            this.repository = repo;
+            repository = repo;
         }
 
         public GroupsController()
         {
-            this.repository = new SchoolRepo();
+            repository = new SchoolRepo();
         }
 
         // GET: Groups
-        [Authorize(Roles = "Administrator, Teacher")]
         public ActionResult Index()
         {
             return View(repository);
         }
 
         // GET: Groups/Details/5
-        [Authorize(Roles = "Administrator, Teacher")]
         public ActionResult Details(string id)
         {
             var details = repository.FindGroup(id);
@@ -44,7 +43,6 @@ namespace Tungsten.Controllers
         }
 
         // GET: Groups/Create
-        [Authorize(Roles = "Administrator, Teacher")]
         public ActionResult Create()
         {
             return View();
@@ -52,7 +50,6 @@ namespace Tungsten.Controllers
 
         // POST: Groups/Create
         [HttpPost]
-        [Authorize(Roles = "Administrator, Teacher")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Name, Description")] Group group)
         {
@@ -70,7 +67,6 @@ namespace Tungsten.Controllers
         }
 
         // GET: Groups/Edit/5
-        [Authorize(Roles = "Administrator, Teacher")]
         public ActionResult Edit(string id)
         {
             return View();
@@ -78,7 +74,6 @@ namespace Tungsten.Controllers
 
         // POST: Groups/Edit/5
         [HttpPost]
-        [Authorize(Roles = "Administrator, Teacher")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Name, Description")] Group group)
         {
@@ -96,7 +91,6 @@ namespace Tungsten.Controllers
         }
 
         // GET: Groups/Delete/5
-        [Authorize(Roles = "Administrator, Teacher")]
         public ActionResult Delete(string id)
         {
             return View();
@@ -104,7 +98,6 @@ namespace Tungsten.Controllers
 
         // POST: Groups/Delete/5
         [HttpPost]
-        [Authorize(Roles = "Administrator, Teacher")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string id, Group group)
         {

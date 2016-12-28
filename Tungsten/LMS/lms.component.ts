@@ -3,21 +3,31 @@ import { GroupService } from './services/GroupService';
 import { MembershipService } from './services/membership.service';
 import { Login } from './components/Login/Login';
 import { User } from './classes/User';
+import { UserAnnouncer } from './services/UserAnnouncer';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'lms-index',
     templateUrl: './LMS/index.html',
     styleUrls: ['./LMS/index.css'],
-    providers: [GroupService]
+    providers: [GroupService, UserAnnouncer]
 })
 export class IndexPage implements OnInit, AfterViewChecked {
     isuserloggedin: boolean;
     public user: User;
     @ViewChild(Login) LoginView: Login;
+    subscription: Subscription;
 
-    constructor( @Inject(ElementRef) private elementRef: ElementRef, @Inject(MembershipService) public membershipService: MembershipService, @Inject(ChangeDetectorRef) public changeDetectorRef: ChangeDetectorRef) {
+    constructor( @Inject(ElementRef) private elementRef: ElementRef,
+        @Inject(MembershipService) public membershipService: MembershipService,
+        @Inject(ChangeDetectorRef) public changeDetectorRef: ChangeDetectorRef,
+        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer
+
+    ) {
         this.user = this.membershipService.getLoggedInUser() || new User('', '', '', '', []);
         this.isuserloggedin = this.isUserLoggedIn();
+
+        
     }
     
     isUserLoggedIn(): boolean {
@@ -56,5 +66,14 @@ export class IndexPage implements OnInit, AfterViewChecked {
         // this is the antiforgery token DON't REMOVE
         console.log('Anti Forgery Token passed from the razor Home/Index View');
         console.log(document.getElementById('antiForgeryForm').childNodes[1].attributes.getNamedItem("value").nodeValue);
+
+        this.subscription = this._UserAnnouncer.userAnnounced.subscribe(
+            user => {
+                console.log('user from lms.component event:')
+                console.log(this.user);
+                this.user = user;
+
+            }
+        );
     }
 }

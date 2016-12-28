@@ -1,15 +1,11 @@
-﻿using ItendityCodeAlong.Models;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Tungsten.Models;
 using System.Web;
-using System;
 using System.Linq;
-using System.Web.Security;
-using System.Collections.Generic;
 
 namespace Tungsten.Controllers
 {

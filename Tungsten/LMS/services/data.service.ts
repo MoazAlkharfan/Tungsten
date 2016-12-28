@@ -42,7 +42,7 @@ export class DataService {
             .map(this.extractData);
     }
 
-    delete(id: number) {
+    delete(id: string) {
         return this.http.delete(this._baseUri + '/' + id.toString())
             .map(response => <any>(<Response>response).json())
     }
