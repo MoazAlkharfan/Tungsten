@@ -12,16 +12,16 @@ namespace Tungsten.Repositories
         // Create
         bool CreateGroup(Group group);
         bool CreateCourse(Course course);
-        void CreateSegment(Segment segment);
-        void CreateAssignment(Assignment assignment);
-        void CreateLesson(Lesson lesson);
+        bool CreateSegment(Segment segment);
+        bool CreateAssignment(Assignment assignment);
+        bool CreateLesson(Lesson lesson);
 
         // Delete
-        void RemoveGroup(Group group);
-        void RemoveCourse(Course course);
-        void RemoveSegment(Segment segment);
-        void RemoveAssignment(Assignment assignment);
-        void RemoveLesson(Lesson lesson);
+        bool RemoveGroup(Group group);
+        bool RemoveCourse(Course course);
+        bool RemoveSegment(Segment segment);
+        bool RemoveAssignment(Assignment assignment);
+        bool RemoveLesson(Lesson lesson);
 
         // Update
         void EditGroup(Group NewGroup);
