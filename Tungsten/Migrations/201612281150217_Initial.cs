@@ -40,9 +40,9 @@ namespace Tungsten.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         Description = c.String(),
-                        GroupId = c.String(nullable: false, maxLength: 128),
                         Subject = c.String(),
                         Level = c.String(),
+                        GroupId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Groups", t => t.GroupId, cascadeDelete: true)
@@ -93,6 +93,19 @@ namespace Tungsten.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.FilePaths",
+                c => new
+                    {
+                        FilePathId = c.Int(nullable: false, identity: true),
+                        FileName = c.String(maxLength: 255),
+                        FileType = c.Int(nullable: false),
+                        Owner_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.FilePathId)
+                .ForeignKey("dbo.AspNetUsers", t => t.Owner_Id)
+                .Index(t => t.Owner_Id);
             
             CreateTable(
                 "dbo.AspNetUserLogins",
@@ -182,6 +195,7 @@ namespace Tungsten.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.ApplicationUserGroups", "Group_Id", "dbo.Groups");
             DropForeignKey("dbo.ApplicationUserGroups", "ApplicationUser_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.FilePaths", "Owner_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.ApplicationUserCourses", "Course_Id", "dbo.Courses");
             DropForeignKey("dbo.ApplicationUserCourses", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
@@ -194,6 +208,7 @@ namespace Tungsten.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+            DropIndex("dbo.FilePaths", new[] { "Owner_Id" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Courses", new[] { "GroupId" });
@@ -205,6 +220,7 @@ namespace Tungsten.Migrations
             DropTable("dbo.Lessons");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
+            DropTable("dbo.FilePaths");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Groups");
