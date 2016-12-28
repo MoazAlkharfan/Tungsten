@@ -1,0 +1,31 @@
+﻿<div *ngIf="Group">
+    <button class="btn btn-primary" [routerLink]="['/dashboard', { outlets: { dashboard: ['createcourse', Group.Id] } }]">Create Course</button>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Course Id
+                </th>
+                <th>
+                    Subject
+                </th>
+                <th>
+                    Descreption
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let Course of Group.Courses">
+                <td>
+                    {{Course.Id}}
+                </td>
+                <td>
+                    {{Course.Subject}}
+                </td>
+                <td>
+                    {{Course.Description}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

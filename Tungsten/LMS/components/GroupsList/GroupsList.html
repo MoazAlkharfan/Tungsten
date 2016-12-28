@@ -1,4 +1,5 @@
-﻿<table *ngIf="Groups">
+﻿<button class="btn btn-primary" [routerLink]="['/dashboard', { outlets: { dashboard: ['creategroup'] } }]">Create Group</button>
+<table *ngIf="Groups">
     <thead>
         <tr>
             <th>
@@ -22,6 +23,9 @@
             </td>
             <td>
                 {{group.Description}}
+            </td>
+            <td>
+                <button class="btn btn-primary" [routerLink]="['/dashboard', { outlets: { dashboard: ['group', group.Id] } }]">Open</button>
             </td>
         </tr>
     </tbody>

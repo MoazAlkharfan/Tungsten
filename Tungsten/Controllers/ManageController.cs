@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ItendityCodeAlong.Models;
 using Tungsten;
+using Tungsten.Models;
 
 namespace ItendityCodeAlong.Controllers
 {
@@ -49,6 +50,58 @@ namespace ItendityCodeAlong.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        public async Task<ActionResult> EditAccount(EditViewModel newuser)
+        {
+            bool result = true;
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            if (!ModelState.IsValid)
+            {
+                return Json(new { Succeeded = false, Message = "Invalid model" });
+            }
+            
+            if(!string.IsNullOrEmpty(newuser.NewPassword))
+            {
+                var result1 = await UserManager.ChangePasswordAsync(user.Id, newuser.OldPassword, newuser.NewPassword);
+                if (!result1.Succeeded)
+                    result = false;
+
+                if(!result)
+                    return Json(new { Succeeded = false, Message = "Password missmatch" });
+            }
+
+            if(!string.IsNullOrEmpty(newuser.Email))
+            {
+
+                user.Email = newuser.Email;
+                var result1 = await UserManager.UpdateAsync(user);
+                if (!result1.Succeeded)
+                    result = false;
+            }
+
+            if (!string.IsNullOrEmpty(newuser.Username))
+            {
+                user.UserName = newuser.Username;
+                var result1 = await UserManager.UpdateAsync(user);
+                if (!result1.Succeeded)
+                    result = false;
+            }
+
+            if(result)
+                return Json(new { Succeeded = true, Message = "Account Edited!" });
+
+            return Json(new { Succeeded = false, Message = "Unknown error!" });
+        }
+
+        public async Task<ActionResult> DeleteUser(string id)
+        {
+            var user = await UserManager.FindByIdAsync(id);
+            var result = await UserManager.DeleteAsync(user);
+            if(result.Succeeded)
+                return Json(new { Succeeded = true, Message = "Account Deleted!" });
+
+            return Json(new { Succeeded = false, Message = "Unknown error!" });
         }
 
         //
