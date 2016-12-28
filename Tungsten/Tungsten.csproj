@@ -393,6 +393,7 @@
     <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts" />
     <TypeScriptCompile Include="LMS\components\Login\Login.ts" />
     <TypeScriptCompile Include="LMS\directives\autofocus.ts" />
+    <TypeScriptCompile Include="LMS\interfaces\Course.ts" />
     <TypeScriptCompile Include="LMS\interfaces\Group.ts" />
     <TypeScriptCompile Include="LMS\lms.component.ts" />
     <TypeScriptCompile Include="LMS\lms.module.ts" />
