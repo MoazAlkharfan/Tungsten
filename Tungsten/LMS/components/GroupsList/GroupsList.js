@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require("@angular/core");
-var GroupService_1 = require("../../services/GroupService");
+var core_1 = require('@angular/core');
+var GroupService_1 = require('../../services/GroupService');
 var GroupsList = (function () {
     function GroupsList(_groupService) {
         this._groupService = _groupService;
@@ -21,15 +21,15 @@ var GroupsList = (function () {
             _this.Groups = Groups;
         }, function (error) { return _this.errorMessage = error; });
     };
+    GroupsList = __decorate([
+        core_1.Component({
+            selector: 'lms-groups-list',
+            templateUrl: './lms/components/GroupsList/GroupsList.html',
+            styleUrls: ['./lms/components/GroupsList/GroupsList.css']
+        }),
+        __param(0, core_1.Inject(GroupService_1.GroupService))
+    ], GroupsList);
     return GroupsList;
 }());
-GroupsList = __decorate([
-    core_1.Component({
-        selector: 'lms-groups-list',
-        templateUrl: './lms/components/GroupsList/GroupsList.html',
-        styleUrls: ['./lms/components/GroupsList/GroupsList.css']
-    }),
-    __param(0, core_1.Inject(GroupService_1.GroupService))
-], GroupsList);
 exports.GroupsList = GroupsList;
 //# sourceMappingURL=GroupsList.js.map

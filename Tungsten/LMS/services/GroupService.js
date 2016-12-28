@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var rx_1 = require("rxjs/rx");
-require("rxjs/rx");
+var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var rx_1 = require('rxjs/rx');
+require('rxjs/rx');
 var GroupService = (function () {
     function GroupService(_http) {
         this._http = _http;
@@ -53,11 +53,11 @@ var GroupService = (function () {
         var body = JSON.parse(res.json());
         return body || null;
     };
+    GroupService = __decorate([
+        core_1.Injectable(),
+        __param(0, core_1.Inject(http_1.Http))
+    ], GroupService);
     return GroupService;
 }());
-GroupService = __decorate([
-    core_1.Injectable(),
-    __param(0, core_1.Inject(http_1.Http))
-], GroupService);
 exports.GroupService = GroupService;
 //# sourceMappingURL=GroupService.js.map

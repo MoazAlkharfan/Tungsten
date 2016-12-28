@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var User_1 = require("../../classes/User");
-var operationResult_1 = require("../../classes/operationResult");
-var membership_service_1 = require("../../services/membership.service");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var User_1 = require('../../classes/User');
+var operationResult_1 = require('../../classes/operationResult');
+var membership_service_1 = require('../../services/membership.service');
 var Inputter = (function () {
     function Inputter(renderer, elementRef) {
         this.renderer = renderer;
@@ -21,14 +21,15 @@ var Inputter = (function () {
     Inputter.prototype.focus = function () {
         this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'focus', []);
     };
+    Inputter = __decorate([
+        core_1.Directive({
+            selector: 'input[type=text][focusonload=true]'
+        }),
+        __param(0, core_1.Inject(core_1.Renderer)),
+        __param(1, core_1.Inject(core_1.ElementRef))
+    ], Inputter);
     return Inputter;
 }());
-Inputter = __decorate([
-    core_1.Directive({
-        selector: 'input[type=text][focusonload=true]'
-    }),
-    __param(0, core_1.Inject(core_1.Renderer)), __param(1, core_1.Inject(core_1.ElementRef))
-], Inputter);
 var Login = (function () {
     function Login(membershipService, 
         //public notificationService: NotificationService,
@@ -82,26 +83,26 @@ var Login = (function () {
         });
     };
     ;
+    __decorate([
+        core_1.Input()
+    ], Login.prototype, "LoginPanelIsOpen", void 0);
+    __decorate([
+        core_1.ViewChild('usernameInput')
+    ], Login.prototype, "usernameInput", void 0);
+    __decorate([
+        core_1.Output()
+    ], Login.prototype, "userUpdated", void 0);
+    Login = __decorate([
+        core_1.Component({
+            selector: 'lms-login',
+            templateUrl: './lms/components/Login/Login.html',
+            styleUrls: ['./lms/components/Login/Login.css'],
+            providers: [Inputter]
+        }),
+        __param(0, core_1.Inject(membership_service_1.MembershipService)),
+        __param(1, core_1.Inject(router_1.Router))
+    ], Login);
     return Login;
 }());
-__decorate([
-    core_1.Input()
-], Login.prototype, "LoginPanelIsOpen", void 0);
-__decorate([
-    core_1.ViewChild('usernameInput')
-], Login.prototype, "usernameInput", void 0);
-__decorate([
-    core_1.Output()
-], Login.prototype, "userUpdated", void 0);
-Login = __decorate([
-    core_1.Component({
-        selector: 'lms-login',
-        templateUrl: './lms/components/Login/Login.html',
-        styleUrls: ['./lms/components/Login/Login.css'],
-        providers: [Inputter]
-    }),
-    __param(0, core_1.Inject(membership_service_1.MembershipService)),
-    __param(1, core_1.Inject(router_1.Router))
-], Login);
 exports.Login = Login;
 //# sourceMappingURL=Login.js.map

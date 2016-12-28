@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var membership_service_1 = require("../membership.service");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var membership_service_1 = require('../membership.service');
 var isAuthenticatedGuard = (function () {
     function isAuthenticatedGuard(_membershipService, router) {
         this._membershipService = _membershipService;
@@ -34,11 +34,12 @@ var isAuthenticatedGuard = (function () {
             return false;
         }
     };
+    isAuthenticatedGuard = __decorate([
+        core_1.Injectable(),
+        __param(0, core_1.Inject(membership_service_1.MembershipService)),
+        __param(1, core_1.Inject(router_1.Router))
+    ], isAuthenticatedGuard);
     return isAuthenticatedGuard;
 }());
-isAuthenticatedGuard = __decorate([
-    core_1.Injectable(),
-    __param(0, core_1.Inject(membership_service_1.MembershipService)), __param(1, core_1.Inject(router_1.Router))
-], isAuthenticatedGuard);
 exports.isAuthenticatedGuard = isAuthenticatedGuard;
 //# sourceMappingURL=isAuthenticated.js.map

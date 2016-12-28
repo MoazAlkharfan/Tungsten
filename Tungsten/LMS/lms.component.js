@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require("@angular/core");
-var GroupService_1 = require("./services/GroupService");
-var membership_service_1 = require("./services/membership.service");
-var Login_1 = require("./components/Login/Login");
-var User_1 = require("./classes/User");
+var core_1 = require('@angular/core');
+var GroupService_1 = require('./services/GroupService');
+var membership_service_1 = require('./services/membership.service');
+var Login_1 = require('./components/Login/Login');
+var User_1 = require('./classes/User');
 var IndexPage = (function () {
     function IndexPage(elementRef, membershipService, changeDetectorRef) {
         this.elementRef = elementRef;
@@ -51,19 +51,21 @@ var IndexPage = (function () {
         console.log('Anti Forgery Token passed from the razor Home/Index View');
         console.log(document.getElementById('antiForgeryForm').childNodes[1].attributes.getNamedItem("value").nodeValue);
     };
+    __decorate([
+        core_1.ViewChild(Login_1.Login)
+    ], IndexPage.prototype, "LoginView", void 0);
+    IndexPage = __decorate([
+        core_1.Component({
+            selector: 'lms-index',
+            templateUrl: './LMS/index.html',
+            styleUrls: ['./LMS/index.css'],
+            providers: [GroupService_1.GroupService]
+        }),
+        __param(0, core_1.Inject(core_1.ElementRef)),
+        __param(1, core_1.Inject(membership_service_1.MembershipService)),
+        __param(2, core_1.Inject(core_1.ChangeDetectorRef))
+    ], IndexPage);
     return IndexPage;
 }());
-__decorate([
-    core_1.ViewChild(Login_1.Login)
-], IndexPage.prototype, "LoginView", void 0);
-IndexPage = __decorate([
-    core_1.Component({
-        selector: 'lms-index',
-        templateUrl: './LMS/index.html',
-        styleUrls: ['./LMS/index.css'],
-        providers: [GroupService_1.GroupService]
-    }),
-    __param(0, core_1.Inject(core_1.ElementRef)), __param(1, core_1.Inject(membership_service_1.MembershipService)), __param(2, core_1.Inject(core_1.ChangeDetectorRef))
-], IndexPage);
 exports.IndexPage = IndexPage;
 //# sourceMappingURL=lms.component.js.map

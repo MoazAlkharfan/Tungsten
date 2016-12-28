@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var http_1 = require("@angular/http");
-var core_1 = require("@angular/core");
-var Observable_1 = require("rxjs/Observable");
+var http_1 = require('@angular/http');
+var core_1 = require('@angular/core');
+var Observable_1 = require('rxjs/Observable');
 var DataService = (function () {
     function DataService(http) {
         this.http = http;
@@ -57,11 +57,11 @@ var DataService = (function () {
         console.error(error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
+    DataService = __decorate([
+        core_1.Injectable(),
+        __param(0, core_1.Inject(http_1.Http))
+    ], DataService);
     return DataService;
 }());
-DataService = __decorate([
-    core_1.Injectable(),
-    __param(0, core_1.Inject(http_1.Http))
-], DataService);
 exports.DataService = DataService;
 //# sourceMappingURL=data.service.js.map

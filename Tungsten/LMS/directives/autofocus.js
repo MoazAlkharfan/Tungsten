@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require("@angular/core");
+var core_1 = require('@angular/core');
 var Autofocus = (function () {
     function Autofocus(el) {
         this.el = el;
@@ -30,11 +30,11 @@ var Autofocus = (function () {
         }
         this.lastVisible = visible;
     };
+    Autofocus = __decorate([
+        core_1.Directive({ selector: '[autofocus]' }),
+        __param(0, core_1.Inject(core_1.ElementRef))
+    ], Autofocus);
     return Autofocus;
 }());
-Autofocus = __decorate([
-    core_1.Directive({ selector: '[autofocus]' }),
-    __param(0, core_1.Inject(core_1.ElementRef))
-], Autofocus);
 exports.Autofocus = Autofocus;
 //# sourceMappingURL=autofocus.js.map

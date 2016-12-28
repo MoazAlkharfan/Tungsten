@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var registration_1 = require("../../classes/registration");
-var operationResult_1 = require("../../classes//operationResult");
-var membership_service_1 = require("../../services/membership.service");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var registration_1 = require('../../classes/registration');
+var operationResult_1 = require('../../classes//operationResult');
+var membership_service_1 = require('../../services/membership.service');
 var RegisterPage = (function () {
     function RegisterPage(membershipService, router) {
         this.membershipService = membershipService;
@@ -38,16 +38,16 @@ var RegisterPage = (function () {
         });
     };
     ;
+    RegisterPage = __decorate([
+        core_1.Component({
+            selector: 'register',
+            providers: [membership_service_1.MembershipService],
+            templateUrl: './lms/pages/register/RegisterPage.html'
+        }),
+        __param(0, core_1.Inject(membership_service_1.MembershipService)),
+        __param(1, core_1.Inject(router_1.Router))
+    ], RegisterPage);
     return RegisterPage;
 }());
-RegisterPage = __decorate([
-    core_1.Component({
-        selector: 'register',
-        providers: [membership_service_1.MembershipService],
-        templateUrl: './lms/pages/register/RegisterPage.html'
-    }),
-    __param(0, core_1.Inject(membership_service_1.MembershipService)),
-    __param(1, core_1.Inject(router_1.Router))
-], RegisterPage);
 exports.RegisterPage = RegisterPage;
 //# sourceMappingURL=register.component.js.map

@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require("@angular/core");
-var data_service_1 = require("./data.service");
+var core_1 = require('@angular/core');
+var data_service_1 = require('./data.service');
 var MembershipService = (function () {
     function MembershipService(accountService) {
         this.accountService = accountService;
@@ -49,11 +49,11 @@ var MembershipService = (function () {
         this.accountService.set(this._accountUserInfo);
         return this.accountService.post(_user);
     };
+    MembershipService = __decorate([
+        core_1.Injectable(),
+        __param(0, core_1.Inject(data_service_1.DataService))
+    ], MembershipService);
     return MembershipService;
 }());
-MembershipService = __decorate([
-    core_1.Injectable(),
-    __param(0, core_1.Inject(data_service_1.DataService))
-], MembershipService);
 exports.MembershipService = MembershipService;
 //# sourceMappingURL=membership.service.js.map
