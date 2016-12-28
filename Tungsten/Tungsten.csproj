@@ -225,6 +225,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Attributes\ExtendedAuthorize.cs" />
+    <Compile Include="Controllers\FileHandlerController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataAccessLayer\ApplicationDbContext.cs" />
