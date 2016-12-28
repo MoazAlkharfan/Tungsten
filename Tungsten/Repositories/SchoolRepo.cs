@@ -65,52 +65,116 @@ namespace Tungsten.Repositories
             }
         }
 
-        public void CreateSegment(Segment segment)
+        public bool CreateSegment(Segment segment)
         {
-            db.Segments.Add(segment);
-            db.SaveChanges();
+            try
+            {
+                db.Segments.Add(segment);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void CreateAssignment(Assignment assignment)
+        public bool CreateAssignment(Assignment assignment)
         {
-            db.Assignments.Add(assignment);
-            db.SaveChanges();
+            try
+            {
+                db.Assignments.Add(assignment);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void CreateLesson(Lesson lesson)
+        public bool CreateLesson(Lesson lesson)
         {
-            db.Lessons.Add(lesson);
-            db.SaveChanges();
+            try
+            {
+                db.Lessons.Add(lesson);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void RemoveGroup(Group group)
+        public bool RemoveGroup(Group group)
         {
-            db.Groups.Remove(group);
-            db.SaveChanges();
+            try
+            {
+                db.Groups.Remove(group);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void RemoveCourse(Course course)
+        public bool RemoveCourse(Course course)
         {
-            db.Courses.Remove(course);
-            db.SaveChanges();
+            try
+            {
+                db.Courses.Remove(course);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void RemoveSegment(Segment segment)
+        public bool RemoveSegment(Segment segment)
         {
-            db.Segments.Remove(segment);
-            db.SaveChanges();
+            try
+            {
+                db.Segments.Remove(segment);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void RemoveAssignment(Assignment assignment)
+        public bool RemoveAssignment(Assignment assignment)
         {
-            db.Assignments.Remove(assignment);
-            db.SaveChanges();
+            try
+            {
+                db.Assignments.Remove(assignment);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void RemoveLesson(Lesson lesson)
+        public bool RemoveLesson(Lesson lesson)
         {
-            db.Lessons.Remove(lesson);
-            db.SaveChanges();
+            try
+            {
+                db.Lessons.Remove(lesson);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void EditGroup(Group NewGroup)
