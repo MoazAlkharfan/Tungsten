@@ -390,11 +390,9 @@
     <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
     <TypeScriptCompile Include="LMS\classes\Registration.ts" />
     <TypeScriptCompile Include="LMS\classes\User.ts" />
-    <TypeScriptCompile Include="LMS\components\account.component.ts" />
     <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts" />
     <TypeScriptCompile Include="LMS\components\Login\Login.ts" />
     <TypeScriptCompile Include="LMS\directives\autofocus.ts" />
-    <TypeScriptCompile Include="LMS\interfaces\Course.ts" />
     <TypeScriptCompile Include="LMS\interfaces\Group.ts" />
     <TypeScriptCompile Include="LMS\lms.component.ts" />
     <TypeScriptCompile Include="LMS\lms.module.ts" />
@@ -415,7 +413,6 @@
     <TypeScriptCompile Include="LMS\services\course.service.ts" />
     <TypeScriptCompile Include="LMS\services\data.service.ts" />
     <TypeScriptCompile Include="LMS\services\GroupService.ts" />
-    <TypeScriptCompile Include="LMS\services\guards\isAuthenticated.ts" />
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
   </ItemGroup>
