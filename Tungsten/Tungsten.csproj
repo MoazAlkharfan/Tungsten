@@ -273,7 +273,6 @@
     <Content Include="LMS\components\GroupsList\GroupsList.html" />
     <Content Include="LMS\components\Login\Login.css" />
     <Content Include="LMS\components\Login\Login.html" />
-    <Content Include="LMS\components\Schedule\Schedule.html" />
     <Content Include="LMS\index.css" />
     <Content Include="LMS\index.html" />
     <Content Include="LMS\pages\account\AccountPage.html" />
