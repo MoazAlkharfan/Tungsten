@@ -5,6 +5,7 @@ import { Login } from './components/Login/Login';
 import { User } from './classes/User';
 import { UserAnnouncer } from './services/UserAnnouncer';
 import { Subscription } from 'rxjs/Subscription';
+import { userresolver } from './services/resolvers/userresolver';
 
 @Component({
     selector: 'lms-index',
@@ -26,8 +27,6 @@ export class IndexPage implements OnInit, AfterViewChecked {
     ) {
         this.user = this.membershipService.getLoggedInUser() || new User('', '', '', '', []);
         this.isuserloggedin = this.isUserLoggedIn();
-
-        
     }
     
     isUserLoggedIn(): boolean {

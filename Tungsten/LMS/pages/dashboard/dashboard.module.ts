@@ -21,6 +21,8 @@ import { CoursePage } from './pages/course/course.component';
 
 // components
 import { GroupsList } from '../../components/groupslist/GroupsList';
+import { DropdownBox } from '../../components/dropdownbox/dropdownbox';
+import { course } from '../../components/course/course.component';
 
 // services
 import { UserAnnouncer } from '../../services/UserAnnouncer';
@@ -31,6 +33,9 @@ import { CourseService } from '../../services/course.service';
 import { isTeacherGuard } from '../../services/guards/isteacher';
 import { isStudentGuard } from '../../services/guards/isStudent';
 
+// resolvers
+import { userresolver } from '../../services/resolvers/userresolver';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -40,6 +45,7 @@ import { isStudentGuard } from '../../services/guards/isStudent';
     ],
     declarations: [
         Dashboard_Index,
+        DropdownBox,
         HomePage,
         GroupPage,
         GroupsPage,
@@ -48,14 +54,16 @@ import { isStudentGuard } from '../../services/guards/isStudent';
         CreateCourse,
         TeacherHomePage,
         StudentHomePage,
-        CoursePage
+        CoursePage,
+        course
     ],
     providers: [
         UserAnnouncer,
         GroupService,
         CourseService,
         isTeacherGuard,
-        isStudentGuard
+        isStudentGuard,
+        userresolver
     ]
 })
 export class Dashboard { }

@@ -1,0 +1,30 @@
+﻿<div class="col-md-12 col-xs-12 dropdownbox">
+    <div class="col-md-10 col-xs-10 titlecontainer">
+        <h3 class="title">{{Title}}</h3>
+    </div>
+    <button type="button" class="btn btn-default btn-sm" aria-label="Right Align" (click)="OpenClose()">
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+    </button>
+    <div class="itemscontainer">
+        <div [@openClose]="isOpen">
+            <p class="item">Test:</p>
+            <h1>Doesn't</h1>
+            <h2>Look</h2>
+            <h3>Like</h3>
+            <h4>Anything</h4>
+            <h5>To</h5>
+            <h6>Me</h6>
+        </div>
+    </div>
+
+    <div *ngIf="Content && Content.length" [@openClose]="isOpen" class="itemscontainer">
+        <div *ngIf="ContentType === 'course'">
+            <div *ngFor="let item of Content; let i = index" class="item">
+                <a [routerLink]="['/dashboard', { outlets: { dashboard: [ContentType, item.Id] } }]">
+                    <h3>{{item.Name}}</h3>
+                    <p>{{item.Description}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

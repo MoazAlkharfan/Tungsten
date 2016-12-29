@@ -1,6 +1,6 @@
 ﻿import { Injectable, EventEmitter, Output } from '@angular/core';
 import { User } from '../classes/user';
-import { Subject } from 'rxjs/Subject';
+import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class UserAnnouncer {

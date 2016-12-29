@@ -26,6 +26,8 @@ import { UserAnnouncer } from './services/UserAnnouncer';
 // Components
 import { GroupsList } from './components/GroupsList/GroupsList';
 import { Login } from './components/Login/Login';
+import { DropdownBox } from './components/dropdownbox/dropdownbox';
+import { course } from './components/course/course.component';
 
 // Pages
 import { IndexPage } from './lms.component';
@@ -41,6 +43,8 @@ import { Autofocus } from './directives/autofocus';
 import { isAuthenticatedGuard } from './services/guards/isAuthenticated';
 import { isTeacherGuard } from './services/guards/isteacher';
 import { isStudentGuard } from './services/guards/isStudent';
+
+import { userresolver } from './services/resolvers/userresolver';
 
 @NgModule({
     imports: [
@@ -60,6 +64,6 @@ import { isStudentGuard } from './services/guards/isStudent';
         Autofocus
     ],
     bootstrap: [IndexPage],
-    providers: [UserAnnouncer, GroupService, DataService, MembershipService, isAuthenticatedGuard, AccountService]
+    providers: [UserAnnouncer, GroupService, DataService, MembershipService, isAuthenticatedGuard, AccountService, userresolver]
 })
 export class AppModule { }

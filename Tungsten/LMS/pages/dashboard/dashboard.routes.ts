@@ -23,6 +23,8 @@ import { isAuthenticatedGuard } from '../../services/guards/isAuthenticated';
 import { isTeacherGuard } from '../../services/guards/isTeacher';
 import { isStudentGuard } from '../../services/guards/isStudent';
 
+// Resolvers
+import { userresolver } from '../../services/resolvers/userresolver';
 
 // Note:
 // implement is teacherguard, ( problem adding canActivate on a child )
@@ -32,8 +34,8 @@ const routes: Routes = [
         children:
         [
             { path: '', component: HomePage, outlet: 'dashboard' }, // base url
-            { path: 'student', component: StudentHomePage, outlet: 'dashboard' },
-            { path: 'teacher', component: TeacherHomePage, outlet: 'dashboard' },
+            { path: 'student', component: StudentHomePage, outlet: 'dashboard', resolve: { user: userresolver } },
+            { path: 'teacher', component: TeacherHomePage, outlet: 'dashboard', resolve: { user: userresolver } },
             { path: 'admin', component: HomePage, outlet: 'dashboard' },
             { path: 'groups', component: GroupsPage, outlet: 'dashboard' },
             { path: 'group/:id', component: GroupPage, outlet: 'dashboard' },

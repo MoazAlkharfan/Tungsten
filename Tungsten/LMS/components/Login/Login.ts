@@ -16,7 +16,7 @@ import { UserAnnouncer } from '../../services/userannouncer';
 export class Login implements OnInit {
     @Input() LoginPanelIsOpen: boolean;
     @Input() _UserAnnouncer: UserAnnouncer;
-    Timeout: number;
+    Timeout: any;
 
     public _user: User;
     LoggedIn: boolean;
