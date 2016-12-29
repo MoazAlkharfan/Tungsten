@@ -234,10 +234,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612281246215_Initial.cs" />
-    <Compile Include="Migrations\201612281246215_Initial.Designer.cs">
-      <DependentUpon>201612281246215_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -428,11 +424,6 @@
     <TypeScriptCompile Include="LMS\services\guards\isteacher.ts" />
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612281246215_Initial.resx">
-      <DependentUpon>201612281246215_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
