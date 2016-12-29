@@ -8,7 +8,7 @@ export class ScheduleService {
     constructor( @Inject(Http) private http: Http) { }
 
     getSchedule(groupId: string): Observable<ScheduleSegment[]> {
-        return this.http.get('/Home/GetGroups', { body: { id: groupId } })
+        return this.http.post('/Home/GetSchedule', { id: groupId })
             .do(this.logData)
             .catch(this.handleError)
             .map(this.extractGroups);
@@ -24,7 +24,7 @@ export class ScheduleService {
     }
 
     private extractGroups(res: Response) {
-        let body = <ScheduleSegment[]>JSON.parse(res.json());
+        let body = <ScheduleSegment[]>res.json();
         return body || [];
     }
 }

@@ -1,5 +1,6 @@
 ﻿<div *ngIf="Group">
     <button class="btn btn-primary" [routerLink]="['/dashboard', { outlets: { dashboard: ['createcourse', Group.Id] } }]">Create Course</button>
+    <lms-schedule-app [groupId]="GroupId"></lms-schedule-app>
     <table>
         <thead>
             <tr>

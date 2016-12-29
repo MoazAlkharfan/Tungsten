@@ -6,26 +6,44 @@ import { ScheduleService } from '../../services/schedule.service';
 @Component({
     selector: 'lms-schedule-app',
     template:
-    `<h3>Schedule</h3><canvas id="schedule-canvas"></canvas>`
+    `<h3>Schedule</h3><canvas style="width: 100%" id="schedule-canvas"></canvas>`
 })
 
 export class Schedule implements AfterViewInit {
-    private scheduleSegments: ScheduleSegment[];
 
-    @Input('group-id') groupId: string;
+    @Input()
+    public groupId: string;
 
-    constructor( @Inject(ScheduleService) scheduleService: ScheduleService) {
-        scheduleService.getSchedule(this.groupId)
-            .subscribe(Segments => {
-                this.scheduleSegments = Segments;
-            },
+    constructor( @Inject(ScheduleService) private scheduleService: ScheduleService) { }
+    
+    ngAfterViewInit(): void {
+        console.log(this.groupId);
+        this.scheduleService.getSchedule(this.groupId)
+            .subscribe(Segments => this.drawSchedule(Segments),
             error => console.error(error));
     }
 
-    ngAfterViewInit(): void {
-        let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('schedule-canvas');
-        let svg: CanvasRenderingContext2D = canvas.getContext('2d');
-        let height: number = canvas.height;
-        let width: number = canvas.width;
+    drawSchedule(segments: ScheduleSegment[]): void {
+
+        let htmlCanvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('schedule-canvas');
+        let ctx: CanvasRenderingContext2D = htmlCanvas.getContext('2d');
+
+        htmlCanvas.style.width = '100%';
+        htmlCanvas.style.height = '100%';
+
+        htmlCanvas.width = htmlCanvas.offsetWidth;
+        htmlCanvas.height = htmlCanvas.offsetHeight;
+
+        ctx.canvas.width = htmlCanvas.width;
+        ctx.canvas.height = htmlCanvas.height;
+
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        ctx.font = "1em Arial";
+
+        segments.forEach((scheduleSegment) => {
+            ctx.fillText(scheduleSegment.CourseName, 10, 50);
+        })
     }
 }

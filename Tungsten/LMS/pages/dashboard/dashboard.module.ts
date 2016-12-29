@@ -15,10 +15,12 @@ import { CreateCourse } from './pages/createcourse/createcourse.component';
 
 // components
 import { GroupsList } from '../../components/groupslist/GroupsList';
+import { Schedule } from '../../components/Schedule/Schedule';
 
 // services
 import { UserAnnouncer } from '../../services/UserAnnouncer';
 import { GroupService } from '../../services/groupservice';
+import { ScheduleService } from '../../services/schedule.service';
 import { CourseService } from '../../services/course.service';
 
 @NgModule({
@@ -35,12 +37,14 @@ import { CourseService } from '../../services/course.service';
         GroupsPage,
         GroupsList,
         CreateGroup,
-        CreateCourse
+        CreateCourse,
+        Schedule
     ],
     providers: [
         UserAnnouncer,
         GroupService,
-        CourseService
+        CourseService,
+        ScheduleService
     ]
 })
 export class Dashboard { }
