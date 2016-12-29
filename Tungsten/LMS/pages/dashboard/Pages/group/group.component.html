@@ -12,6 +12,7 @@
                 <th>
                     Descreption
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,7 @@
                 <td>
                     {{Course.Description}}
                 </td>
+                <td><button class="btn btn-primary" [routerLink]="['/dashboard', { outlets: { dashboard: ['course', Course.Id] } }]">Open</button></td>
             </tr>
         </tbody>
     </table>

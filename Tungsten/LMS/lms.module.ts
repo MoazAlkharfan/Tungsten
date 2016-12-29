@@ -39,7 +39,8 @@ import { Autofocus } from './directives/autofocus';
 
 // Routing Guards
 import { isAuthenticatedGuard } from './services/guards/isAuthenticated';
-
+import { isTeacherGuard } from './services/guards/isteacher';
+import { isStudentGuard } from './services/guards/isStudent';
 
 @NgModule({
     imports: [

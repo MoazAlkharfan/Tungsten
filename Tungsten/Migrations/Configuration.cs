@@ -125,6 +125,12 @@ namespace Tungsten.Migrations
                 lesson4,
                 lesson5
             );
+            
+            ApplicationUser tommy = context.Users.FirstOrDefault(u => u.Email == "tommy@fakemail.com");
+            if (tommy != null)
+            {
+                userManager.AddToRole(tommy.Id, "Teacher");
+            }
         }
     }
 }
