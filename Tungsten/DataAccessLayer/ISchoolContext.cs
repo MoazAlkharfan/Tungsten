@@ -14,7 +14,7 @@ namespace Tungsten.DataAccessLayer
         DbSet<Segment> Segments { get; set; }
         DbSet<Assignment> Assignments { get; set; }
         DbSet<Lesson> Lessons { get; set; }
-        DbSet<FilePath> FilePaths { get; set; }
+        DbSet<FileDetail> FileRepositories { get; set; }
         int SaveChanges();
     }
 }

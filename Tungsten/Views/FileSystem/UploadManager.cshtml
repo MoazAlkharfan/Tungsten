@@ -1,0 +1,63 @@
+﻿@model Tungsten.Models.FileSystem.FileRepository
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "FileHandler", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-label">
+            <label>Files:</label>
+        </div>
+        <div class="editor-field">
+            <input type="file" name="file" multiple="multiple" />
+
+            <ul class="attachment">
+                @foreach (var item in Model.Contents)
+                {
+                    <li>
+                        <a class="title" href="/FileHandler/Download/?p=@(item.Id + item.Extension)&d=@item.FileName">@item.FileName</a>
+                        <a href="javascript:void(0);" data-id="@item.Id" class="deleteItem">X</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <p>
+            <input type="submit" value="Upload" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to Index", "Index")
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    $('.deleteItem').click(function (e) {
+        e.preventDefault();
+        var $ctrl = $(this);
+        if (confirm('Do you really want to delete this file?')) {
+            $.ajax({
+                url: '@Url.Action("DeleteFile")',
+            type: 'POST',
+            data: { id: $(this).data('id') }
+            }).done(function (data) {
+            if (data.Result == "OK") {
+            $ctrl.closest('li').remove();
+            }
+            else if (data.Result.Message) {
+            alert(data.Result.Message);
+            }
+            }).fail(function () {
+            alert("Something went wrong. Please try again.");
+            })
+        }
+    });
+}

@@ -32,7 +32,6 @@ namespace Tungsten.Models
 
         public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
-        public virtual ICollection<FilePath> FilePaths { get; set; }
 
         [JsonIgnore]
         public override string PasswordHash

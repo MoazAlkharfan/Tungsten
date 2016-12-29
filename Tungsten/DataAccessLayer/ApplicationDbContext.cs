@@ -20,7 +20,7 @@ namespace Tungsten.DataAccessLayer
         public DbSet<Segment> Segments { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
-        public DbSet<FilePath> FilePaths { get; set; }
+        public DbSet<FileDetail> FileRepositories { get; set; }
 
         public static ApplicationDbContext Create()
         {

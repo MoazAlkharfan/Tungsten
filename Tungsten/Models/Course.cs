@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Tungsten.Models.FileSystem;
 
 namespace Tungsten.Models
 {
@@ -54,6 +55,11 @@ namespace Tungsten.Models
         /// Navigational property for Lessons used when Generating Schedules 
         /// </summary>
         public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
+
+        /// <summary>
+        /// Navigational property for the files belonging to this Course
+        /// </summary>
+        public virtual FileRepository SharedFiles { get; set; } = new FileRepository();
 
         public override string ToString() => Subject + " " + Level;
     }
