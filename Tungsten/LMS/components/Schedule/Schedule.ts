@@ -2,11 +2,17 @@
 import { ScheduleSegment } from '../../interfaces/schedulesegment';
 import { ScheduleService } from '../../services/schedule.service';
 
+/**
+ * To use the component; make sure you have it and its services listed in.
+ * Then simply use it by using its selector and providing the [groupId] params.
+ * <lms-schedule-app [groupId]="GroupId"></lms-schedule-app> where "GroupID" is a
+ * public property of the parent component (page).
+ */
 
 @Component({
     selector: 'lms-schedule-app',
     template:
-    `<canvas style="width: 100%" id="schedule-canvas">Your browser does not support HTML5 Canvas.</canvas>`
+    `<canvas style="width: 80vw; height: 60vw;" id="schedule-canvas">Your browser does not support HTML5 Canvas.</canvas>`
 })
 
 export class Schedule implements AfterViewInit {
@@ -31,8 +37,11 @@ export class Schedule implements AfterViewInit {
     private height: number;
     private width: number;
 
-    public dayStart: string = "08:00:00";
-    public dayEnd: string = "17:00:00";
+    private hourHeight: number;
+    private scheduleOffset: number;
+
+    public scheduleStart: string = "07:00:00";
+    public scheduleEnd: string = "17:00:00";
 
     drawSchedule(segments: ScheduleSegment[]): void {
 
@@ -64,21 +73,23 @@ export class Schedule implements AfterViewInit {
         let rulerWidth: number = 32;
         this.ctx.strokeRect(0, 0, rulerWidth, this.height);
 
-        let dayLength: number = this.parseTimespan(this.dayEnd) - this.parseTimespan(this.dayStart);
+        this.scheduleOffset = this.parseTimespan(this.scheduleStart);
+        let scheduleEnd: number = this.parseTimespan(this.scheduleEnd);
+
+        let dayLength: number = scheduleEnd - this.scheduleOffset;
         console.log("Length of day calculated to be: " + dayLength.toString());
 
-        let hourHeight: number = this.height / dayLength;
+        this.hourHeight = this.height / dayLength;
 
-        this.ctx.textBaseline = "middle"; 
+        this.ctx.textBaseline = "middle";
         this.ctx.fillStyle = "#000000";
         this.ctx.font = "8px Arial";
         this.ctx.beginPath();
 
-        for (let hour = 1; hour <= dayLength; hour++)
-        {
-            this.ctx.moveTo(rulerWidth * 3 / 4, hour * hourHeight);
-            this.ctx.lineTo(rulerWidth, hour * hourHeight);
-            this.ctx.fillText(hour.toString() + ":00", 4, hour * hourHeight)
+        for (let hour = 1; hour < dayLength; hour++) {
+            this.ctx.moveTo(rulerWidth * 3 / 4, hour * this.hourHeight);
+            this.ctx.lineTo(rulerWidth, hour * this.hourHeight);
+            this.ctx.fillText(hour + this.scheduleOffset + ":00", 4, hour * this.hourHeight)
         }
 
         this.ctx.stroke();
@@ -99,7 +110,26 @@ export class Schedule implements AfterViewInit {
 
         this.ctx.strokeRect(0, 0, colWidth, this.height);
         segments.forEach((segment): void => {
-            // TODO: Render segments!
+
+            let segmentStart: number = this.parseTimespan(segment.StartTime) - this.scheduleOffset;
+            let segmentEnd: number = this.parseTimespan(segment.EndTime) - this.scheduleOffset;
+            let segmentLength: number = segmentEnd - segmentStart;
+
+            this.ctx.fillStyle = "#ff0000";
+
+            this.ctx.fillRect(0, segmentStart * this.hourHeight, colWidth, segmentLength * this.hourHeight);
+            this.ctx.strokeRect(0, segmentStart * this.hourHeight, colWidth, segmentLength * this.hourHeight);
+
+
+            this.ctx.fillStyle = "#000000";
+            this.ctx.font = "8px Arial";
+
+            this.ctx.fillText(" " + segment.StartTime, 0, segmentStart * this.hourHeight);
+            this.ctx.fillText(" " + segment.EndTime, 0, segmentEnd * this.hourHeight);
+
+            this.ctx.font = "12px Arial";
+            this.ctx.fillText(" " + segment.CourseName, 0, (segmentStart + segmentEnd) / 2 * this.hourHeight);
+
         });
 
         this.ctx.restore();
