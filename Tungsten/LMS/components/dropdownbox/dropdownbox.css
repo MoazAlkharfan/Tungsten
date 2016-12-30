@@ -1,0 +1,23 @@
+﻿:host /deep/ .dropdownbox{
+    position:relative;
+    background-color: #808080;
+    margin-top: 0.5em;
+    overflow-y:hidden;
+    padding: 0;
+}
+
+:host /deep/ .title{
+    display:inline;
+}
+
+:host /deep/ .titlecontainer{
+    display:inline;
+}
+
+:host /deep/ .itemscontainer{
+    background-color:#707070;
+}
+
+:host /deep/ .item{
+    
+}

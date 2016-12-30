@@ -20,22 +20,23 @@ import { CoursePage } from './pages/course/course.component';
 
 // Routing Guards
 import { isAuthenticatedGuard } from '../../services/guards/isAuthenticated';
-import { isTeacherGuard } from '../../services/guards/isTeacher';
-import { isStudentGuard } from '../../services/guards/isStudent';
+import { isProperRoleGuard } from '../../services/guards/isproperrole';
 
+// Resolvers
+import { userresolver } from '../../services/resolvers/userresolver';
 
 // Note:
 // implement is teacherguard, ( problem adding canActivate on a child )
 const routes: Routes = [
     {
-        path: 'dashboard', component: Dashboard_Index, canActivateChild: [isAuthenticatedGuard],
+        path: 'dashboard', component: Dashboard_Index, canActivateChild: [isAuthenticatedGuard, isProperRoleGuard], resolve: { user: userresolver },
         children:
         [
             { path: '', component: HomePage, outlet: 'dashboard' }, // base url
-            { path: 'student', component: StudentHomePage, outlet: 'dashboard' },
-            { path: 'teacher', component: TeacherHomePage, outlet: 'dashboard' },
+            { path: 'student', component: StudentHomePage, outlet: 'dashboard', resolve: { user: userresolver } },
+            { path: 'teacher', component: TeacherHomePage, outlet: 'dashboard', resolve: { user: userresolver } },
             { path: 'admin', component: HomePage, outlet: 'dashboard' },
-            { path: 'groups', component: GroupsPage, outlet: 'dashboard' },
+            { path: 'groups', component: GroupsPage, outlet: 'dashboard', resolve: { user: userresolver } },
             { path: 'group/:id', component: GroupPage, outlet: 'dashboard' },
             { path: 'creategroup', component: CreateGroup, outlet: 'dashboard' },
             { path: 'createcourse/:groupid', component: CreateCourse, outlet: 'dashboard' },
