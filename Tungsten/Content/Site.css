@@ -73,10 +73,13 @@ body {
   background-color: #ffdcc6;
   border-radius: 0px 0px; }
 
-.panel-collapse:first-child {
-  margin-bottom: 0; }
+.panel-collapse {
+  padding: 0; }
 
-.panel-group .panel-collapse {
+.panel-collapse-content {
+  padding: 15px; }
+
+.panel-group {
   padding: 10px 15px; }
 
 .panel-default {
