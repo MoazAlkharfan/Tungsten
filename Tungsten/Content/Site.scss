@@ -83,11 +83,14 @@ body {
 
 }
 
-.panel-collapse:first-child{
-    margin-bottom:0;
+.panel-collapse{
+    padding:0;
+}
+.panel-collapse-content {
+    padding: 15px;
 }
 
-.panel-group .panel-collapse {
+.panel-group{
     padding: 10px 15px;
 }
 
@@ -129,4 +132,28 @@ body {
 
 .btn-active, .btn:active {
     @include box-shadow(none);
+}
+
+/*
+    ***
+    *** Dropdownbox Component
+    ***
+*/
+.dropdownbox{
+    position:relative;
+    background-color: $color-panel;
+    margin-top: 1em;
+    overflow-y:hidden;
+    padding: 0;
+    @include box-shadow($shadow-panel);
+}
+.dropdownbox.title{
+    display:inline;
+}
+.titlecontainer{
+    display:inline;
+    padding: 0.4em;
+}
+.itemscontainer{
+    background-color: $color-panel;
 }

@@ -1,21 +1,24 @@
-﻿:host /deep/ .dropdownbox{
-    position:relative;
-    background-color: #808080;
-    margin-top: 0.5em;
-    overflow-y:hidden;
-    padding: 0;
+﻿/*Component specific selectors:
+    :host
+    selects the host element containing the component's template
+
+    /deep/
+    plunges the style down the child component tree, that is, any component this component contains will also be affected
+*/
+:host /deep/ .dropdownbox{
+   
 }
 
 :host /deep/ .title{
-    display:inline;
+   
 }
 
 :host /deep/ .titlecontainer{
-    display:inline;
+   
 }
 
 :host /deep/ .itemscontainer{
-    background-color:#707070;
+  
 }
 
 :host /deep/ .item{
