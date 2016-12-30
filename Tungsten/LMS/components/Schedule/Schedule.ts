@@ -42,8 +42,9 @@ export class Schedule implements AfterViewInit {
 
         ctx.font = "1em Arial";
 
-        segments.forEach((scheduleSegment) => {
-            ctx.fillText(scheduleSegment.CourseName, 10, 50);
-        })
+        //segments.filter((segment): Boolean => segment.Day == 0)
+        //    .forEach((scheduleSegment) => renderDay(0, scheduleSegment));
+
+
     }
 }

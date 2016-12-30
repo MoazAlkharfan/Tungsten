@@ -43,15 +43,15 @@ namespace Tungsten.Models
         /// </summary>
         public IEnumerable<ScheduleSegment> Schedule =>
                 from course in Courses
-                    from lesson in course.Lessons
-                        orderby lesson.StartTime
-                            select new ScheduleSegment
-                            {
-                                CourseName = course.ToString(),
-                                Day = lesson.StartTime.DayOfWeek,
-                                StartTime = lesson.StartTime.TimeOfDay,
-                                EndTime = lesson.EndTime.TimeOfDay,
-                                Classroom = lesson.Classroom
-                            };
+                from lesson in course.Lessons
+                orderby lesson.StartTime
+                select new ScheduleSegment
+                {
+                    CourseName = course.ToString(),
+                    Day = lesson.StartTime.DayOfWeek,
+                    StartTime = lesson.StartTime.TimeOfDay,
+                    EndTime = lesson.EndTime.TimeOfDay,
+                    Classroom = lesson.Classroom
+                };
     }
 }
