@@ -22,7 +22,7 @@ import { CoursePage } from './pages/course/course.component';
 // components
 import { GroupsList } from '../../components/groupslist/GroupsList';
 import { DropdownBox } from '../../components/dropdownbox/dropdownbox';
-import { course } from '../../components/course/course.component';
+//import { course } from '../../components/course/course.component';
 
 // services
 import { UserAnnouncer } from '../../services/UserAnnouncer';
@@ -55,7 +55,7 @@ import { userresolver } from '../../services/resolvers/userresolver';
         TeacherHomePage,
         StudentHomePage,
         CoursePage,
-        course
+        //course
     ],
     providers: [
         UserAnnouncer,
