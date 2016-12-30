@@ -17,6 +17,7 @@ export class DropdownBox implements OnInit {
     @Input('title') Title: string;
     @Input('content') Content: any[];
     @Input('content-type') ContentType: any;
+    @Input('create-id') CreateId: string;
     isOpen: string;
 
     constructor() {
@@ -28,6 +29,8 @@ export class DropdownBox implements OnInit {
     }
     
     OpenClose() {
+        console.log(this.ContentType + ':');
+        console.log(this.Content);
         if (this.isOpen === 'open')
             this.isOpen = 'close';
         else if (this.isOpen === 'close')

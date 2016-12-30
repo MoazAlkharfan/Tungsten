@@ -1,7 +1,7 @@
 ﻿:host /deep/ .dropdownbox{
     position:relative;
     background-color: #808080;
-    margin-bottom: 0.5em;
+    margin-top: 0.5em;
     overflow-y:hidden;
     padding: 0;
 }
