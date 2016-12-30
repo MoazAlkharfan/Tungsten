@@ -133,3 +133,27 @@ body {
 .btn-active, .btn:active {
     @include box-shadow(none);
 }
+
+/*
+    ***
+    *** Dropdownbox Component
+    ***
+*/
+.dropdownbox{
+    position:relative;
+    background-color: $color-panel;
+    margin-top: 1em;
+    overflow-y:hidden;
+    padding: 0;
+    @include box-shadow($shadow-panel);
+}
+.dropdownbox.title{
+    display:inline;
+}
+.titlecontainer{
+    display:inline;
+    padding: 0.4em;
+}
+.itemscontainer{
+    background-color: $color-panel;
+}
