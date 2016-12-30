@@ -6,16 +6,16 @@
     styleUrls: ['./lms/components/dropdownbox/dropdownbox.css'],
     animations: [
         trigger('openClose', [
-            state('open', style({ height: '*'})),
-            state('close', style({ height: '0' })),
-            transition('open => close', [animate('150ms ease-out', style({ opacity: 0 }))]),
-            transition('close => open', [animate('150ms ease-in'), style({ opacity: 0})])
+            state('open', style({ height: '*', opacity: 1})),
+            state('close', style({ height: '0px', opacity: 0 })),
+            transition('open => close', [animate('300ms', style({ opacity: 0, height: '0px' }))]),
+            transition('close => open', [animate('300ms', style({ opacity: 1, height: '*' }))])
         ])
     ]
 })
 export class DropdownBox implements OnInit {
     @Input('title') Title: string;
-    @Input('content') Content: any[]; 
+    @Input('content') Content: any[];
     @Input('content-type') ContentType: any;
     isOpen: string;
 
@@ -26,7 +26,7 @@ export class DropdownBox implements OnInit {
     ngOnInit() {
         this.isOpen = 'close';
     }
-
+    
     OpenClose() {
         if (this.isOpen === 'open')
             this.isOpen = 'close';

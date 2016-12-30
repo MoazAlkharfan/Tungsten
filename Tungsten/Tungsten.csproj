@@ -53,8 +53,8 @@
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <TypeScriptOutFile />
     <TypeScriptOutDir />
-    <TypeScriptGeneratesDeclarations>True</TypeScriptGeneratesDeclarations>
-    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>False</TypeScriptNoEmitOnError>
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
     <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
@@ -233,9 +233,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612281246215_Initial.cs" />
-    <Compile Include="Migrations\201612281246215_Initial.Designer.cs">
-      <DependentUpon>201612281246215_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201612300750361_Initial.cs" />
+    <Compile Include="Migrations\201612300750361_Initial.Designer.cs">
+      <DependentUpon>201612300750361_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -270,8 +270,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index-JustForReference-DeleteIt.html" />
-    <Content Include="LMS\components\assignment\assignment.component.html" />
-    <Content Include="LMS\components\course\course.component.html" />
     <Content Include="LMS\components\dropdownbox\dropdownbox.css" />
     <Content Include="LMS\components\dropdownbox\dropdownbox.html" />
     <Content Include="LMS\components\GroupsList\GroupsList.css" />
@@ -395,6 +393,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="LMS\components\assignment\" />
+    <Folder Include="LMS\components\course\" />
     <Folder Include="LMS\pages\dashboard\Pages\home\admin\" />
   </ItemGroup>
   <ItemGroup>
@@ -407,8 +407,6 @@
     <TypeScriptCompile Include="LMS\classes\Registration.ts" />
     <TypeScriptCompile Include="LMS\classes\User.ts" />
     <TypeScriptCompile Include="LMS\components\account.component.ts" />
-    <TypeScriptCompile Include="LMS\components\assignment\assignment.component.ts" />
-    <TypeScriptCompile Include="LMS\components\course\course.component.ts" />
     <TypeScriptCompile Include="LMS\components\dropdownbox\dropdownbox.ts" />
     <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts" />
     <TypeScriptCompile Include="LMS\components\Login\Login.ts" />
@@ -438,16 +436,14 @@
     <TypeScriptCompile Include="LMS\services\data.service.ts" />
     <TypeScriptCompile Include="LMS\services\GroupService.ts" />
     <TypeScriptCompile Include="LMS\services\guards\isauthenticated.ts" />
-    <TypeScriptCompile Include="LMS\services\guards\isadmin.ts" />
-    <TypeScriptCompile Include="LMS\services\guards\isstudent.ts" />
-    <TypeScriptCompile Include="LMS\services\guards\isteacher.ts" />
+    <TypeScriptCompile Include="LMS\services\guards\isproperrole.ts" />
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\userresolver.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612281246215_Initial.resx">
-      <DependentUpon>201612281246215_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612300750361_Initial.resx">
+      <DependentUpon>201612300750361_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

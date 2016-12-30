@@ -3,6 +3,7 @@
     background-color: #808080;
     margin-bottom: 0.5em;
     overflow-y:hidden;
+    padding: 0;
 }
 
 :host /deep/ .title{

@@ -12,12 +12,12 @@ import { Observable } from 'rxjs/Rx';
         trigger('routeAnimation', [
             state('*', style({ opacity: 1 })),
             transition('void => *', [
-                style({ opacity: 0, position: 'absolute'  }),
+                style({ opacity: 0, position: 'absolute', display: 'block'  }),
                 animate('0.5s')
             ]),
             transition('* => void',
                 animate('0.5s', style({
-                    opacity: 0, position: 'absolute' 
+                    opacity: 0, position: 'absolute', display: 'block'
                 }))
             )
         ])

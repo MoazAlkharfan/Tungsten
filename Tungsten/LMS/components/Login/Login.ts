@@ -67,7 +67,11 @@ export class Login implements OnInit {
                         },
                         error => console.error('Error: ' + <any>error),
                         () => {
-
+                            console.log(this._user.Roles[0]);
+                            if (!this._user.Roles[0])
+                                this._user.Roles[0] = 'student';
+                            else
+                                this._user.Roles[0] = this._user.Roles[0].toLowerCase();
                             this._user.Password = '';
                             this._UserAnnouncer.announceUser(this._user);
                             //this.userUpdated.emit(this._user);
