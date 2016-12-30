@@ -87,6 +87,15 @@ namespace Tungsten.Controllers
             }
         }
 
+        public JsonResult GetCourse(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return null;
+
+
+            return Json(JsonConvert.SerializeObject(repo.FindCourse(id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+        }
+
         [AllowAnonymous]
         public ActionResult Index()
         {

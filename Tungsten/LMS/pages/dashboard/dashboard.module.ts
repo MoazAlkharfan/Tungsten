@@ -7,11 +7,17 @@ import { DASHBOARD_Routes } from './dashboard.routes';
 
 // pages
 import { Dashboard_Index } from './dashboard.component';
+
 import { HomePage } from './pages/home/homepage.component';
+import { TeacherHomePage } from './pages/home/teacher/teacher.component';
+import { StudentHomePage } from './pages/home/student/student.component';
+
+
 import { GroupsPage } from './pages/groups/groups.component';
 import { GroupPage } from './pages/group/group.component';
 import { CreateGroup } from './pages/creategroup/creategroup.component';
 import { CreateCourse } from './pages/createcourse/createcourse.component';
+import { CoursePage } from './pages/course/course.component';
 
 // components
 import { GroupsList } from '../../components/groupslist/GroupsList';
@@ -20,6 +26,10 @@ import { GroupsList } from '../../components/groupslist/GroupsList';
 import { UserAnnouncer } from '../../services/UserAnnouncer';
 import { GroupService } from '../../services/groupservice';
 import { CourseService } from '../../services/course.service';
+
+// routing guards
+import { isTeacherGuard } from '../../services/guards/isteacher';
+import { isStudentGuard } from '../../services/guards/isStudent';
 
 @NgModule({
     imports: [
@@ -35,12 +45,17 @@ import { CourseService } from '../../services/course.service';
         GroupsPage,
         GroupsList,
         CreateGroup,
-        CreateCourse
+        CreateCourse,
+        TeacherHomePage,
+        StudentHomePage,
+        CoursePage
     ],
     providers: [
         UserAnnouncer,
         GroupService,
-        CourseService
+        CourseService,
+        isTeacherGuard,
+        isStudentGuard
     ]
 })
 export class Dashboard { }

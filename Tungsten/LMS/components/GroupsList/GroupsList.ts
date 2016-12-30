@@ -1,14 +1,16 @@
-﻿import { Component, OnInit, Inject } from '@angular/core';
+﻿// implement the resolve
+
+import { Component, OnInit, Inject } from '@angular/core';
 import { GroupService } from '../../services/GroupService';
 import { IGroup } from '../../interfaces/Group';
-import { Router } from '@angular/router';
+import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Component({
     selector: 'lms-groups-list',
     templateUrl: './lms/components/GroupsList/GroupsList.html',
     styleUrls: ['./lms/components/GroupsList/GroupsList.css']
 })
-export class GroupsList implements OnInit {
+export class GroupsList implements OnInit/*, Resolve<IGroup[]>*/ {
     Groups: IGroup[];
 
     constructor( @Inject(GroupService) private _groupService: GroupService,
@@ -25,4 +27,9 @@ export class GroupsList implements OnInit {
     logGroupId(id) {
         this.router.navigate([{ outlets: { dashboard: ['group', id] } }]);
     }
+    /*
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<Crisis> {
+
+
+    }*/
 }

@@ -223,6 +223,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Attributes\ExtendedAuthorize.cs" />
+    <Compile Include="Controllers\FileHandlerController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataAccessLayer\ApplicationDbContext.cs" />
@@ -232,10 +233,6 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612281150217_Initial.cs" />
-    <Compile Include="Migrations\201612281150217_Initial.Designer.cs">
-      <DependentUpon>201612281150217_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -282,11 +279,14 @@
     <Content Include="LMS\index.html" />
     <Content Include="LMS\pages\account\AccountPage.html" />
     <Content Include="LMS\pages\dashboard\index.html" />
+    <Content Include="LMS\pages\dashboard\Pages\course\course.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\createcourse\createcourse.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\creategroup\creategroup.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\groups\groups.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\group\group.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\homepage.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\home\student\student.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\home\teacher\teacher.component.html" />
     <Content Include="LMS\pages\home\HomePage.html" />
     <Content Include="LMS\pages\register\RegisterPage.html" />
     <Content Include="Reinforced.Typings.settings.xml" />
@@ -395,6 +395,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="LMS\pages\dashboard\Pages\home\admin\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="LMS\classes\ChangeInfo.ts" />
@@ -404,7 +405,6 @@
     <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
     <TypeScriptCompile Include="LMS\classes\Registration.ts" />
     <TypeScriptCompile Include="LMS\classes\User.ts" />
-    <TypeScriptCompile Include="LMS\components\account.component.ts" />
     <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts" />
     <TypeScriptCompile Include="LMS\components\Login\Login.ts" />
     <TypeScriptCompile Include="LMS\directives\autofocus.ts" />
@@ -418,25 +418,26 @@
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.module.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.routes.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\course\course.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\createcourse\createcourse.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\creategroup\creategroup.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\groups\groups.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\group\group.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\homepage.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\student\student.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\teacher\teacher.component.ts" />
     <TypeScriptCompile Include="LMS\pages\home\HomePage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\register\register.component.ts" />
     <TypeScriptCompile Include="LMS\services\account.service.ts" />
     <TypeScriptCompile Include="LMS\services\course.service.ts" />
     <TypeScriptCompile Include="LMS\services\data.service.ts" />
     <TypeScriptCompile Include="LMS\services\GroupService.ts" />
-    <TypeScriptCompile Include="LMS\services\guards\isAuthenticated.ts" />
+    <TypeScriptCompile Include="LMS\services\guards\isauthenticated.ts" />
+    <TypeScriptCompile Include="LMS\services\guards\isadmin.ts" />
+    <TypeScriptCompile Include="LMS\services\guards\isstudent.ts" />
+    <TypeScriptCompile Include="LMS\services\guards\isteacher.ts" />
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612281150217_Initial.resx">
-      <DependentUpon>201612281150217_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
