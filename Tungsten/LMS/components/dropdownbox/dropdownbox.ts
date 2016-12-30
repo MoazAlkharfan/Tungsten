@@ -29,8 +29,8 @@ export class DropdownBox implements OnInit {
     }
     
     OpenClose() {
-        console.log(this.ContentType + ':');
-        console.log(this.Content);
+        //console.log(this.ContentType + ':');
+        //console.log(this.Content);
         if (this.isOpen === 'open')
             this.isOpen = 'close';
         else if (this.isOpen === 'close')

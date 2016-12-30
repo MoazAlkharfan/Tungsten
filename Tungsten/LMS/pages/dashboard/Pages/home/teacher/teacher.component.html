@@ -1,8 +1,5 @@
 ﻿<div class="row">
     <div class="col-xs-12 col-md-12">
-        <button class="btn btn-default btn-xs" [routerLink]="['/dashboard', { outlets: { dashboard: ['creategroup'] } }]">
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-        </button>
         <dropdownbox [title]="'Groups'" [content]="groups" [content-type]="'group'"></dropdownbox>
         <dropdownbox [title]="'Assignments'" [content]="assignments" [content-type]="'assignment'"></dropdownbox>
         <dropdownbox [title]="'Schedule'" [content]="schedule" [content-type]="'schedule'"></dropdownbox>
