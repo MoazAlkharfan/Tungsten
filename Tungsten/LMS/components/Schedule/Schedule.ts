@@ -17,34 +17,65 @@ export class Schedule implements AfterViewInit {
     constructor( @Inject(ScheduleService) private scheduleService: ScheduleService) { }
     
     ngAfterViewInit(): void {
-        console.log(this.groupId);
+        console.log("[ScheduleComponent] GroupID Passed: " + this.groupId);
         this.scheduleService.getSchedule(this.groupId)
             .subscribe(Segments => this.drawSchedule(Segments),
             error => console.error(error));
     }
 
+    // DOM Variables
+    private htmlCanvas: HTMLCanvasElement;   
+    private ctx: CanvasRenderingContext2D;
+
+    // Schedule Size Information
+    private height: number;
+    private width: number;
+
+
     drawSchedule(segments: ScheduleSegment[]): void {
+        this.setupCanvas();
 
-        let htmlCanvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('schedule-canvas');
-        let ctx: CanvasRenderingContext2D = htmlCanvas.getContext('2d');
+        this.drawFrame();
 
-        htmlCanvas.style.width = '100%';
-        htmlCanvas.style.height = '100%';
+        let days: number[] = [1, 2, 3, 4, 5];
+        for (let day of days) {
+            this.renderDay(day, segments.filter((segment) => segment.Day == day));
+        }
+    }
 
-        htmlCanvas.width = htmlCanvas.offsetWidth;
-        htmlCanvas.height = htmlCanvas.offsetHeight;
+    setupCanvas(): void {
+        // DOM Setup
+        this.htmlCanvas = <HTMLCanvasElement>document.getElementById('schedule-canvas');
+        this.ctx = this.htmlCanvas.getContext('2d');
 
-        ctx.canvas.width = htmlCanvas.width;
-        ctx.canvas.height = htmlCanvas.height;
+        // Style Setup
+        this.htmlCanvas.style.width = '100%';
+        this.htmlCanvas.style.height = '100%';
 
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        // Scaling Workaround
+        this.width = this.ctx.canvas.width = this.htmlCanvas.width =  this.htmlCanvas.offsetWidth;
+        this.height = this.ctx.canvas.height = this.htmlCanvas.height = this.htmlCanvas.offsetHeight;
+    }
 
-        ctx.font = "1em Arial";
+    drawFrame(): void {
+        
+    }
 
-        //segments.filter((segment): Boolean => segment.Day == 0)
-        //    .forEach((scheduleSegment) => renderDay(0, scheduleSegment));
+    renderDay(day: number, segments: ScheduleSegment[]): void {
 
+        console.log("[ScheduleComponent] Day[" + day + "] rendering started. Segments passed:");
+        console.log(segments);
 
+        this.ctx.save();
+
+        let colWidth = this.width / 5;
+        this.ctx.translate(colWidth * (day - 1), 0);
+
+        this.ctx.strokeRect(0, 0, colWidth, this.height);
+        segments.forEach((segment): void => {
+            // TODO: Render segments!
+        });
+
+        this.ctx.restore();
     }
 }

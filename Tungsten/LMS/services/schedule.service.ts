@@ -25,6 +25,8 @@ export class ScheduleService {
 
     private extractGroups(res: Response) {
         let body = <ScheduleSegment[]>res.json();
+        console.log("[ScheduleService] Data extracted: ")
+        console.log(body);
         return body || [];
     }
 }
