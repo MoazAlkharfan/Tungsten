@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Tungsten.Models;
 using System.Web;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Tungsten.Controllers
 {
@@ -14,6 +15,8 @@ namespace Tungsten.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        JsonSerializerSettings jss = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
+
 
         public AccountController()
         {
@@ -55,16 +58,18 @@ namespace Tungsten.Controllers
         ///     Anonymous { Name, Username, Email, Roels[] } as Json
         /// </returns>
         [Authorize]
-        public async Task<ActionResult> GetUserInfo()
+        public async Task<string> GetUserInfo()
         {
             var currentUserId = User.Identity.GetUserId();
+            ApplicationUser user1 = await UserManager.FindByIdAsync(currentUserId);
             var user = new {
                 Name = User.Identity.Name,
                 Username = User.Identity.GetUserName(),
                 Email = UserManager.GetEmailAsync(currentUserId).Result,
-                Roles = await UserManager.GetRolesAsync(currentUserId)
+                Roles = await UserManager.GetRolesAsync(currentUserId),
+                Courses = user1.Courses
             };
-            return Json(user, JsonRequestBehavior.AllowGet);
+            return JsonConvert.SerializeObject(user, Formatting.Indented, jss); //Json(user, JsonRequestBehavior.AllowGet);
         }
 
         ////

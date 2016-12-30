@@ -44,7 +44,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
@@ -259,6 +259,8 @@
   <ItemGroup>
     <Content Include="Angular2Readme-IMPORTANT.txt" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css">
@@ -271,6 +273,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index-JustForReference-DeleteIt.html" />
+    <Content Include="LMS\components\dropdownbox\dropdownbox.css" />
+    <Content Include="LMS\components\dropdownbox\dropdownbox.html" />
     <Content Include="LMS\components\GroupsList\GroupsList.css" />
     <Content Include="LMS\components\GroupsList\GroupsList.html" />
     <Content Include="LMS\components\Login\Login.css" />
@@ -314,6 +318,13 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="package.json" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\Images\logo.svg" />
     <Content Include="Content\main.scss" />
     <None Include="compilerconfig.json" />
@@ -387,17 +398,17 @@
     <Content Include="Views\FileHandler\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="LMS\components\assignment\" />
+    <Folder Include="LMS\components\course\" />
     <Folder Include="LMS\pages\dashboard\Pages\home\admin\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="LMS\classes\assignment.ts" />
     <TypeScriptCompile Include="LMS\classes\ChangeInfo.ts" />
     <TypeScriptCompile Include="LMS\classes\Course.ts" />
     <TypeScriptCompile Include="LMS\classes\EditModel.ts" />
@@ -405,6 +416,7 @@
     <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
     <TypeScriptCompile Include="LMS\classes\Registration.ts" />
     <TypeScriptCompile Include="LMS\classes\User.ts" />
+    <TypeScriptCompile Include="LMS\components\dropdownbox\dropdownbox.ts" />
     <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts" />
     <TypeScriptCompile Include="LMS\components\Login\Login.ts" />
     <TypeScriptCompile Include="LMS\directives\autofocus.ts" />
@@ -433,11 +445,10 @@
     <TypeScriptCompile Include="LMS\services\data.service.ts" />
     <TypeScriptCompile Include="LMS\services\GroupService.ts" />
     <TypeScriptCompile Include="LMS\services\guards\isauthenticated.ts" />
-    <TypeScriptCompile Include="LMS\services\guards\isadmin.ts" />
-    <TypeScriptCompile Include="LMS\services\guards\isstudent.ts" />
-    <TypeScriptCompile Include="LMS\services\guards\isteacher.ts" />
+    <TypeScriptCompile Include="LMS\services\guards\isproperrole.ts" />
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\userresolver.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

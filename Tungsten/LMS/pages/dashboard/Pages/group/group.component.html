@@ -1,33 +1,9 @@
 ﻿<div *ngIf="Group">
-    <button class="btn btn-primary" [routerLink]="['/dashboard', { outlets: { dashboard: ['createcourse', Group.Id] } }]">Create Course</button>
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    Course Id
-                </th>
-                <th>
-                    Subject
-                </th>
-                <th>
-                    Descreption
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let Course of Group.Courses">
-                <td>
-                    {{Course.Id}}
-                </td>
-                <td>
-                    {{Course.Subject}}
-                </td>
-                <td>
-                    {{Course.Description}}
-                </td>
-                <td><button class="btn btn-primary" [routerLink]="['/dashboard', { outlets: { dashboard: ['course', Course.Id] } }]">Open</button></td>
-            </tr>
-        </tbody>
-    </table>
+    <button type="button" class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['createcourse', Group.Id] } }]">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+    </button>
+
+    <div *ngFor="let Course of Group.Courses">
+        <dropdownbox [title]="Course.Subject" [content]="Course.Segments" [content-type]="'segment'" [create-id]="Course.Id"></dropdownbox>
+    </div>
 </div>
