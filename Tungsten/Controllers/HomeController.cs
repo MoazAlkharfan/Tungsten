@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace Tungsten.Controllers
 {
-    //[ExtendedAuthorize]
+    [Authorize]
     public class HomeController : Controller
     {
         JsonSerializerSettings jss = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };

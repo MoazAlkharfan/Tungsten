@@ -11,6 +11,7 @@ export class MembershipService {
     private _accountLoginAPI: string = '/Account/Login/';
     private _accountLogoutAPI: string = '/Account/LogOff/';
     private _accountUserInfo: string = '/Account/GetUserInfo/';
+    private _accountUserAuthenticated: string = '/Account/IsAuthenticated';
 
 
     constructor( @Inject(DataService) public accountService: DataService) { }
@@ -33,11 +34,15 @@ export class MembershipService {
     }
 
     isUserAuthenticated(): boolean {
-        var _user: any = localStorage.getItem('user');
-        if (_user != null)
-            return true;
-        else
-            return false;
+        let ishe: boolean = false;
+
+        this.accountService.set(this._accountUserAuthenticated);
+        this.accountService.post(null).subscribe((result) => { ishe = result }
+            , error => console.error('Error: ' + error), () => {
+                return ishe;
+            });
+
+        return ishe;
     }
 
     getLoggedInUser(): User {
