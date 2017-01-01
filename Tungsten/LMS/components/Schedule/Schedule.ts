@@ -11,8 +11,15 @@ import { ScheduleService } from '../../services/schedule.service';
 
 @Component({
     selector: 'lms-schedule-app',
-    template:
-    `<canvas style="width: 80vw; height: 60vw;" id="schedule-canvas">Your browser does not support HTML5 Canvas.</canvas>`
+    styleUrls: ['./lms/components/Schedule/Schedule.css'],
+    template: `
+    <div class="schedule-wrapper">
+        <div class="content">
+            <canvas id="schedule-canvas" style="">
+                Your browser does not support HTML5 Canvas.
+            </canvas>
+        </div>
+    </div>`
 })
 
 export class Schedule implements AfterViewInit {
@@ -25,7 +32,7 @@ export class Schedule implements AfterViewInit {
     ngAfterViewInit(): void {
         console.log("[ScheduleComponent] GroupID Passed: " + this.groupId);
         this.scheduleService.getSchedule(this.groupId)
-            .subscribe(Segments => this.drawSchedule(Segments),
+            .subscribe(Segments => this.setupSchedule(Segments),
             error => console.error(error));
     }
 
@@ -36,101 +43,122 @@ export class Schedule implements AfterViewInit {
     // Schedule Size Information
     private height: number;
     private width: number;
-
     private hourHeight: number;
-    private scheduleOffset: number;
 
+
+    // Style Information
+    public fontName: string = "Arial";
+    public fontColor: string = "#000000";
+    public backgroundColor: string = "#ffffff";
+    private smallFont: string;
+    private largeFont: string;
+
+    // Schedule Time-frame
     public scheduleStart: string = "07:00:00";
     public scheduleEnd: string = "17:00:00";
+    private scheduleOffset: number = this.parseTimespan(this.scheduleStart);
+    private dayLength: number = this.parseTimespan(this.scheduleEnd) - this.scheduleOffset;
 
-    drawSchedule(segments: ScheduleSegment[]): void {
-
-        this.setupCanvas();
-        this.drawFrame();
-
-        for (let day = 1; day <= 5; day++)
-            this.renderDay(day - 1, segments.filter((segment) => segment.Day == day));
-
-    }
-
-    setupCanvas(): void {
+    setupSchedule(segments: ScheduleSegment[]): void {
 
         // DOM Setup
         this.htmlCanvas = <HTMLCanvasElement>document.getElementById('schedule-canvas');
         this.ctx = this.htmlCanvas.getContext('2d');
 
-        // Scaling Workaround
-        this.width = this.ctx.canvas.width = this.htmlCanvas.width = this.htmlCanvas.offsetWidth;
-        this.height = this.ctx.canvas.height = this.htmlCanvas.height = this.htmlCanvas.offsetHeight;
+        // Add EventListener to Re-render on Resize.
+        window.addEventListener("resize", (e) => this.drawSchedule(segments));
 
-        // Fill-White
-        this.ctx.fillStyle = "#ffffff";
-        this.ctx.fillRect(0, 0, this.width, this.height);
+        // Render Schedule
+        this.drawSchedule(segments);
     }
 
-    drawFrame(): void {
+    drawSchedule(segments: ScheduleSegment[]): void {
 
-        let rulerWidth: number = 32;
+        // Setup Dynamic Properties
+        this.hourHeight = this.height / this.dayLength
+        this.smallFont = this.width / 72 + "px " + this.fontName;
+        this.largeFont = this.width / 56 + "px " + this.fontName;
+
+        // Scaling Workaround
+        this.width = this.ctx.canvas.width = this.htmlCanvas.offsetWidth;
+        this.height = this.ctx.canvas.height = this.htmlCanvas.offsetHeight;
+
+        // Fill Background
+        this.ctx.fillStyle = this.backgroundColor;
+        this.ctx.fillRect(0, 0, this.width, this.height);
+
+        // Setup side-ruler
+        let rulerWidth: number = this.width / 14;
         this.ctx.strokeRect(0, 0, rulerWidth, this.height);
 
-        this.scheduleOffset = this.parseTimespan(this.scheduleStart);
-        let scheduleEnd: number = this.parseTimespan(this.scheduleEnd);
-
-        let dayLength: number = scheduleEnd - this.scheduleOffset;
-        console.log("Length of day calculated to be: " + dayLength.toString());
-
-        this.hourHeight = this.height / dayLength;
-
+        // Style Setup for Side-Ruler
         this.ctx.textBaseline = "middle";
-        this.ctx.fillStyle = "#000000";
-        this.ctx.font = "8px Arial";
+        this.ctx.fillStyle = this.fontColor;
+        this.ctx.font = this.smallFont;
+
+        // Start Rendering Side-Ruler
         this.ctx.beginPath();
 
-        for (let hour = 1; hour < dayLength; hour++) {
+        for (let hour = 1; hour < this.dayLength; hour++) {
             this.ctx.moveTo(rulerWidth * 3 / 4, hour * this.hourHeight);
             this.ctx.lineTo(rulerWidth, hour * this.hourHeight);
-            this.ctx.fillText(hour + this.scheduleOffset + ":00", 4, hour * this.hourHeight)
+            this.ctx.fillText(hour + this.scheduleOffset + ":00", rulerWidth / 6, hour * this.hourHeight)
         }
 
         this.ctx.stroke();
 
+        // Remove SideRuler from Active Drawing-Area
         this.ctx.translate(rulerWidth, 0);
         this.width -= rulerWidth;
+
+        // Render Days
+        for (let day = 0; day < 5; day++) {
+            this.renderDay(day, segments.filter(
+                (segment) => segment.Day == day + 1)
+            );
+        }
     }
 
     renderDay(day: number, segments: ScheduleSegment[]): void {
 
-        console.log("[ScheduleComponent] Day[" + day + "] rendering started. Segments passed:");
+        // Log data that was passed into the function
+        console.log("[ScheduleComponent] Day(" + day + ") rendering started. Segments passed:");
         console.log(segments);
 
+        // Save Position to translate origin back to once rendering is complete.
         this.ctx.save();
 
         let colWidth = this.width / 5;
         this.ctx.translate(colWidth * day, 0);
-
         this.ctx.strokeRect(0, 0, colWidth, this.height);
-        segments.forEach((segment): void => {
 
-            let segmentStart: number = this.parseTimespan(segment.StartTime) - this.scheduleOffset;
-            let segmentEnd: number = this.parseTimespan(segment.EndTime) - this.scheduleOffset;
-            let segmentLength: number = segmentEnd - segmentStart;
+        segments.forEach(
+            (segment): void => {
+                // Setup Sizing for Segment
+                let segmentStart: number = this.parseTimespan(segment.StartTime) - this.scheduleOffset;
+                let segmentEnd: number = this.parseTimespan(segment.EndTime) - this.scheduleOffset;
+                let segmentLength: number = segmentEnd - segmentStart;
 
-            this.ctx.fillStyle = "#ff0000";
+                // Set the segments background-color
+                // TODO: Randomize or get from server
+                this.ctx.fillStyle = "#ff0000";
 
-            this.ctx.fillRect(0, segmentStart * this.hourHeight, colWidth, segmentLength * this.hourHeight);
-            this.ctx.strokeRect(0, segmentStart * this.hourHeight, colWidth, segmentLength * this.hourHeight);
+                this.ctx.fillRect(0, segmentStart * this.hourHeight, colWidth, segmentLength * this.hourHeight);
+                this.ctx.strokeRect(0, segmentStart * this.hourHeight, colWidth, segmentLength * this.hourHeight);
 
+                // Reset Color and font
+                this.ctx.fillStyle = this.fontColor
+                this.ctx.font = this.smallFont;
 
-            this.ctx.fillStyle = "#000000";
-            this.ctx.font = "8px Arial";
+                // Draw timestamps
+                this.ctx.fillText(segment.StartTime, colWidth / 16, segmentStart * this.hourHeight);
+                this.ctx.fillText(segment.EndTime, colWidth / 16, segmentEnd * this.hourHeight);
 
-            this.ctx.fillText(" " + segment.StartTime, 0, segmentStart * this.hourHeight);
-            this.ctx.fillText(" " + segment.EndTime, 0, segmentEnd * this.hourHeight);
-
-            this.ctx.font = "12px Arial";
-            this.ctx.fillText(" " + segment.CourseName, 0, (segmentStart + segmentEnd) / 2 * this.hourHeight);
-
-        });
+                // Draw coursename
+                this.ctx.font = this.largeFont;
+                this.ctx.fillText(segment.CourseName, colWidth / 12, (segmentStart + segmentEnd) / 2 * this.hourHeight);
+            }
+        );
 
         this.ctx.restore();
     }
