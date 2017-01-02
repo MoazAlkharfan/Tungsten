@@ -4,4 +4,5 @@
     StartTime: string;
     EndTime: string;
     Classroom: string;
+    Color: string;
 }
