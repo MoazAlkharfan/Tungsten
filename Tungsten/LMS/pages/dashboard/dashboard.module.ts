@@ -53,7 +53,7 @@ import { userresolver } from '../../services/resolvers/userresolver';
         GroupsList,
         CreateGroup,
         CreateCourse,
-        Schedule
+        Schedule,
         TeacherHomePage,
         StudentHomePage,
         CoursePage
@@ -62,7 +62,7 @@ import { userresolver } from '../../services/resolvers/userresolver';
         UserAnnouncer,
         GroupService,
         CourseService,
-        ScheduleService
+        ScheduleService,
         isProperRoleGuard,
         userresolver
     ]
