@@ -21,12 +21,14 @@ import { CoursePage } from './pages/course/course.component';
 
 // components
 import { GroupsList } from '../../components/groupslist/GroupsList';
+import { Schedule } from '../../components/Schedule/Schedule';
 import { DropdownBox } from '../../components/dropdownbox/dropdownbox';
 //import { course } from '../../components/course/course.component';
 
 // services
 import { UserAnnouncer } from '../../services/UserAnnouncer';
 import { GroupService } from '../../services/groupservice';
+import { ScheduleService } from '../../services/schedule.service';
 import { CourseService } from '../../services/course.service';
 
 // routing guards
@@ -51,6 +53,7 @@ import { userresolver } from '../../services/resolvers/userresolver';
         GroupsList,
         CreateGroup,
         CreateCourse,
+        Schedule
         TeacherHomePage,
         StudentHomePage,
         CoursePage
@@ -59,6 +62,7 @@ import { userresolver } from '../../services/resolvers/userresolver';
         UserAnnouncer,
         GroupService,
         CourseService,
+        ScheduleService
         isProperRoleGuard,
         userresolver
     ]

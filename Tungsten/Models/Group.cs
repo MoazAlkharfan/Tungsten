@@ -41,17 +41,26 @@ namespace Tungsten.Models
         /// <summary>
         /// ScheduleSegments for all lessons in a Group
         /// </summary>
-        public IEnumerable<ScheduleSegment> Schedule =>
+        public IEnumerable<ScheduleSegment> Schedule
+        {
+            get
+            {
+                var r = new Random();
+                return
                 from course in Courses
-                    from lesson in course.Lessons
-                        orderby lesson.StartTime
-                            select new ScheduleSegment
-                            {
-                                CourseName = course.ToString(),
-                                Day = lesson.StartTime.DayOfWeek,
-                                StartTime = lesson.StartTime.TimeOfDay,
-                                EndTime = lesson.EndTime.TimeOfDay,
-                                Classroom = lesson.Classroom
-                            };
+                from lesson in course.Lessons
+                orderby lesson.StartTime
+                select new ScheduleSegment
+                {
+                    CourseName = course.ToString(),
+                    Day = lesson.StartTime.DayOfWeek,
+                    StartTime = lesson.StartTime.TimeOfDay,
+                    EndTime = lesson.EndTime.TimeOfDay,
+                    Classroom = lesson.Classroom,
+                    // Perhaps implement a predefined list of colors to ensure that the colors are suitable for humans.
+                    Color = $"#{(course.ToString().GetHashCode() % 0x1000000):X6}".Substring(0, 7)
+                };
+            }
+        }
     }
 }

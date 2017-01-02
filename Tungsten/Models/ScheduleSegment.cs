@@ -12,6 +12,6 @@ namespace Tungsten.Models
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public string Classroom { get; set; }
-
+        public string Color { get; set; }
     }
 }
