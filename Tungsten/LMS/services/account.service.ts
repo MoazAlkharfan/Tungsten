@@ -16,12 +16,12 @@ export class AccountService {
         this._dataservice.set(this._CreateAccountAPI);
     }
 
-    EditAccount(user: EditModel) {
+    EditAccount(user: EditModel): any {
         this._dataservice.set(this._EditAccountAPI);
         return this._dataservice.post(user);
     }
 
-    DeleteAccount(id: string) {
+    DeleteAccount(id: string): any {
         this._dataservice.set(this._DeleteAccountAPI);
         this._dataservice.delete(id);
     }

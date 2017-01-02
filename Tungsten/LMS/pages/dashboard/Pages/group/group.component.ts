@@ -1,6 +1,6 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
+import { User } from '../../../../classes/user';
 import { GroupService } from '../../../../services/groupservice';
 
 import 'rxjs/add/operator/switchMap';
@@ -11,7 +11,7 @@ import 'rxjs/add/operator/switchMap';
 })
 export class GroupPage implements OnInit {
     private Group;
-    public GroupId;
+    private user: User;
 
     constructor(
         @Inject(ActivatedRoute) private route: ActivatedRoute,
@@ -19,9 +19,10 @@ export class GroupPage implements OnInit {
         ) { };
 
         ngOnInit() {
-            this.GroupId = this.route.snapshot.params['id'];
+
+            let id = this.route.snapshot.params['id'];
             
-            this._GroupService.getGroupById(this.GroupId)
+            this._GroupService.getGroupById(id)
                 .subscribe((group) => { this.Group = group; },
                 error => console.error(error),
                 () => {
