@@ -55,9 +55,9 @@ namespace Tungsten.Controllers
         }
 
         [AllowAnonymous]
-        public bool IsAuthenticated()
+        public JsonResult IsAuthenticated()
         {
-            return User.Identity.IsAuthenticated;
+            return Json(new { ishe = User.Identity.IsAuthenticated }, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<string> GetHomePage()

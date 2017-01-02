@@ -3,6 +3,8 @@ import { Injectable, Inject } from '@angular/core';
 import { DataService } from './data.service';
 import { Registration } from '../classes/registration';
 import { User } from '../classes/User';
+import { UserAnnouncer } from './userannouncer';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class MembershipService {
@@ -13,8 +15,9 @@ export class MembershipService {
     private _accountUserInfo: string = '/Account/GetUserInfo/';
     private _accountUserAuthenticated: string = '/Account/IsAuthenticated';
 
-
-    constructor( @Inject(DataService) public accountService: DataService) { }
+    constructor(@Inject(DataService) public accountService: DataService//,
+                ,@Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer
+    ) { }
 
     register(newUser: Registration): any {
 
@@ -33,30 +36,34 @@ export class MembershipService {
         return this.accountService.post(null);
     }
 
-    isUserAuthenticated(): boolean {
+    isUserAuthenticated(): Observable<boolean> {
         let ishe: boolean = false;
 
         this.accountService.set(this._accountUserAuthenticated);
-        this.accountService.post(null).subscribe((result) => { ishe = result }
-            , error => console.error('Error: ' + error), () => {
-                return ishe;
-            });
-
-        return ishe;
+        return this.accountService.post(null);
+        
     }
 
-    getLoggedInUser(): User {
-        var _user: User;
+    getLoggedInUser(): Observable<User> {
+        let _user: User = new User('', '', '', '', []);
+        let authenticated: boolean;
 
-        if (this.isUserAuthenticated()) {
-            var _userData = JSON.parse(localStorage.getItem('user'));
-            _user = <User>_userData;
-        }
-
-        return _user;
+        return this.isUserAuthenticated().map((result) => {
+            if (result) {
+                return this.getUserInfo(_user).subscribe((result) => {
+                    return <User>result;
+                    //_user = <User>result;
+                }, error => console.error('Error: ' + error), () => {
+                    // this._UserAnnouncer.announceUser(_user);
+                });
+            }
+            else {
+                
+            }
+        }).first();
     }
 
-    getUserInfo(_user: User): any {
+    getUserInfo(_user?: User): any {
         this.accountService.set(this._accountUserInfo);
         return this.accountService.post(_user);
     }

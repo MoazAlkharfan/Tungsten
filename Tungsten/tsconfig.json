@@ -1,0 +1,25 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "baseUrl": "",
+    "experimentalDecorators": true,
+    "lib": [ "es6", "dom" ],
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+  "include": [
+    "lms/**/*.ts"
+  ],
+  "files": []
+}

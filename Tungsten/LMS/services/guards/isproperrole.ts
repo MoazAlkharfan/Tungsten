@@ -1,22 +1,53 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, CanActivateChild, RouterStateSnapshot } from '@angular/router';
+import { UserAnnouncer } from '../userannouncer';
 import { MembershipService } from '../membership.service';
+import { User } from '../../classes/user';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class isProperRoleGuard implements CanActivateChild {
-    constructor( @Inject(MembershipService) private _membershipService: MembershipService,
-        @Inject(Router) private router: Router
-    ) { }
+    constructor(
+        @Inject(Router) private router: Router,
+        @Inject(MembershipService) private _MembershipService: MembershipService
+        //,
+        //@Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer
+    ) { 
+        console.log(this);
+
+    }
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         let currentroute = route.routeConfig.path;
 
-        if (this.getproperRoutes(this._membershipService.getLoggedInUser().Roles[0].toLowerCase()).indexOf(currentroute) != -1) {
-            return true;
-        } else {
-            this.router.navigateByUrl('');
-            return false;
-        }
+
+        return this._MembershipService.getUserInfo().map((result: User) => {
+            console.log(result.Roles[0].toLowerCase());
+            console.log(currentroute);
+            console.log(this.getproperRoutes(result.Roles[0].toLowerCase()));
+            if (this.getproperRoutes(result.Roles[0].toLowerCase()).indexOf(currentroute) != -1) {
+                console.log('can navigate');
+               return true;
+            } else {
+                console.log('cant navigate');
+                this.router.navigateByUrl('');
+                return false;
+            }
+
+        }).first();
+
+        /*
+        return this._UserAnnouncer.userAnnounced.map((result) => {
+
+            if (this.getproperRoutes(result.Roles[0].toLowerCase()).indexOf(currentroute) != -1) {
+                console.log('can navigate');
+               return true;
+            } else {
+                console.log('cant navigate');
+                this.router.navigateByUrl('');
+                return false;
+            }
+        }).first();*/
     }
 
     getproperRoutes(role: string) {

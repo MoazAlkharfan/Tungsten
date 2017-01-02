@@ -1,4 +1,4 @@
-﻿import { Injectable, EventEmitter, Output } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { User } from '../classes/user';
 import { Observable, Subject } from 'rxjs/Rx';
 
@@ -9,7 +9,7 @@ export class UserAnnouncer {
     userAnnounced = this.user.asObservable();
 
     constructor() {
-        //console.log('announcer constructed');
+        console.log('announcer constructed');
     }
 
     announceUser(user: User) {

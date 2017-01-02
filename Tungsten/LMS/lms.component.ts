@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
     selector: 'lms-index',
     templateUrl: './LMS/index.html',
     styleUrls: ['./LMS/index.css'],
-    providers: [GroupService, UserAnnouncer],
+    providers: [],
     host: { '[@routeAnimation]': 'true' },
     animations: [
         trigger('routeAnimation', [])
@@ -29,12 +29,7 @@ export class IndexPage implements OnInit, AfterViewChecked {
         @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer
 
     ) {
-        this.user = this.membershipService.getLoggedInUser() || new User('', '', '', '', []);
-        this.isuserloggedin = this.isUserLoggedIn();
-    }
-    
-    isUserLoggedIn(): boolean {
-        return this.membershipService.isUserAuthenticated();
+        
     }
 
     logout(): void {
@@ -53,6 +48,8 @@ export class IndexPage implements OnInit, AfterViewChecked {
         if (this.LoginView && this.LoginView.LoggedIn && this.isuserloggedin != this.LoginView.LoggedIn)
             this.isuserloggedin = this.LoginView.LoggedIn;
 
+        console.log(this.user);
+
         this.changeDetectorRef.detectChanges();
     }
 
@@ -69,6 +66,14 @@ export class IndexPage implements OnInit, AfterViewChecked {
         // this is the antiforgery token DON't REMOVE
         console.log('Anti Forgery Token passed from the razor Home/Index View');
         console.log(document.getElementById('antiForgeryForm').childNodes[1].attributes.getNamedItem("value").nodeValue);
+
+        this.membershipService.getLoggedInUser();
+
+        this.membershipService.isUserAuthenticated().subscribe((result) => {
+            this.isuserloggedin = result;
+        }, error => {
+            console.error(error);
+        });
 
         this.subscription = this._UserAnnouncer.userAnnounced.subscribe(
             user => {

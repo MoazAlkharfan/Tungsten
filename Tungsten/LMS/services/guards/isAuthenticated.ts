@@ -1,6 +1,7 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { CanActivate, CanActivateChild, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { MembershipService } from '../membership.service';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class isAuthenticatedGuard implements CanActivate, CanActivateChild {
@@ -11,13 +12,16 @@ export class isAuthenticatedGuard implements CanActivate, CanActivateChild {
     }
 
     canActivate(router: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (this._membershipService.isUserAuthenticated())
-        {
+        return this._membershipService.isUserAuthenticated().map((result) => {
+            if (result) {
+                console.log('should gain access to route');
             return true;
-        } else {
-            this.router.navigateByUrl('');
+            }
+            else {
+                this.router.navigateByUrl('');
             return false;
-        }
+            }
+        }).first();
     }
 
 }

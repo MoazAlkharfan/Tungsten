@@ -29,7 +29,9 @@ export class Login implements OnInit {
 
     ngOnInit() {
         this._user = new User('', '', '', '', []);
-        this.LoggedIn = this.membershipService.isUserAuthenticated();
+        this.membershipService.isUserAuthenticated().subscribe((result) => {
+            this.LoggedIn = result;
+        });
     }
 
     eventHandler(key) {

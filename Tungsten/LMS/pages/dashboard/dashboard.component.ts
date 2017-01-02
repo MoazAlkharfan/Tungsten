@@ -1,11 +1,11 @@
 ﻿import { Component, Inject, OnInit, trigger } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { userresolver } from '../../services/resolvers/userresolver';
 import { User } from '../../classes/user';
+import { UserAnnouncer } from '../../services/userannouncer';
 
 @Component({
     templateUrl: './lms/pages/dashboard/index.html',
-    providers: [userresolver],
+    providers: [UserAnnouncer],
     host: { '[@routeAnimation]': 'true' },
     animations: [
         trigger('routeAnimation', [])

@@ -13,7 +13,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a [routerLink]="['']">Home</a></li>
-                <li *ngIf="user.Username"><a [routerLink]="['dashboard', { outlets: { dashboard: [user.Roles[0] || 'student'] } }]" routerLinkActive="active">Dashboard</a></li>
+                <li *ngIf="isuserloggedin"><a [routerLink]="['dashboard', { outlets: { dashboard: [user?.Roles[0] || 'student'] } }]" routerLinkActive="active">Dashboard</a></li>
             </ul>
             <div [ngSwitch]="isuserloggedin">
                 <ul class="nav navbar-nav navbar-right" *ngSwitchCase="true">
