@@ -37,7 +37,11 @@ namespace Tungsten.Controllers
             if (ModelState.IsValid)
             {
                 List<FileDetail> fileDetails = new List<FileDetail>();
-                for (int i = 0; i < Request.Files.Count; i++)
+                int count = Request.Files.Count;
+                int processAttempts = 0;
+                int processSuccesses = 0;
+
+                for (int i = 0; i < count; i++)
                 {
                     var file = Request.Files[i];
 
@@ -53,12 +57,14 @@ namespace Tungsten.Controllers
                             UploadTime = DateTime.Now
                         };
                         fileDetails.Add(fileDetail);
+                        processAttempts++;
 
                         var path = Path.Combine(Server.MapPath(ROOT_DIRECTORY), fileDetail.Id + fileDetail.Extension);
                         try
                         {
                             file.SaveAs(path);
                             db.FileDetails.Add(fileDetail);
+                            processSuccesses++;
                         }
                         catch
                         {
@@ -68,7 +74,15 @@ namespace Tungsten.Controllers
                 }
 
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (processAttempts > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
             }
 
             return View();
