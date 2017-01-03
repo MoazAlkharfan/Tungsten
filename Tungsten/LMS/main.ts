@@ -2,4 +2,4 @@
 import { AppModule } from './lms.module';
 import { UserAnnouncer } from './services/UserAnnouncer';
 
-platformBrowserDynamic().bootstrapModule(AppModule, [{ providers: [UserAnnouncer] }]);
+platformBrowserDynamic().bootstrapModule(AppModule);
