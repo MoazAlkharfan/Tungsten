@@ -72,8 +72,8 @@ export class IndexPage implements OnInit, AfterViewChecked {
 
         this.subscription = this._UserAnnouncer.userAnnounced.subscribe(
             user => {
-                console.log('user from lms.component event:')
-                console.log(user);
+                //console.log('user from lms.component event:')
+                //console.log(user);
                 
                 this.user = user;
                 //this.user.Roles[0] = this.user.Roles[0] == '' ? 'student' : this.user.Roles[0].toLowerCase();
