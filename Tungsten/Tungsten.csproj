@@ -394,9 +394,7 @@
     <Content Include="Views\Dashboard\Details.cshtml" />
     <Content Include="Views\Dashboard\Edit.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\FileWTF\Index.cshtml" />
-    <Content Include="Views\FileHandler\UploadIndex.cshtml" />
-    <Content Include="Views\FileHandler\UploadFiles.cshtml" />
+    <Content Include="Views\FileHandler\UploadSelector.cshtml" />
     <Content Include="Views\FileHandler\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

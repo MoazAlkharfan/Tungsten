@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="gridtable">
     <tr>
         <th>
@@ -17,26 +14,61 @@
         <th>
             Uploaded by
         </th>
-        <th>Total files</th>
-        <th></th>
+        <th>
+            Upload time
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FileName)
+                <a class="title" href="/FileHandler/Download/?dbName=@(item.Id + item.Extension)&originalName=@item.FileName">@item.FileName</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Owner)
+                @Html.DisplayFor(modelItem => item.Owner.Name)
             </td>
             <td>
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            <a href="javascript:void(0);" data-id="@item.Id" class="deleteItem">Delete</a>
-        </td>
-    </tr>
+                @Html.DisplayFor(modelItem => item.UploadTime)
+            </td>
+            <td>
+                <a href="javascript:void(0);" data-id="@item.Id" class="deleteItem">Delete</a>
+            </td>
+        </tr>
     }
-
 </table>
+
+<p>
+    <br />
+    @Html.ActionLink("Upload file(s)", "UploadSelector")
+</p>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $('.deleteItem').click(function (e) {
+        e.preventDefault();
+        var $ctrl = $(this);
+        if (confirm('Do you really want to delete this file?')) {
+        $.ajax({
+        url: '@Url.Action("DeleteFile")',
+        type: 'POST',
+        data: { id: $(this).data('id') }
+        }).done(function (data) {
+        if (data.Result == "OK") {
+            $ctrl.closest('li').remove();
+            history.go(0);
+        }
+        else if (data.Result.Message) {
+        alert(data.Result.Message);
+        }
+        }).fail(function () {
+        alert("Something went wrong. Please try again.");
+        })
+        }
+        });
+    </script>
+}

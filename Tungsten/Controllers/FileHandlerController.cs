@@ -24,7 +24,7 @@ namespace Tungsten.Controllers
             return View(await db.FileDetails.ToListAsync());
         }
 
-        public ActionResult UploadIndex()
+        public ActionResult UploadSelector()
         {
             return View();
         }
@@ -49,71 +49,82 @@ namespace Tungsten.Controllers
                             FileName = fileName,
                             Extension = Path.GetExtension(fileName),
                             Id = Guid.NewGuid(),
-                            OwnerId = User.Identity.GetUserId()
+                            OwnerId = User.Identity.GetUserId(),
+                            UploadTime = DateTime.Now
                         };
                         fileDetails.Add(fileDetail);
 
                         var path = Path.Combine(Server.MapPath(ROOT_DIRECTORY), fileDetail.Id + fileDetail.Extension);
-                        file.SaveAs(path);
-                    }
-                }
-
-                db.FileDetails.AddRange(fileDetails);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View();
-        }
-
-        public FileResult Download(String p, String d)
-        {
-            return File(Path.Combine(Server.MapPath(ROOT_DIRECTORY), p), System.Net.Mime.MediaTypeNames.Application.Octet, d);
-        }
-
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit()
-        {
-            if (ModelState.IsValid)
-            {
-                //New Files
-                for (int i = 0; i < Request.Files.Count; i++)
-                {
-                    var file = Request.Files[i];
-
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        var fileName = Path.GetFileName(file.FileName);
-                        FileDetail fileDetail = new FileDetail()
+                        try
                         {
-                            FileName = fileName,
-                            Extension = Path.GetExtension(fileName),
-                            Id = Guid.NewGuid(),
-                        };
-                        var path = Path.Combine(Server.MapPath(ROOT_DIRECTORY), fileDetail.Id + fileDetail.Extension);
-                        file.SaveAs(path);
-
-                        db.Entry(fileDetail).State = EntityState.Added;
+                            file.SaveAs(path);
+                            db.FileDetails.Add(fileDetail);
+                        }
+                        catch
+                        {
+                            throw;
+                        }
                     }
                 }
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View();
         }
 
+        [Authorize]
+        public FileResult Download(string dbName, string originalName)
+        {
+            return File(Path.Combine(Server.MapPath(ROOT_DIRECTORY), dbName), System.Net.Mime.MediaTypeNames.Application.Octet, originalName);
+        }
+
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //[Authorize]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit()
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        //New Files
+        //        for (int i = 0; i < Request.Files.Count; i++)
+        //        {
+        //            var file = Request.Files[i];
+
+        //            if (file != null && file.ContentLength > 0)
+        //            {
+        //                var fileName = Path.GetFileName(file.FileName);
+        //                FileDetail fileDetail = new FileDetail()
+        //                {
+        //                    FileName = fileName,
+        //                    Extension = Path.GetExtension(fileName),
+        //                    Id = Guid.NewGuid(),
+        //                };
+        //                var path = Path.Combine(Server.MapPath(ROOT_DIRECTORY), fileDetail.Id + fileDetail.Extension);
+        //                file.SaveAs(path);
+
+        //                db.Entry(fileDetail).State = EntityState.Added;
+        //            }
+        //        }
+
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View();
+        //}
+
         [HttpPost]
+        [Authorize]
         public JsonResult DeleteFile(string id)
         {
             if (String.IsNullOrEmpty(id))
