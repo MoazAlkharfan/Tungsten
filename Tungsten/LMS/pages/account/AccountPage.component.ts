@@ -5,7 +5,7 @@ import { User } from '../../classes/user';
 import { AccountService } from '../../services/account.service';
 import { OperationResult } from '../../classes/operationresult';
 import { UserAnnouncer } from '../../services/UserAnnouncer';
-
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -14,6 +14,7 @@ import { UserAnnouncer } from '../../services/UserAnnouncer';
 export class AccountPage implements OnInit {
     user: User;
     newuser: EditModel = new EditModel('', '', '', '', '');
+    subscription: Subscription;
 
     constructor( @Inject(MembershipService) private _MembershipService: MembershipService,
         @Inject(AccountService) private _AccountService: AccountService,
@@ -23,6 +24,11 @@ export class AccountPage implements OnInit {
 
     ngOnInit() {
         this.user = this._MembershipService.getLoggedInUser();
+        //this._MembershipService.getLoggedInUser();
+
+        this.subscription = this._UserAnnouncer.userAnnounced.subscribe((result) => {
+            this.user = result;
+        });
     }
 
     Save() {

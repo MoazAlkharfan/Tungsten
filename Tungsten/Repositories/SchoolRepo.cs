@@ -177,39 +177,80 @@ namespace Tungsten.Repositories
             }
         }
 
-        public void EditGroup(Group NewGroup)
+        public bool EditGroup(Group NewGroup)
         {
-            Group old = db.Groups.Find(NewGroup.Id);
-            old = NewGroup;
-            db.SaveChanges();
+            try
+            {
+                Group old = db.Groups.Find(NewGroup.Id);
+                old.Name = NewGroup.Name;
+                old.Description = NewGroup.Description;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void EditCourse(Course NewCourse)
+        public bool EditCourse(Course NewCourse)
         {
-            Course old = db.Courses.Find(NewCourse.Id);
-            old = NewCourse;
-            db.SaveChanges();
+            try
+            {
+                Course old = db.Courses.Find(NewCourse.Id);
+                old = NewCourse;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void EditSegment(Segment NewSegment)
+        public bool EditSegment(Segment NewSegment)
         {
-            Segment old = db.Segments.Find(NewSegment.Id);
-            old = NewSegment;
-            db.SaveChanges();
+            try
+            {
+                Segment old = db.Segments.Find(NewSegment.Id);
+                old = NewSegment;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void EditAssignment(Assignment NewAssignment)
+        public bool EditAssignment(Assignment NewAssignment)
         {
-            Assignment old = db.Assignments.Find(NewAssignment.Id);
-            old = NewAssignment;
-            db.SaveChanges();
+            try
+            {
+                Assignment old = db.Assignments.Find(NewAssignment.Id);
+                old = NewAssignment;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void EditLesson(Lesson NewLesson)
+        public bool EditLesson(Lesson NewLesson)
         {
-            Lesson old = db.Lessons.Find(NewLesson.Id);
-            old = NewLesson;
-            db.SaveChanges();
+            try
+            {
+                Lesson old = db.Lessons.Find(NewLesson.Id);
+                old = NewLesson;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

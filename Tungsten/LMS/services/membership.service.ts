@@ -51,7 +51,7 @@ export class MembershipService {
         return _user;
     }
 
-    getUserInfo(_user: User): any {
+    getUserInfo(_user?: User): any {
         this.accountService.set(this._accountUserInfo);
         return this.accountService.post(_user);
     }

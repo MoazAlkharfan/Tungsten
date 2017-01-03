@@ -7,10 +7,12 @@ using Tungsten.Models;
 using System.Web;
 using System.Linq;
 using Newtonsoft.Json;
+using Tungsten.Models.ViewModels;
+using System.Collections.Generic;
 
 namespace Tungsten.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -51,6 +53,90 @@ namespace Tungsten.Controllers
                 _userManager = value;
             }
         }
+
+        [AllowAnonymous]
+        public JsonResult IsAuthenticated()
+        {
+            return Json(new { ishe = User.Identity.IsAuthenticated }, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<string> GetHomePage()
+        {
+            string CurrentUserId = User.Identity.GetUserId();
+            var user = await UserManager.FindByIdAsync(CurrentUserId);
+            var userroles = await UserManager.GetRolesAsync(CurrentUserId);
+            var userrole = userroles.FirstOrDefault();
+            switch (userrole)
+            {
+                case "Teacher":
+                    {
+                        List<Assignment> assignments = new List<Assignment>();
+                        foreach (Course course in user.Courses)
+                        {
+                            foreach (Segment segment in course.Segments)
+                            {
+                                assignments.AddRange(segment.Assignments);
+                            }
+                        }
+                        List<Group> groups = user.Groups.ToList();
+                        assignments = assignments.OrderBy(a => a.EndTime).Take(5).ToList();
+                        TeacherHomePage page = new TeacherHomePage
+                        {
+                            Groups = groups,
+                            Assignments = assignments,
+                            Courses = user.Courses.Take(3),
+                            Schedule = user.Groups.First().Schedule
+                        };
+
+                        return JsonConvert.SerializeObject(page, Formatting.Indented, jss);
+                    }
+                case "Admin":
+                    {
+                        List<Assignment> assignments = new List<Assignment>();
+                        foreach (Course course in user.Courses)
+                        {
+                            foreach (Segment segment in course.Segments)
+                            {
+                                assignments.AddRange(segment.Assignments);
+                            }
+                        }
+
+                        assignments = assignments.OrderBy(a => a.EndTime).Take(5).ToList();
+                        SuperUserHomePage page = new SuperUserHomePage
+                        {
+                            Assignments = assignments,
+                            Courses = user.Courses.Take(3),
+                            Schedule = user.Groups.First().Schedule
+                        };
+
+                        return JsonConvert.SerializeObject(page, Formatting.Indented, jss);
+                    }
+                default: // Student
+                    {
+                        List<Assignment> assignments = new List<Assignment>();
+                        foreach (Course course in user.Courses)
+                        {
+                            foreach (Segment segment in course.Segments)
+                            {
+                                assignments.AddRange(segment.Assignments);
+                            }
+                        }
+
+                        assignments = assignments.OrderBy(a => a.EndTime).Take(5).ToList();
+                        StudentHomePage page = new StudentHomePage
+                        {
+                            Assignments = assignments,
+                            Courses = user.Courses.Take(3),
+                            Schedule = user.Groups.First().Schedule
+                        };
+
+                        return JsonConvert.SerializeObject(page, Formatting.Indented, jss);
+                    }
+                //
+            }
+        }
+
+
         /// <summary>
         /// Gets the user info for the logged in user
         /// </summary>
@@ -62,7 +148,8 @@ namespace Tungsten.Controllers
         {
             var currentUserId = User.Identity.GetUserId();
             ApplicationUser user1 = await UserManager.FindByIdAsync(currentUserId);
-            var user = new {
+            var user = new
+            {
                 Name = User.Identity.Name,
                 Username = User.Identity.GetUserName(),
                 Email = UserManager.GetEmailAsync(currentUserId).Result,

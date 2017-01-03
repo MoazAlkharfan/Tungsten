@@ -24,11 +24,11 @@ namespace Tungsten.Repositories
         bool RemoveLesson(Lesson lesson);
 
         // Update
-        void EditGroup(Group NewGroup);
-        void EditCourse(Course NewCourse);
-        void EditSegment(Segment NewSegment);
-        void EditAssignment(Assignment NewAssignment);
-        void EditLesson(Lesson NewLesson);
+        bool EditGroup(Group NewGroup);
+        bool EditCourse(Course NewCourse);
+        bool EditSegment(Segment NewSegment);
+        bool EditAssignment(Assignment NewAssignment);
+        bool EditLesson(Lesson NewLesson);
 
         // Get
         Group FindGroup(string id);

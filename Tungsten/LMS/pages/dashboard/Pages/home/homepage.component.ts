@@ -1,8 +1,10 @@
 ﻿import { Component, Inject, OnInit, animate, trigger, style, transition, state } from '@angular/core';
 import { Router, Resolve } from '@angular/router';
 import { MembershipService } from '../../../../services/membership.service';
+import { UserAnnouncer } from '../../../../services/userannouncer';
 import { User } from '../../../../classes/user';
 import { Observable } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     templateUrl: './lms/pages/dashboard/pages/home/homepage.component.html',
@@ -25,13 +27,20 @@ import { Observable } from 'rxjs/Rx';
 })
 export class HomePage implements OnInit {
     user: User;
+    subscription: Subscription;
     constructor(
         @Inject(Router) private router: Router,
-        @Inject(MembershipService) private _membershipService: MembershipService
+        @Inject(MembershipService) private _membershipService: MembershipService,
+        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer
     ) { }
 
     ngOnInit() {
         let userroles = this._membershipService.getLoggedInUser().Roles;
+
+        this.subscription = this._UserAnnouncer.userAnnounced.subscribe((result) => {
+            this.user = result;
+        });
+
         //console.log(userroles);
         if (!userroles.length)
             this.router.navigate(['/dashboard', { outlets: { dashboard: ['student'] } }]);

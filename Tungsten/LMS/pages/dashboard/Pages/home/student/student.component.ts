@@ -1,9 +1,11 @@
 ﻿import { Component, Inject, Output, EventEmitter, OnInit, AfterViewInit, animate, trigger, style, transition, state } from '@angular/core';
 import { Resolve, ActivatedRoute } from '@angular/router';
 import { User } from '../../../../../classes/user';
+import { HomePageModel } from '../../../../../classes/homepagemodel';
 import { MembershipService } from '../../../../../services/membership.service';
 import { Observable } from 'rxjs/Rx';
 import { Course } from '../../../../../classes/course'
+import { UserAnnouncer } from '../../../../../services/userannouncer';
 
 @Component({
     templateUrl: './lms/pages/dashboard/pages/home/student/student.component.html',
@@ -30,11 +32,18 @@ export class StudentHomePage {
     courses = new EventEmitter();
     assignments = new EventEmitter();
     schedule = new EventEmitter();
-    constructor( @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute) { }
+    constructor( @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute,
+        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer) { }
 
 
     ngOnInit() {
-        this.user = this._ActivatedRoute.snapshot.data['user'];
+        this._ActivatedRoute.data.subscribe((data: { user: User, pageModel: HomePageModel }) => {
+            this.user = data.user;
+            console.log(data.pageModel);
+            if (this.user && this.user.Name)
+                this._UserAnnouncer.announceUser(this.user);
+        });
+        //this.user = this._ActivatedRoute.snapshot.data['user'];
         this.courses.emit(<Course[]>this.user.Courses);
         //this.assignments.emit(this.user.Courses.)
     }

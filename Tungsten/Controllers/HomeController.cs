@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace Tungsten.Controllers
 {
-    //[ExtendedAuthorize]
+    [Authorize]
     public class HomeController : Controller
     {
         JsonSerializerSettings jss = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
@@ -63,6 +63,21 @@ namespace Tungsten.Controllers
                 return null;
 
             if (repo.CreateGroup(group))
+            {
+                return Json(JsonConvert.SerializeObject(repo.FindGroup(group.Id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(JsonConvert.SerializeObject(group, Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult EditGroup(Group group)
+        {
+            if (group == null)
+                return null;
+
+            if(repo.EditGroup(group))
             {
                 return Json(JsonConvert.SerializeObject(repo.FindGroup(group.Id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
             }

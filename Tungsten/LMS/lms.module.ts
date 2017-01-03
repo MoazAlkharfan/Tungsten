@@ -44,6 +44,7 @@ import { isAuthenticatedGuard } from './services/guards/isAuthenticated';
 
 // Resolvers
 import { userresolver } from './services/resolvers/userresolver';
+import { isloggedin } from './services/resolvers/isloggedin';
 
 @NgModule({
     imports: [
@@ -63,6 +64,15 @@ import { userresolver } from './services/resolvers/userresolver';
         Autofocus
     ],
     bootstrap: [IndexPage],
-    providers: [UserAnnouncer, GroupService, DataService, MembershipService, isAuthenticatedGuard, AccountService, userresolver]
+    providers: [
+        UserAnnouncer,
+        GroupService,
+        DataService,
+        MembershipService,
+        isAuthenticatedGuard,
+        AccountService,
+        userresolver,
+        isloggedin
+    ]
 })
 export class AppModule { }

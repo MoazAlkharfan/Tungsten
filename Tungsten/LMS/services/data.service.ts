@@ -48,8 +48,16 @@ export class DataService {
     }
 
     private extractData(res: Response) {
+        if (res.headers.get('Content-Type') === 'text/html; charset=utf-8' && res.text()[0] == '<') {
+            console.error('Response Invalid');
+            console.error({
+                Content_type: 'text/html; charset=utf-8',
+                URI: this._baseUri,
+                Response: res
+            });
+            return null;
+        }
         let body = <any>res.json();
-        //console.log(body);
         return body || [];
     }
 

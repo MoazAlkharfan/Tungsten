@@ -38,6 +38,13 @@ export class GroupService {
             .catch(this.handleError);
     }
 
+    editGroup(group: IGroup) {
+        return this._http.post('/Home/EditGroup', group)
+            //.do(this.logData)
+            .catch(this.handleError)
+            .map(this.extractGroup);
+    }
+
     private logData(data) {
         console.log(String(data));
     }
@@ -48,11 +55,29 @@ export class GroupService {
     }
 
     private extractGroups(res: Response) {
+        if (res.headers.get('Content-Type') === 'text/html; charset=utf-8' && res.text()[0] == '<') {
+            console.error('Response Invalid');
+            console.error({
+                Content_type: 'text/html; charset=utf-8',
+                URI: res.url,
+                Response: res
+            });
+            return null;
+        }
         let body = <IGroup[]>JSON.parse(res.json());
         return body || [];
     }
 
     private extractGroup(res: Response) {
+        if (res.headers.get('Content-Type') === 'text/html; charset=utf-8' && res.text()[0] == '<') {
+            console.error('Response Invalid');
+            console.error({
+                Content_type: 'text/html; charset=utf-8',
+                URI: res.url,
+                Response: res
+            });
+            return null;
+        }
         let body = <IGroup>JSON.parse(res.json());
         return body || null;
     }

@@ -249,6 +249,9 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ScheduleSegment.cs" />
     <Compile Include="Models\Segment.cs" />
+    <Compile Include="Models\ViewModels\StudentHomePage.cs" />
+    <Compile Include="Models\ViewModels\SuperUserHomePage.cs" />
+    <Compile Include="Models\ViewModels\TeacherHomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Repositories\ISchoolRepo.cs" />
@@ -286,11 +289,13 @@
     <Content Include="LMS\pages\dashboard\Pages\course\course.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\createcourse\createcourse.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\creategroup\creategroup.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\editgroup\editgroup.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\groups\groups.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\group\group.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\homepage.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\student\student.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\teacher\teacher.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\removegroup\removegroup.component.html" />
     <Content Include="LMS\pages\home\HomePage.html" />
     <Content Include="LMS\pages\register\RegisterPage.html" />
     <Content Include="Reinforced.Typings.settings.xml" />
@@ -396,6 +401,7 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\FileHandler\Index.cshtml" />
     <Content Include="Views\FileHandler\Upload.cshtml" />
+    <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -413,8 +419,10 @@
     <TypeScriptCompile Include="LMS\classes\Course.ts" />
     <TypeScriptCompile Include="LMS\classes\EditModel.ts" />
     <TypeScriptCompile Include="LMS\classes\Group.ts" />
+    <TypeScriptCompile Include="LMS\classes\HomePageModel.ts" />
     <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
     <TypeScriptCompile Include="LMS\classes\Registration.ts" />
+    <TypeScriptCompile Include="LMS\classes\Segment.ts" />
     <TypeScriptCompile Include="LMS\classes\User.ts" />
     <TypeScriptCompile Include="LMS\components\dropdownbox\dropdownbox.ts" />
     <TypeScriptCompile Include="LMS\components\GroupsList\GroupsList.ts" />
@@ -433,11 +441,13 @@
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\course\course.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\createcourse\createcourse.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\creategroup\creategroup.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\editgroup\editgroup.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\groups\groups.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\group\group.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\homepage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\student\student.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\teacher\teacher.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\removegroup\removegroup.component.ts" />
     <TypeScriptCompile Include="LMS\pages\home\HomePage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\register\register.component.ts" />
     <TypeScriptCompile Include="LMS\services\account.service.ts" />
@@ -447,6 +457,9 @@
     <TypeScriptCompile Include="LMS\services\guards\isauthenticated.ts" />
     <TypeScriptCompile Include="LMS\services\guards\isproperrole.ts" />
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\groupresolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\homepageresolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\isloggedin.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\userresolver.ts" />
   </ItemGroup>
