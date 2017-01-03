@@ -3,7 +3,6 @@
 @Component({
     selector: 'dropdownbox',
     templateUrl: './lms/components/dropdownbox/dropdownbox.html',
-    styleUrls: ['./lms/components/dropdownbox/dropdownbox.css'],
     animations: [
         trigger('openClose', [
             state('open', style({ height: '*', opacity: 1})),

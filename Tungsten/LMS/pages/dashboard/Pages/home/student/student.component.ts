@@ -32,21 +32,18 @@ export class StudentHomePage {
     courses = new EventEmitter();
     assignments = new EventEmitter();
     schedule = new EventEmitter();
-    constructor( @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute,
-        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer) { }
+    page: HomePageModel;
+    constructor( @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute) { }
 
 
     ngOnInit() {
         this._ActivatedRoute.data.subscribe((data: { user: User, pageModel: HomePageModel }) => {
             this.user = data.user;
             console.log(data.pageModel);
-            if (this.user && this.user.Name)
-                this._UserAnnouncer.announceUser(this.user);
+            this.page = data.pageModel;
         });
         //this.user = this._ActivatedRoute.snapshot.data['user'];
         this.courses.emit(<Course[]>this.user.Courses);
         //this.assignments.emit(this.user.Courses.)
     }
-
-
 }

@@ -3,7 +3,7 @@
         <h3 class="title">{{Title}}</h3>
     </div>
     
-    <span *ngIf="!CreateId && ContentType == 'group'">
+    <span *ngIf="!CreateId && ContentType == 'group'" style="display:inline-block">
         <button class="btn btn-default btn-xs" [routerLink]="['/dashboard', { outlets: { dashboard: ['create'+ContentType] } }]">
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
         </button>

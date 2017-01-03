@@ -3,6 +3,7 @@
         <dropdownbox [title]="'Groups'" [content]="page.Groups" [content-type]="'group'"></dropdownbox>
         <dropdownbox [title]="'Assignments'" [content]="page.Assignments" [content-type]="'assignment'"></dropdownbox>
         <dropdownbox [title]="'Schedule'" [content]="schedule" [content-type]="'schedule'"></dropdownbox>
+        
         <div *ngFor="let item of page.Courses">
             <dropdownbox [title]="item.title" [content]="item.Segments" [content-type]="'course'"></dropdownbox>
         </div>

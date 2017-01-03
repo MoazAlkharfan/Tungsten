@@ -125,6 +125,7 @@ namespace Tungsten.Controllers
                         assignments = assignments.OrderBy(a => a.EndTime).Take(5).ToList();
                         StudentHomePage page = new StudentHomePage
                         {
+                            Groups = user.Groups.ToList(),
                             Assignments = assignments,
                             Courses = user.Courses.Take(3),
                             Schedule = user.Groups.First().Schedule
