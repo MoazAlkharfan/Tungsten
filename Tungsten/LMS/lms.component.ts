@@ -1,4 +1,5 @@
-﻿import { Component, Input, OnInit, ElementRef, Inject, ViewChild, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, Input, OnInit, ElementRef, Inject, ViewChild, AfterViewChecked, trigger } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { GroupService } from './services/GroupService';
 import { MembershipService } from './services/membership.service';
 import { Login } from './components/Login/Login';
@@ -10,7 +11,11 @@ import { Subscription } from 'rxjs/Subscription';
     selector: 'lms-index',
     templateUrl: './LMS/index.html',
     styleUrls: ['./LMS/index.css'],
-    providers: [GroupService, UserAnnouncer]
+    providers: [GroupService, UserAnnouncer],
+    host: { '[@routeAnimation]': 'true' },
+    animations: [
+        trigger('routeAnimation', [])
+    ]
 })
 export class IndexPage implements OnInit, AfterViewChecked {
     isuserloggedin: boolean;
@@ -26,8 +31,6 @@ export class IndexPage implements OnInit, AfterViewChecked {
     ) {
         this.user = this.membershipService.getLoggedInUser() || new User('', '', '', '', []);
         this.isuserloggedin = this.isUserLoggedIn();
-
-        
     }
     
     isUserLoggedIn(): boolean {
@@ -54,12 +57,12 @@ export class IndexPage implements OnInit, AfterViewChecked {
     }
 
     userUpdated(updatedUser: User) {
+        
+        console.log(updatedUser);
         this.user = updatedUser;
+        //this.user.Roles[0] = this.user.Roles[0] === '' ? 'student' : this.user.Roles[0].toLowerCase();
     }
 
-    public getUser(): User {
-        return this.user;
-    }
     //console.log(this.isuserloggedin);
 
     ngOnInit(): void {
@@ -70,8 +73,10 @@ export class IndexPage implements OnInit, AfterViewChecked {
         this.subscription = this._UserAnnouncer.userAnnounced.subscribe(
             user => {
                 console.log('user from lms.component event:')
-                console.log(this.user);
+                console.log(user);
+                
                 this.user = user;
+                //this.user.Roles[0] = this.user.Roles[0] == '' ? 'student' : this.user.Roles[0].toLowerCase();
 
             }
         );

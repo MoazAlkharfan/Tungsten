@@ -48,13 +48,8 @@ namespace Tungsten.Controllers
             return Json(JsonConvert.SerializeObject(repo.FindGroup(id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
         }
         
-        public string GetSchedule(string id)
-        {
-            if (id == "")
-                return null;
-
-            return JsonConvert.SerializeObject(repo.FindGroup(id).Schedule, Formatting.None, jss);
-        }
+        [AllowAnonymous]
+        public string GetSchedule(string id) => JsonConvert.SerializeObject(repo.FindGroup(id)?.Schedule, Formatting.None, jss);
 
         
         public JsonResult CreateGroup(Group group)
@@ -85,6 +80,15 @@ namespace Tungsten.Controllers
             {
                 return Json(JsonConvert.SerializeObject(course, Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public JsonResult GetCourse(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return null;
+
+
+            return Json(JsonConvert.SerializeObject(repo.FindCourse(id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]

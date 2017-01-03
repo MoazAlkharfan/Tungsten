@@ -15,19 +15,19 @@ export class MembershipService {
 
     constructor( @Inject(DataService) public accountService: DataService) { }
 
-    register(newUser: Registration) {
+    register(newUser: Registration): any {
 
         this.accountService.set(this._accountRegisterAPI);
         
         return this.accountService.post(newUser);
     }
 
-    login(creds: User) {
+    login(creds: User): any {
         this.accountService.set(this._accountLoginAPI);
         return this.accountService.post(creds);
     }
 
-    logout() {
+    logout(): any {
         this.accountService.set(this._accountLogoutAPI);
         return this.accountService.post(null);
     }
@@ -51,7 +51,7 @@ export class MembershipService {
         return _user;
     }
 
-    getUserInfo(_user: User) {
+    getUserInfo(_user: User): any {
         this.accountService.set(this._accountUserInfo);
         return this.accountService.post(_user);
     }

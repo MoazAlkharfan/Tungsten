@@ -26,7 +26,7 @@ export class CourseService {
 
     createCourse(course: ICourse) {
         return this._http.post('/Home/CreateCourse/', course)
-            //.do(this.logData)
+            .do(this.logData)
             .catch(this.handleError)
             .map(this.extractCourse);
     }

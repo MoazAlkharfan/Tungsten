@@ -5,7 +5,7 @@
     Roles: string[];
     Password: string;
     RememberMe: boolean;
-
+    Courses: any[];
     constructor(
         username: string,
         password: string,

@@ -1,0 +1,26 @@
+﻿/*Component specific selectors:
+    :host
+    selects the host element containing the component's template
+
+    /deep/
+    plunges the style down the child component tree, that is, any component this component contains will also be affected
+*/
+:host /deep/ .dropdownbox{
+   
+}
+
+:host /deep/ .title{
+   
+}
+
+:host /deep/ .titlecontainer{
+   
+}
+
+:host /deep/ .itemscontainer{
+  
+}
+
+:host /deep/ .item{
+    
+}
