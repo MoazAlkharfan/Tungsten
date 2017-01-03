@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Tungsten.Models;
+using Tungsten.Models.FileSystem;
 
 namespace Tungsten.DataAccessLayer
 {
@@ -14,7 +15,7 @@ namespace Tungsten.DataAccessLayer
         DbSet<Segment> Segments { get; set; }
         DbSet<Assignment> Assignments { get; set; }
         DbSet<Lesson> Lessons { get; set; }
-        DbSet<FileDetail> FileRepositories { get; set; }
+        DbSet<FileDetail> FileDetails { get; set; }
         int SaveChanges();
     }
 }

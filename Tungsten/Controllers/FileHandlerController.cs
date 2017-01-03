@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Tungsten.DataAccessLayer;
-using Tungsten.Models;
+using Tungsten.Models.FileSystem;
 
 namespace Tungsten.Controllers
 {
@@ -17,12 +19,18 @@ namespace Tungsten.Controllers
 
         //
         // GET: /FileHandler/
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(db.FileRepositories);
+            return View(await db.FileDetails.ToListAsync());
+        }
+
+        public ActionResult UploadIndex()
+        {
+            return View();
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Upload()
         {
@@ -40,7 +48,8 @@ namespace Tungsten.Controllers
                         {
                             FileName = fileName,
                             Extension = Path.GetExtension(fileName),
-                            Id = Guid.NewGuid()
+                            Id = Guid.NewGuid(),
+                            OwnerId = User.Identity.GetUserId()
                         };
                         fileDetails.Add(fileDetail);
 
@@ -49,7 +58,7 @@ namespace Tungsten.Controllers
                     }
                 }
 
-                db.FileRepositories.AddRange(fileDetails);
+                db.FileDetails.AddRange(fileDetails);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -115,7 +124,7 @@ namespace Tungsten.Controllers
             try
             {
                 Guid guid = new Guid(id);
-                FileDetail fileDetail = db.FileRepositories.Find(guid);
+                FileDetail fileDetail = db.FileDetails.Find(guid);
                 if (fileDetail == null)
                 {
                     Response.StatusCode = (int)HttpStatusCode.NotFound;
@@ -123,7 +132,7 @@ namespace Tungsten.Controllers
                 }
 
                 //Remove from database
-                db.FileRepositories.Remove(fileDetail);
+                db.FileDetails.Remove(fileDetail);
                 db.SaveChanges();
 
                 //Delete file from the file system

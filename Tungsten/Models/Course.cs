@@ -59,7 +59,7 @@ namespace Tungsten.Models
         /// <summary>
         /// Navigational property for the files belonging to this Course
         /// </summary>
-        public virtual FileRepository SharedFiles { get; set; } = new FileRepository();
+        public virtual ICollection<FileDetail> SharedFiles { get; set; } = new List<FileDetail>();
 
         public override string ToString() => Subject + " " + Level;
     }

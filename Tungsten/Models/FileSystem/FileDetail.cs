@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tungsten.Models
+namespace Tungsten.Models.FileSystem
 {
     public class FileDetail
     {
@@ -10,7 +11,9 @@ namespace Tungsten.Models
         [Required, StringLength(255)]
         public string FileName { get; set; }
         public string Extension { get; set; }
-        [Required]
-        public ApplicationUser Owner { get; set; }
+        [Required, ForeignKey("Owner")]
+        public string OwnerId { get; set; }
+
+        public virtual ApplicationUser Owner { get; set; }
     }
 }

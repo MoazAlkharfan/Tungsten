@@ -246,7 +246,6 @@
     <Compile Include="Models\EditViewModel.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\FileSystem\FileDetail.cs" />
-    <Compile Include="Models\FileSystem\FileRepository.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Lesson.cs" />
@@ -370,10 +369,10 @@
     <Content Include="Views\Dashboard\Details.cshtml" />
     <Content Include="Views\Dashboard\Edit.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\FileWTF\Index.cshtml" />
+    <Content Include="Views\FileHandler\UploadIndex.cshtml" />
+    <Content Include="Views\FileHandler\UploadFiles.cshtml" />
     <Content Include="Views\FileHandler\Index.cshtml" />
-    <Content Include="Views\FileHandler\Upload.cshtml" />
-    <Content Include="Views\FileSystem\UploadManager.cshtml" />
-    <Content Include="Views\FileSystem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
