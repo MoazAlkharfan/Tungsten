@@ -7,6 +7,7 @@ namespace Tungsten.Models.ViewModels
 {
     public class StudentHomePage
     {
+        public IEnumerable<Group> Groups;
         public IEnumerable<Assignment> Assignments;
         public IEnumerable<ScheduleSegment> Schedule;
         public IEnumerable<Course> Courses;
