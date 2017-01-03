@@ -15,7 +15,7 @@ import { isAuthenticatedGuard } from './services/guards/isAuthenticated';
 const routes: Routes = [
     { path: 'dashboard', component: Dashboard_Index, canActivate: [isAuthenticatedGuard] },
     { path: 'register', component: RegisterPage },
-    { path: 'account', component: AccountPage, canActivate: [isAuthenticatedGuard] },
+    { path: 'accountpage', component: AccountPage, canActivate: [isAuthenticatedGuard] },
     { path: '', component: HomePage }, // / base url
     { path: '**', redirectTo: '', pathMatch: 'full' } // not found
 ];

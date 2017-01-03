@@ -23,12 +23,14 @@ import { CoursePage } from './pages/course/course.component';
 
 // components
 import { GroupsList } from '../../components/groupslist/GroupsList';
+import { Schedule } from '../../components/Schedule/Schedule';
 import { DropdownBox } from '../../components/dropdownbox/dropdownbox';
 //import { course } from '../../components/course/course.component';
 
 // services
 import { UserAnnouncer } from '../../services/UserAnnouncer';
 import { GroupService } from '../../services/groupservice';
+import { ScheduleService } from '../../services/schedule.service';
 import { CourseService } from '../../services/course.service';
 import { MembershipService } from '../../services/membership.service';
 
@@ -56,6 +58,7 @@ import { GroupResolver } from '../../services/resolvers/groupresolver';
         GroupsList,
         CreateGroup,
         CreateCourse,
+        Schedule,
         TeacherHomePage,
         StudentHomePage,
         CoursePage,
@@ -67,6 +70,7 @@ import { GroupResolver } from '../../services/resolvers/groupresolver';
         MembershipService,
         GroupService,
         CourseService,
+        ScheduleService,
         isProperRoleGuard,
         userresolver,
         homepageresolver,

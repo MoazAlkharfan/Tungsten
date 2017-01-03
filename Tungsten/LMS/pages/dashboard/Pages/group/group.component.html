@@ -1,4 +1,4 @@
-﻿<div *ngIf="Group">
+<div *ngIf="Group">
     <button type="button" class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['createcourse', Group.Id] } }]">
         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
     </button>

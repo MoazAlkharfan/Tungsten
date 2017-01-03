@@ -18,7 +18,7 @@
             <div [ngSwitch]="isuserloggedin">
                 <ul class="nav navbar-nav navbar-right" *ngSwitchCase="true">
                     <li>
-                        <a [routerLink]="['/account']">{{user.Username}}</a>
+                        <a [routerLink]="['/accountpage']">{{user.Username}}</a>
                     </li>
                     <li><a [routerLink]="['/']" (click)="logout()">Log off</a></li>
                 </ul>
