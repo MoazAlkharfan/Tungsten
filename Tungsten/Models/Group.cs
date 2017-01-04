@@ -21,6 +21,7 @@ namespace Tungsten.Models
         /// <summary>
         /// Name of the Group, e.g. "5B" for the B-class of year 5 students
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         /// <summary>

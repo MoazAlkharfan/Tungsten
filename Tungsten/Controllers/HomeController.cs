@@ -28,74 +28,38 @@ namespace Tungsten.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Error404()
-        {
-            return RedirectToAction("Index");
-        }
+        public ActionResult Error404() =>
+            RedirectToAction("Index");
 
-        
-        public JsonResult GetGroups()
-        {
-            return Json(JsonConvert.SerializeObject(repo.GetGroups().ToList(), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
-        }
 
-        
-        public JsonResult GetGroup(string id)
-        {
-            if (id == "")
-                return null;
+        public JsonResult GetGroups() =>
+            Json(repo.GetGroups(), JsonRequestBehavior.AllowGet);
 
-            return Json(JsonConvert.SerializeObject(repo.FindGroup(id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
-        }
-        
+        public JsonResult GetGroup(string id) => id == "" ? null
+            : Json(repo.FindGroup(id), JsonRequestBehavior.AllowGet);
+
         [AllowAnonymous]
-        public string GetSchedule(string id) => JsonConvert.SerializeObject(repo.FindGroup(id)?.Schedule, Formatting.None, jss);
+        public JsonResult GetSchedule(string id) =>
+            Json(repo.FindGroup(id)?.Schedule, JsonRequestBehavior.AllowGet);
 
-        
-        public JsonResult CreateGroup(Group group)
-        {
-            if (group == null)
-                return null;
 
-            if (repo.CreateGroup(group))
-            {
-                return Json(JsonConvert.SerializeObject(repo.FindGroup(group.Id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(JsonConvert.SerializeObject(group, Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
-            }
-        }
+        public JsonResult CreateGroup(Group group) =>
+            !ModelState.IsValid ? null
+                : repo.CreateGroup(group)
+                    ? Json(repo.FindGroup(group.Id), JsonRequestBehavior.AllowGet)
+                    : Json(group, JsonRequestBehavior.AllowGet);
 
-        public JsonResult EditGroup(Group group)
-        {
-            if (group == null)
-                return null;
+        public JsonResult EditGroup(Group group) =>
+            !ModelState.IsValid ? null
+            : repo.EditGroup(group)
+                ? Json(repo.FindGroup(group.Id), JsonRequestBehavior.AllowGet)
+                : Json(group, JsonRequestBehavior.AllowGet);
 
-            if(repo.EditGroup(group))
-            {
-                return Json(JsonConvert.SerializeObject(repo.FindGroup(group.Id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(JsonConvert.SerializeObject(group, Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        public JsonResult CreateCourse(Course course)
-        {
-            if (course == null)
-                return null;
-
-            if (repo.CreateCourse(course))
-            {
-                return Json(JsonConvert.SerializeObject(repo.FindCourse(course.Id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(JsonConvert.SerializeObject(course, Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
-            }
-        }
+        public JsonResult CreateCourse(Course course) =>
+            !ModelState.IsValid ? null
+            : repo.CreateCourse(course)
+                ? Json(repo.FindCourse(course.Id), JsonRequestBehavior.AllowGet)
+                :Json(course, JsonRequestBehavior.AllowGet);
 
         public JsonResult GetCourse(string id)
         {
@@ -110,7 +74,7 @@ namespace Tungsten.Controllers
         public ActionResult Index()
         {
             //if (User.Identity.IsAuthenticated)
-             //   return RedirectToAction("Index", "Groups");
+            //   return RedirectToAction("Index", "Groups");
 
             ViewBag.Title = "Home Page";
             ViewBag.IsAuthenticated = User.Identity.IsAuthenticated;
@@ -123,7 +87,7 @@ namespace Tungsten.Controllers
         {
             return View();
         }
-        
+
     }
 
 

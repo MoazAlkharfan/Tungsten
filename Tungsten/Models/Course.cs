@@ -21,6 +21,7 @@ namespace Tungsten.Models
         /// <summary>
         /// The Course's Subject.
         /// </summary>
+        [Required]
         public string Subject { get; set; }
 
         /// <summary>
