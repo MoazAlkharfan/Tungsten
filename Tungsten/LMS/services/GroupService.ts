@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 import { IGroup } from '../interfaces/Group';
 import { DataService } from './data.service';
+import { User } from '../classes/user';
 
 import 'rxjs/rx';
 
@@ -43,6 +44,15 @@ export class GroupService {
             //.do(this.logData)
             .catch(this.handleError)
             .map(this.extractGroup);
+    }
+
+    addUser(id: string) {
+        return this._http.post('/Home/AddUserToGroup', id)
+            .do(this.logData)
+            .catch(this.handleError)
+            .map(result => {
+                return result.json();
+            });
     }
 
     private logData(data) {

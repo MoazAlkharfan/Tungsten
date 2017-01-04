@@ -19,7 +19,8 @@ export class GroupPage implements OnInit {
         ) { };
 
         ngOnInit() {
-            this._ActivatedRoute.data.subscribe((data: { group: IGroup }) => {
+            this._ActivatedRoute.data.subscribe((data: { user:User, group: IGroup }) => {
+                this.user = data.user;
                 this.Group = data.group;
             });
         }

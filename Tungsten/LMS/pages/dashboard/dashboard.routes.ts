@@ -26,8 +26,10 @@ import { isProperRoleGuard } from '../../services/guards/isproperrole';
 
 // Resolvers
 import { userresolver } from '../../services/resolvers/userresolver';
+import { usersresolver } from '../../services/resolvers/usersresolver';
 import { homepageresolver } from '../../services/resolvers/homepageresolver';
 import { GroupResolver } from '../../services/resolvers/groupresolver';
+import { GroupsResolver } from '../../services/resolvers/groupsresolver';
 
 // Note:
 // implement is teacherguard, ( problem adding canActivate on a child )
@@ -43,8 +45,9 @@ const routes: Routes = [
             { path: 'groups', component: GroupsPage, outlet: 'dashboard', resolve: { user: userresolver } },
             { path: 'group/:id', component: GroupPage, outlet: 'dashboard', resolve: { user: userresolver, group: GroupResolver } },
             { path: 'editgroup/:id', component: EditGroupPage, outlet: 'dashboard', resolve: { user: userresolver, group: GroupResolver } },
+            { path: 'addparticipant/:id', component: EditGroupPage, outlet: 'dashboard', resolve: { user: userresolver, users: usersresolver, group: GroupResolver } },
             { path: 'removegroup/:id', component: RemoveGroupPage, outlet: 'dashboard', resolve: { user: userresolver, group: GroupResolver } },
-            { path: 'creategroup', component: CreateGroup, outlet: 'dashboard' },
+            { path: 'creategroup', component: CreateGroup, outlet: 'dashboard', resolve: { user: userresolver } },
             { path: 'createcourse/:groupid', component: CreateCourse, outlet: 'dashboard' },
             { path: 'course/:courseid', component: CoursePage, outlet: 'dashboard' }
         ]

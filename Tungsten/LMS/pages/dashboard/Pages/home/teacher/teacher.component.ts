@@ -50,7 +50,7 @@ export class TeacherHomePage implements OnInit {
 
         //this.user = this._ActivatedRoute.snapshot.data['user'];
         this.courses.emit(this.user.Courses as Array<Course>);
-
+        /*
         this._groupService.getGroups()
             .subscribe(Groups => {
                 this.groups = Groups;
@@ -59,7 +59,7 @@ export class TeacherHomePage implements OnInit {
                 //console.log('subscribtion finished');
 
             });
-
+        */
         
     }
 

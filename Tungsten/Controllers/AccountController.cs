@@ -114,7 +114,7 @@ namespace Tungsten.Controllers
                 default: // Student
                     {
                         List<Assignment> assignments = new List<Assignment>();
-                        foreach (Course course in user.Courses)
+                        foreach (Course course in user.Groups.First().Courses)
                         {
                             foreach (Segment segment in course.Segments)
                             {
@@ -127,7 +127,7 @@ namespace Tungsten.Controllers
                         {
                             Groups = user.Groups.ToList(),
                             Assignments = assignments,
-                            Courses = user.Courses.Take(3),
+                            Courses = user.Groups.First().Courses.Take(3),
                             Schedule = user.Groups.First().Schedule
                         };
 

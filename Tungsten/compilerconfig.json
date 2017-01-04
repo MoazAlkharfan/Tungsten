@@ -2,5 +2,9 @@
   {
     "outputFile": "Content/Site.css",
     "inputFile": "Content/Site.scss"
+  },
+  {
+    "inputFile": "lms/components/dropdownbox/dropdownbox.scss",
+    "outputFile": "lms//components/dropdownbox/dropdownbox.css"
   }
 ]

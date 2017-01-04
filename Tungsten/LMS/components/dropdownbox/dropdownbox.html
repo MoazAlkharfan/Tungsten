@@ -1,56 +1,68 @@
-﻿<div class="col-md-12 col-xs-12 dropdownbox">
-    <div class="col-md-10 col-xs-10 titlecontainer" (click)="OpenClose()">
-        <h3 class="title">{{Title}}</h3>
+﻿<div class="dropdownbox">
+    <div class="top-container" (click)="OpenClose()">
+        <div class="titlecontainer">
+            <h3 class="title">{{Title}}<span *ngIf="Content?.length"> ( {{Content.length}} )</span></h3>
+        </div>
+
+        <div class="top-buttons-container">
+            <div class="top-button-first">
+                <ng-content select="[ddb-create]"></ng-content>
+            </div>
+            <div class="top-button-second">
+                <ng-content select="[ddb-edit]"></ng-content>
+            </div>
+            <div class="top-button-third">
+                <ng-content select="[ddb-add]"></ng-content>
+            </div>
+            <div class="top-button-4th">
+                <ng-content select="[ddb-delete]"></ng-content>
+            </div>
+        </div>
     </div>
-    
-    <span *ngIf="!CreateId && ContentType == 'group'" style="display:inline-block">
-        <button class="btn btn-default btn-xs" [routerLink]="['/dashboard', { outlets: { dashboard: ['create'+ContentType] } }]">
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-        </button>
-    </span>
-    <span *ngIf="CreateId && ContentType == 'course'">
-        <button class="btn btn-default btn-xs" [routerLink]="['/dashboard', { outlets: { dashboard: ['createsegment', CreateId] } }]">
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-        </button>
-    </span>
-    <span *ngIf="CreateId && ContentType == 'segment'">
-        <button class="btn btn-default btn-xs" [routerLink]="['/dashboard', { outlets: { dashboard: ['createsegment', CreateId] } }]">
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-        </button>
-    </span>
 
-    <div *ngIf="Content && Content.length" [@openClose]="isOpen" class="itemscontainer">
-        <div *ngIf="ContentType === 'course'">
-            <div *ngFor="let item of Content; let i = index" class="item">
-                <a [routerLink]="['/dashboard', { outlets: { dashboard: [ContentType, item.Id] } }]">
-                    <h3>{{item.Description}} | {{item.Subject}}</h3>
-                </a>
-            </div>
-        </div>
-        <div *ngIf="ContentType == 'group'">
-            <div *ngFor="let item of Content; let i = index" class="item">
-                <a [routerLink]="['/dashboard', { outlets: { dashboard: [ContentType, item.Id] } }]">
-                    <h3 style="display:inline-block">{{item.Name}} | {{item.Description}}</h3>
-                </a>
-                <div class="btn-group">
-                    <button class="btn btn-default btn-xs" [routerLink]="['/dashboard', { outlets: { dashboard: ['editgroup', item.Id] } }]">
-                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                    </button>
-                    <button class="btn btn-default btn-xs" [routerLink]="['/dashboard', { outlets: { dashboard: ['removegroup', item.Id] } }]">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </button>
+    <div class="itemscontainer" [@openClose]="isOpen">
+        <div *ngIf="Content">
+            <div [ngSwitch]="Content.length" class="item">
+                <div *ngSwitchCase="1">
+                    <div>
+                        <div class="item-link-container">
+                            <a [routerLink]="['/dashboard', { outlets: { dashboard: [ContentType, Content[0].Id] } }]"><h3 class="item-link">{{Content[0].Name}}</h3></a>
+                        </div>
+                        <div class="item-buttons">
+                            <div class="btn-group">
+                                <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['edit'+ContentType, Content[0].Id] } }]">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                                <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['remove'+ContentType, Content[0].Id] } }]">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
+                <div *NgSwitchDefault>
+                    <div *ngFor="let item of content">
+                        <div class="item">
+                            <div class="item-link-container">
+                                <a [routerLink]="['/dashboard', { outlets: { dashboard: [ContentType, item.Id] } }]" class="item-link"><h3>{{item.Name}}</h3></a>
+                            </div>
+                            <div class="item-buttons">
+                                <div class="btn-group">
+                                    <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['edit'+ContentType, item.Id] } }]">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    </button>
+                                    <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['remove'+ContentType, item.Id] } }]">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div *ngIf="ContentType == 'dunno'">
-            <p class="item">Test:</p>
-            <h1>Doesn't</h1>
-            <h2>Look</h2>
-            <h3>Like</h3>
-            <h4>Anything</h4>
-            <h5>To</h5>
-            <h6>Me</h6>
+        <div class="item">
+            <ng-content select="[ddb-item]"></ng-content>
         </div>
     </div>
 </div>

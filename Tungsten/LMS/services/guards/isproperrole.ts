@@ -22,11 +22,10 @@ export class isProperRoleGuard implements CanActivateChild {
     getproperRoutes(role: string) {
         let routes = [];
 
-        routes['student'] = ['student', 'assignments', 'groups', 'group/:id', 'creategroup', 'createcourse/:groupid','course/:courseid'];
-        routes['teacher'] = ['teacher', 'assignments', 'groups', 'group/:id', 'editgroup/:id', 'removegroup/:id', 'creategroup', 'createcourse/:groupid', 'course/:courseid'];
-        routes['admin'] = ['admin', 'assignments', 'groups', 'group/:id', 'creategroup', 'createcourse/:groupid', 'course/:courseid'];
+        routes['student'] = ['student', 'assignments', 'groups', 'group/:id', 'course/:courseid'];
+        routes['teacher'] = ['teacher', 'assignments', 'groups', 'group/:id', 'editgroup/:id', 'removegroup/:id', 'creategroup', 'createcourse/:groupid', 'course/:courseid', 'addparticipant/:id'];
+        routes['admin'] = ['teacher', 'assignments', 'groups', 'group/:id', 'editgroup/:id', 'removegroup/:id', 'creategroup', 'createcourse/:groupid', 'course/:courseid'];
 
         return routes[role];
     }
-    
 }

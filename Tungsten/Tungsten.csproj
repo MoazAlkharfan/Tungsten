@@ -276,8 +276,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index-JustForReference-DeleteIt.html" />
-    <Content Include="LMS\components\dropdownbox\dropdownbox.css" />
+    <Content Include="LMS\components\dropdownbox\dropdownbox.css">
+      <DependentUpon>dropdownbox.scss</DependentUpon>
+    </Content>
     <Content Include="LMS\components\dropdownbox\dropdownbox.html" />
+    <Content Include="LMS\components\dropdownbox\dropdownbox.min.css">
+      <DependentUpon>dropdownbox.css</DependentUpon>
+    </Content>
     <Content Include="LMS\components\GroupsList\GroupsList.css" />
     <Content Include="LMS\components\GroupsList\GroupsList.html" />
     <Content Include="LMS\components\Login\Login.css" />
@@ -287,6 +292,7 @@
     <Content Include="LMS\index.html" />
     <Content Include="LMS\pages\account\AccountPage.html" />
     <Content Include="LMS\pages\dashboard\index.html" />
+    <Content Include="LMS\pages\dashboard\Pages\addparticipant\addparticipant.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\course\course.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\createcourse\createcourse.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\creategroup\creategroup.component.html" />
@@ -339,6 +345,7 @@
     </None>
     <Content Include="Content\_variables.scss" />
     <Content Include="Content\_mixins.scss" />
+    <Content Include="LMS\components\dropdownbox\dropdownbox.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -441,6 +448,7 @@
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.module.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.routes.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\addparticipant\addparticipant.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\course\course.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\createcourse\createcourse.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\creategroup\creategroup.component.ts" />
@@ -460,9 +468,11 @@
     <TypeScriptCompile Include="LMS\services\guards\isauthenticated.ts" />
     <TypeScriptCompile Include="LMS\services\guards\isproperrole.ts" />
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\groupsresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\groupresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\homepageresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\isloggedin.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\usersresolver.ts" />
     <TypeScriptCompile Include="LMS\services\schedule.service.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\userresolver.ts" />

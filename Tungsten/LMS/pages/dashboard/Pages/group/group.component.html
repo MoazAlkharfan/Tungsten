@@ -1,4 +1,15 @@
 <div *ngIf="Group">
+    <div class="col-xs-12 col-md-12">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Manage <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a [routerLink]="['/dashboard', { outlets: { dashboard: ['createcourse', Group.Id] } }]"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Course</a></li>
+                <li><a [routerLink]="['/dashboard', { outlets: { dashboard: ['addparticipant', Group.Id] } }]"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Participant</a></li>
+            </ul>
+        </div>
+    </div>
     <button type="button" class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['createcourse', Group.Id] } }]">
         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
     </button>

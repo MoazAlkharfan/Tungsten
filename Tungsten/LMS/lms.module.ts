@@ -45,6 +45,8 @@ import { isAuthenticatedGuard } from './services/guards/isAuthenticated';
 // Resolvers
 import { userresolver } from './services/resolvers/userresolver';
 import { isloggedin } from './services/resolvers/isloggedin';
+import { usersresolver } from './services/resolvers/usersresolver';
+import { GroupsResolver } from './services/resolvers/groupsresolver';
 
 @NgModule({
     imports: [
@@ -72,7 +74,9 @@ import { isloggedin } from './services/resolvers/isloggedin';
         isAuthenticatedGuard,
         AccountService,
         userresolver,
-        isloggedin
+        isloggedin,
+        usersresolver,
+        GroupsResolver
     ]
 })
 export class AppModule { }
