@@ -2,13 +2,12 @@
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
-using System.Web.UI.WebControls;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Tungsten.Models
 {
@@ -29,6 +28,9 @@ namespace Tungsten.Models
         public string SSN { get; set; }
 
         public string Address { get; set; }
+
+        [NotMapped]
+        public string CurrentDirectory { get; set; } = "";
 
         public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<Group> Groups { get; set; }

@@ -2,72 +2,86 @@
 
 @{
     ViewBag.Title = "Index";
+    string priorityFormat;
 }
 
 <h2>Index</h2>
 
-<table class="gridtable">
-    <tr>
-        <th>
-            File name
-        </th>
-        <th>
-            Uploaded by
-        </th>
-        <th>
-            Upload time
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <a class="title" href="/FileHandler/Download/?dbName=@(item.Id + item.Extension)&originalName=@item.FileName">@item.FileName</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UploadTime)
-            </td>
-            <td>
-                <a href="javascript:void(0);" data-id="@item.Id" class="deleteItem">Delete</a>
-            </td>
+<div style="font-family: monospace">
+    <table>
+        <tr style="border-bottom: 1px solid black">
+            <th style="width:60%">
+                File name
+            </th>
+            <th style="width:20%">
+                Uploaded by
+            </th>
+            <th style="width:20%">
+                Upload time
+            </th>
         </tr>
-    }
-</table>
+
+        @foreach (var item in Model)
+        {
+            switch(item.Priority)
+            {
+                case Tungsten.Models.FileSystem.Settings.PriorityAdministrator:
+                    priorityFormat = "font-weight: bold; background-color:rgba(255, 255, 255, 0.5)";
+                    break;
+
+                case Tungsten.Models.FileSystem.Settings.PriorityTeacher:
+                    priorityFormat = "font-weight: bold";
+                    break;
+
+                default:
+                    priorityFormat = "";
+                    break;
+            }
+
+            <tr style="border-bottom: 1px dotted black">
+                <td>
+                    <a class="title" style=@priorityFormat href="/FileHandler/Download/?dbName=@(item.Id + item.Extension)&originalName=@item.FileName"><u>@item.FileName</u></a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UploadTime)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 
 <p>
     <br />
     @Html.ActionLink("Upload file(s)", "UploadSelector")
 </p>
 
-
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script>
         $('.deleteItem').click(function (e) {
-        e.preventDefault();
-        var $ctrl = $(this);
-        if (confirm('Do you really want to delete this file?')) {
+                e.preventDefault();
+                var $ctrl = $(this);
+                if (confirm('Do you really want to delete this file?')) {
         $.ajax({
-        url: '@Url.Action("DeleteFile")',
+                    url: '@Url.Action("DeleteFile")',
         type: 'POST',
         data: { id: $(this).data('id') }
-        }).done(function (data) {
-        if (data.Result == "OK") {
+                    }).done(function (data) {
+                        if (data.Result == "OK") {
             $ctrl.closest('li').remove();
-            history.go(0);
-        }
-        else if (data.Result.Message) {
-        alert(data.Result.Message);
-        }
-        }).fail(function () {
-        alert("Something went wrong. Please try again.");
-        })
+                            history.go(0);
+                        }
+                        else if (data.Result.Message) {
+                            alert(data.Result.Message);
+                        }
+                    }).fail(function () {
+                        alert("Something went wrong. Please try again.");
+                    })
         }
         });
     </script>

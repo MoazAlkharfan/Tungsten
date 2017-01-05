@@ -8,20 +8,48 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Tungsten.DataAccessLayer;
 using Tungsten.Models.FileSystem;
+using Tungsten.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Tungsten.Controllers
 {
+    [Authorize]
     public class FileHandlerController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private UserStore<ApplicationUser> userStore;
+        private UserManager<ApplicationUser> userManager;
+        private ApplicationUser appUser;
 
-        const string ROOT_DIRECTORY = "~/App_Data/FileRepository";
+        public FileHandlerController()
+        {
+            userStore = new UserStore<ApplicationUser>(db);
+            userManager = new UserManager<ApplicationUser>(userStore);
+        }
 
         //
         // GET: /FileHandler/
         public async Task<ActionResult> Index()
         {
-            return View(await db.FileDetails.ToListAsync());
+            appUser = userManager.FindById(User.Identity.GetUserId());
+            var allFiles = await db.FileDetails.Include(f => f.Path == appUser.CurrentDirectory).ToListAsync();
+
+            var roleStore = new RoleStore<IdentityRole>(db);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+            allFiles.ForEach(f => f.Priority = (userManager.IsInRole(f.OwnerId, "Administrator") ? Settings.PriorityAdministrator : (userManager.IsInRole(f.OwnerId, "Teacher") ? Settings.PriorityTeacher : Settings.PriorityDefault)));
+            allFiles.Sort(delegate(FileDetail x, FileDetail y)
+            {
+                if (x.Priority != y.Priority)
+                {
+                    return (x.Priority > y.Priority) ? -1 : 1;
+                }
+                else
+                {
+                    return (x.UploadTime > y.UploadTime) ? -1 : (x.UploadTime < y.UploadTime ? 1 : 0);
+                }
+            });
+            return View(allFiles);
         }
 
         public ActionResult UploadSelector()
@@ -30,7 +58,6 @@ namespace Tungsten.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Upload()
         {
@@ -56,10 +83,13 @@ namespace Tungsten.Controllers
                             OwnerId = User.Identity.GetUserId(),
                             UploadTime = DateTime.Now
                         };
+
+                        // TODO: use fileDetails for error reporting involving individual files
                         fileDetails.Add(fileDetail);
+
                         processAttempts++;
 
-                        var path = Path.Combine(Server.MapPath(ROOT_DIRECTORY), fileDetail.Id + fileDetail.Extension);
+                        var path = Path.Combine(Server.MapPath(HelperMethods.GeneratePath(appUser)), fileDetail.Id + fileDetail.Extension);
                         try
                         {
                             file.SaveAs(path);
@@ -88,10 +118,9 @@ namespace Tungsten.Controllers
             return View();
         }
 
-        [Authorize]
         public FileResult Download(string dbName, string originalName)
         {
-            return File(Path.Combine(Server.MapPath(ROOT_DIRECTORY), dbName), System.Net.Mime.MediaTypeNames.Application.Octet, originalName);
+            return File(Path.Combine(Server.MapPath(HelperMethods.GeneratePath(appUser)), dbName), System.Net.Mime.MediaTypeNames.Application.Octet, originalName);
         }
 
         //public ActionResult Edit(int? id)
@@ -138,7 +167,6 @@ namespace Tungsten.Controllers
         //}
 
         [HttpPost]
-        [Authorize]
         public JsonResult DeleteFile(string id)
         {
             if (String.IsNullOrEmpty(id))
@@ -161,7 +189,7 @@ namespace Tungsten.Controllers
                 db.SaveChanges();
 
                 //Delete file from the file system
-                var path = Path.Combine(Server.MapPath(ROOT_DIRECTORY), fileDetail.Id + fileDetail.Extension);
+                var path = Path.Combine(Server.MapPath(HelperMethods.GeneratePath(appUser)), fileDetail.Id + fileDetail.Extension);
                 if (System.IO.File.Exists(path))
                 {
                     System.IO.File.Delete(path);

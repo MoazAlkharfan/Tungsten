@@ -234,6 +234,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701051231224_Initial.cs" />
+    <Compile Include="Migrations\201701051231224_Initial.Designer.cs">
+      <DependentUpon>201701051231224_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -242,6 +246,8 @@
     <Compile Include="Models\EditViewModel.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\FileSystem\FileDetail.cs" />
+    <Compile Include="Models\FileSystem\HelperMethods.cs" />
+    <Compile Include="Models\FileSystem\Settings.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Lesson.cs" />
@@ -403,7 +409,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\FileRepository\" />
-    <Folder Include="App_Data\" />
     <Folder Include="LMS\components\assignment\" />
     <Folder Include="LMS\components\course\" />
     <Folder Include="LMS\pages\dashboard\Pages\home\admin\" />
@@ -453,6 +458,11 @@
     <TypeScriptCompile Include="LMS\services\schedule.service.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\userresolver.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701051231224_Initial.resx">
+      <DependentUpon>201701051231224_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
