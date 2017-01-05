@@ -60,7 +60,7 @@ namespace Tungsten.Controllers
             return Json(new { ishe = User.Identity.IsAuthenticated }, JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<string> GetHomePage()
+        public async Task<JsonResult> GetHomePage()
         {
             string CurrentUserId = User.Identity.GetUserId();
             var user = await UserManager.FindByIdAsync(CurrentUserId);
@@ -88,7 +88,7 @@ namespace Tungsten.Controllers
                             Schedule = user.Groups.First().Schedule
                         };
 
-                        return JsonConvert.SerializeObject(page, Formatting.Indented, jss);
+                        return Json(page, JsonRequestBehavior.AllowGet);
                     }
                 case "Admin":
                     {
@@ -109,7 +109,7 @@ namespace Tungsten.Controllers
                             Schedule = user.Groups.First().Schedule
                         };
 
-                        return JsonConvert.SerializeObject(page, Formatting.Indented, jss);
+                        return Json(page, JsonRequestBehavior.AllowGet);
                     }
                 default: // Student
                     {
@@ -131,9 +131,8 @@ namespace Tungsten.Controllers
                             Schedule = user.Groups.First().Schedule
                         };
 
-                        return JsonConvert.SerializeObject(page, Formatting.Indented, jss);
+                        return Json(page, JsonRequestBehavior.AllowGet);
                     }
-                //
             }
         }
 
@@ -145,7 +144,7 @@ namespace Tungsten.Controllers
         ///     Anonymous { Name, Username, Email, Roels[] } as Json
         /// </returns>
         [Authorize]
-        public async Task<string> GetUserInfo()
+        public async Task<JsonResult> GetUserInfo()
         {
             var currentUserId = User.Identity.GetUserId();
             ApplicationUser user1 = await UserManager.FindByIdAsync(currentUserId);
@@ -157,7 +156,7 @@ namespace Tungsten.Controllers
                 Roles = await UserManager.GetRolesAsync(currentUserId),
                 Courses = user1.Courses
             };
-            return JsonConvert.SerializeObject(user, Formatting.Indented, jss); //Json(user, JsonRequestBehavior.AllowGet);
+            return Json(user, JsonRequestBehavior.AllowGet);
         }
 
         ////

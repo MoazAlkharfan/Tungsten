@@ -64,7 +64,7 @@ export class GroupService {
             });
             return null;
         }
-        let body = <IGroup[]>JSON.parse(res.json());
+        let body = <IGroup[]>res.json();
         return body || [];
     }
 
@@ -78,7 +78,7 @@ export class GroupService {
             });
             return null;
         }
-        let body = <IGroup>JSON.parse(res.json());
+        let body = <IGroup>res.json();
         return body || null;
     }
 }

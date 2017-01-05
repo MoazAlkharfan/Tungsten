@@ -14,7 +14,6 @@ namespace Tungsten.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        JsonSerializerSettings jss = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
         private ISchoolRepo repo;
 
         public HomeController()
@@ -59,16 +58,11 @@ namespace Tungsten.Controllers
             !ModelState.IsValid ? null
             : repo.CreateCourse(course)
                 ? Json(repo.FindCourse(course.Id), JsonRequestBehavior.AllowGet)
-                :Json(course, JsonRequestBehavior.AllowGet);
+                : Json(course, JsonRequestBehavior.AllowGet);
 
-        public JsonResult GetCourse(string id)
-        {
-            if (string.IsNullOrEmpty(id))
-                return null;
-
-
-            return Json(JsonConvert.SerializeObject(repo.FindCourse(id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
-        }
+        public JsonResult GetCourse(string id) =>
+            string.IsNullOrEmpty(id) ? null
+            : Json(repo.FindCourse(id), JsonRequestBehavior.AllowGet);
 
         [AllowAnonymous]
         public ActionResult Index()
@@ -89,6 +83,4 @@ namespace Tungsten.Controllers
         }
 
     }
-
-
 }
