@@ -31,10 +31,10 @@
         <div class="panel-collapse-content">
 
         <form #loginForm="ngForm">
-            <input type="text" placeholder="User Name"   [(ngModel)]="_user.Username" name="username" [autofocus] required />
-            <input type="password" placeholder="Password"   [(ngModel)]="_user.Password" name="password" required />
+            <input type="text" placeholder="User Name" [(ngModel)]="loginmodel.Username" name="username" [autofocus] required />
+            <input type="password" placeholder="Password" [(ngModel)]="loginmodel.Password" name="password" required />
             <div class="checkbox">
-                <input class="checkbox-inline" type="checkbox" [(ngModel)]="_user.RememberMe" name="remember">
+                <input class="checkbox-inline" type="checkbox" [(ngModel)]="loginmodel.RememberMe" name="remember">
                 <label for="remember">
                     Remember me
                 </label>

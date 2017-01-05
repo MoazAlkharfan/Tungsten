@@ -234,6 +234,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701051309295_Initial.cs" />
+    <Compile Include="Migrations\201701051309295_Initial.Designer.cs">
+      <DependentUpon>201701051309295_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -428,6 +432,7 @@
     <TypeScriptCompile Include="LMS\classes\EditModel.ts" />
     <TypeScriptCompile Include="LMS\classes\Group.ts" />
     <TypeScriptCompile Include="LMS\classes\HomePageModel.ts" />
+    <TypeScriptCompile Include="LMS\classes\LoginModel.ts" />
     <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
     <TypeScriptCompile Include="LMS\classes\Registration.ts" />
     <TypeScriptCompile Include="LMS\classes\Segment.ts" />
@@ -461,6 +466,7 @@
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\removegroup\removegroup.component.ts" />
     <TypeScriptCompile Include="LMS\pages\home\HomePage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\register\register.component.ts" />
+    <TypeScriptCompile Include="LMS\pipes\filterPipe.ts" />
     <TypeScriptCompile Include="LMS\services\account.service.ts" />
     <TypeScriptCompile Include="LMS\services\course.service.ts" />
     <TypeScriptCompile Include="LMS\services\data.service.ts" />
@@ -476,6 +482,11 @@
     <TypeScriptCompile Include="LMS\services\schedule.service.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\userresolver.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701051309295_Initial.resx">
+      <DependentUpon>201701051309295_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

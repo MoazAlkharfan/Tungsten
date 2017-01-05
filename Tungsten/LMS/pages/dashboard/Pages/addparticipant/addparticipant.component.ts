@@ -21,12 +21,20 @@ export class AddParticipantPage implements OnInit {
     ngOnInit() {
         this._ActivatedRoute.data.subscribe((data: { users: User[], group: IGroup }) => {
             this.users = data.users;
+            //console.log(this.users);
             this.Group = data.group;
+
+            this.users = this.users.filter((user) => {
+                let tempgroups = user.Groups.filter((group) => {
+                    return group.Id == this.Group.Id
+                })
+                return (tempgroups.length < 1);
+            })
         });
     }
 
     addUser(user: User): void {
-        this._GroupService.addUser(user.Id).subscribe((result) => {
+        this._GroupService.addUser(user.Id, this.Group.Id).subscribe((result) => {
             if (result.Success === true)
             {
                 this.users = this.users.filter((usertofilter) => {

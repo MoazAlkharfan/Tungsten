@@ -46,7 +46,7 @@ namespace Tungsten.Controllers
         public async Task<JsonResult> GetUserList()
         {
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            List<ApplicationUser> users = UserManager.Users.Where(u => user.Groups.Any(g => !u.Groups.Contains(g))).AsEnumerable().Select(us => us).ToList();
+            List<ApplicationUser> users = UserManager.Users.ToList();//.Where(u => !user.Groups.Any(g => u.Groups.Contains(g))).ToList();
 
             return Json(JsonConvert.SerializeObject(users, Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
         }
@@ -55,19 +55,14 @@ namespace Tungsten.Controllers
         public async Task<JsonResult> GetGroups()
         {
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            
+
             return Json(JsonConvert.SerializeObject(user.Groups.ToList(), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<JsonResult> AddUserToGroup(string id)
+        [AllowAnonymous]
+        public async Task<JsonResult> AddUserToGroup(string userid, string groupid)
         {
-            string CurrentUserId = User.Identity.GetUserId();
-            var user = await UserManager.FindByIdAsync(CurrentUserId);
-
-            user.Groups.Add(repo.FindGroup(id));
-            var result = await UserManager.UpdateAsync(user);
-
-            return Json(new { Success = result.Succeeded }, JsonRequestBehavior.AllowGet);
+            return Json(new { Success = await repo.AddUserToGroup(userid, groupid) }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetGroup(string id)
@@ -77,11 +72,11 @@ namespace Tungsten.Controllers
 
             return Json(JsonConvert.SerializeObject(repo.FindGroup(id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
         }
-        
+
         [AllowAnonymous]
         public string GetSchedule(string id) => JsonConvert.SerializeObject(repo.FindGroup(id)?.Schedule, Formatting.None, jss);
 
-        
+
         public JsonResult CreateGroup(Group group)
         {
             if (group == null)
@@ -102,7 +97,7 @@ namespace Tungsten.Controllers
             if (group == null)
                 return null;
 
-            if(repo.EditGroup(group))
+            if (repo.EditGroup(group))
             {
                 return Json(JsonConvert.SerializeObject(repo.FindGroup(group.Id), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
             }
@@ -140,7 +135,7 @@ namespace Tungsten.Controllers
         public ActionResult Index()
         {
             //if (User.Identity.IsAuthenticated)
-             //   return RedirectToAction("Index", "Groups");
+            //   return RedirectToAction("Index", "Groups");
 
             ViewBag.Title = "Home Page";
             ViewBag.IsAuthenticated = User.Identity.IsAuthenticated;
@@ -153,7 +148,7 @@ namespace Tungsten.Controllers
         {
             return View();
         }
-        
+
     }
 
 

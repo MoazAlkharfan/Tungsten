@@ -1,6 +1,6 @@
 ﻿<div class="row">
     <div class="col-xs-12 col-md-12">
-        <dropdownbox [title]="'Groups'" [content]="page.Groups" [content-type]="'group'">
+        <dropdownbox [title]="'Groups'" [content]="page.Groups" [content-type]="'group'" [role]="user.Roles">
             <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['creategroup'] } }]" ddb-create>
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </button>
@@ -11,8 +11,8 @@
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </button>
         </dropdownbox>
-
-        <dropdownbox [title]="'Schedule'">
+        
+        <dropdownbox [title]="'Schedule'" *ngIf="page.Groups.length > 0">
             <div ddb-item>
                 <lms-schedule-app [groupId]="page.Groups[0].Id" class="."></lms-schedule-app>
             </div>
@@ -24,6 +24,10 @@
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
             </dropdownbox>
+        </div>
+        <div *ngIf="page.Groups.length === 0">
+            You're not in any class, ask the teacher to add you to the class.
+            When added just refresh the page.
         </div>
         <!--<dropdownbox [title]="'Courses'" [content]="courses" [content-type]="'dunno'"></dropdownbox>
         <dropdownbox [title]="'Courses'" [content]="courses" [content-type]="'dunno'"></dropdownbox>-->

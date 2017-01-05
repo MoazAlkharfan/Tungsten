@@ -35,5 +35,7 @@ namespace Tungsten.Repositories
         IEnumerable<Group> GetGroups();
 
         Course FindCourse(string id);
+
+        Task<bool> AddUserToGroup(string userid, string groupid);
     }
 }

@@ -78,15 +78,16 @@ namespace Tungsten.Controllers
                                 assignments.AddRange(segment.Assignments);
                             }
                         }
-                        List<Group> groups = user.Groups.ToList();
+
                         assignments = assignments.OrderBy(a => a.EndTime).Take(5).ToList();
-                        TeacherHomePage page = new TeacherHomePage
-                        {
-                            Groups = groups,
-                            Assignments = assignments,
-                            Courses = user.Courses.Take(3),
-                            Schedule = user.Groups.First().Schedule
-                        };
+
+                        TeacherHomePage page = new TeacherHomePage();
+
+                        page.Groups = user.Groups.ToList();
+                        page.Assignments = assignments;
+                        page.Courses = user.Courses.Take(3);
+                        page.Schedule = user.Groups.FirstOrDefault()?.Schedule;
+
 
                         return JsonConvert.SerializeObject(page, Formatting.Indented, jss);
                     }
@@ -114,7 +115,7 @@ namespace Tungsten.Controllers
                 default: // Student
                     {
                         List<Assignment> assignments = new List<Assignment>();
-                        foreach (Course course in user.Groups.First().Courses)
+                        foreach (Course course in user.Courses)
                         {
                             foreach (Segment segment in course.Segments)
                             {
@@ -123,13 +124,14 @@ namespace Tungsten.Controllers
                         }
 
                         assignments = assignments.OrderBy(a => a.EndTime).Take(5).ToList();
-                        StudentHomePage page = new StudentHomePage
-                        {
-                            Groups = user.Groups.ToList(),
-                            Assignments = assignments,
-                            Courses = user.Groups.First().Courses.Take(3),
-                            Schedule = user.Groups.First().Schedule
-                        };
+
+                        StudentHomePage page = new StudentHomePage();
+
+                        page.Groups = user.Groups.ToList();
+                        page.Assignments = assignments;
+                        page.Courses = user.Courses.Take(3);
+                        page.Schedule = user.Groups.FirstOrDefault()?.Schedule;
+
 
                         return JsonConvert.SerializeObject(page, Formatting.Indented, jss);
                     }
@@ -147,17 +149,34 @@ namespace Tungsten.Controllers
         [Authorize]
         public async Task<string> GetUserInfo()
         {
-            var currentUserId = User.Identity.GetUserId();
-            ApplicationUser user1 = await UserManager.FindByIdAsync(currentUserId);
-            var user = new
+            if (User.Identity.IsAuthenticated)
             {
-                Name = User.Identity.Name,
-                Username = User.Identity.GetUserName(),
-                Email = UserManager.GetEmailAsync(currentUserId).Result,
-                Roles = await UserManager.GetRolesAsync(currentUserId),
-                Courses = user1.Courses
-            };
-            return JsonConvert.SerializeObject(user, Formatting.Indented, jss); //Json(user, JsonRequestBehavior.AllowGet);
+                var currentUserId = User.Identity.GetUserId();
+                ApplicationUser user1 = await UserManager.FindByIdAsync(currentUserId);
+
+                var userid = currentUserId;
+                var userName = User.Identity.Name;
+                var userUsername = User.Identity.GetUserName();
+                var userEmail = UserManager.GetEmailAsync(currentUserId).Result;
+                var userRoles = await UserManager.GetRolesAsync(currentUserId);
+                var userCourses = user1.Courses;
+
+                var user = new
+                {
+                    Id = user1.Id,
+                    Name = User.Identity.Name,
+                    Username = User.Identity.GetUserName(),
+                    Email = UserManager.GetEmailAsync(currentUserId).Result,
+                    Roles = await UserManager.GetRolesAsync(currentUserId),
+                    Courses = user1.Courses
+                };
+                return JsonConvert.SerializeObject(user, Formatting.Indented, jss); //Json(user, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(null, Formatting.Indented, jss); //Json(user, JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
         ////

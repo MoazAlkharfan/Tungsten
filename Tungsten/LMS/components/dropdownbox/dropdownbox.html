@@ -1,67 +1,36 @@
 ﻿<div class="dropdownbox">
-    <div class="top-container" (click)="OpenClose()">
-        <div class="titlecontainer">
-            <h3 class="title">{{Title}}<span *ngIf="Content?.length"> ( {{Content.length}} )</span></h3>
+    <div class="top-container">
+        <div class="titlecontainer" (click)="OpenClose()">
+            <h3 class="title">{{(Content && Content.length || isSchedule()) ? Title : 'No ' + Title}}<span *ngIf="Content?.length"> ( {{Content.length}} )</span></h3>
         </div>
 
-        <div class="top-buttons-container">
-            <div class="top-button-first">
-                <ng-content select="[ddb-create]"></ng-content>
-            </div>
-            <div class="top-button-second">
-                <ng-content select="[ddb-edit]"></ng-content>
-            </div>
-            <div class="top-button-third">
-                <ng-content select="[ddb-add]"></ng-content>
-            </div>
-            <div class="top-button-4th">
-                <ng-content select="[ddb-delete]"></ng-content>
-            </div>
+        <div class="btn-group top-buttons-container" *ngIf="role && role[0] === 'Teacher'">
+            <ng-content select="[ddb-create]"></ng-content>
+            <ng-content select="[ddb-edit]"></ng-content>
+            <ng-content select="[ddb-add]"></ng-content>
+            <ng-content select="[ddb-delete]"></ng-content>
         </div>
     </div>
 
     <div class="itemscontainer" [@openClose]="isOpen">
         <div *ngIf="Content">
-            <div [ngSwitch]="Content.length" class="item">
-                <div *ngSwitchCase="1">
-                    <div>
-                        <div class="item-link-container">
-                            <a [routerLink]="['/dashboard', { outlets: { dashboard: [ContentType, Content[0].Id] } }]"><h3 class="item-link">{{Content[0].Name}}</h3></a>
-                        </div>
-                        <div class="item-buttons">
-                            <div class="btn-group">
-                                <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['edit'+ContentType, Content[0].Id] } }]">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </button>
-                                <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['remove'+ContentType, Content[0].Id] } }]">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </div>
+            <div *ngFor="let item of Content; let i = index">
+                <div class="item">
+                    <div class="item-link-container" [routerLink]="['/dashboard', { outlets: { dashboard: [ContentType, item.Id] } }]">
+                        <a class="item-link"><h3>{{item.Name}}</h3></a>
                     </div>
-                </div>
-                <div *NgSwitchDefault>
-                    <div *ngFor="let item of content">
-                        <div class="item">
-                            <div class="item-link-container">
-                                <a [routerLink]="['/dashboard', { outlets: { dashboard: [ContentType, item.Id] } }]" class="item-link"><h3>{{item.Name}}</h3></a>
-                            </div>
-                            <div class="item-buttons">
-                                <div class="btn-group">
-                                    <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['edit'+ContentType, item.Id] } }]">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                    </button>
-                                    <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['remove'+ContentType, item.Id] } }]">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="btn-group item-buttons">
+                        <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['edit'+ContentType, item.Id] } }]">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </button>
+                        <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['remove'+ContentType, item.Id] } }]">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="item">
+        <div #schedule>
             <ng-content select="[ddb-item]"></ng-content>
         </div>
     </div>

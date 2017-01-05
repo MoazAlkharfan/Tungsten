@@ -1,12 +1,15 @@
-﻿export class User {
+﻿import { Group } from './group';
+import { Course } from './course';
+export class User {
     Id: string;
     Name: string;
-    Username: string;
+    UserName: string;
     Email: string;
     Roles: string[];
     Password: string;
     RememberMe: boolean;
-    Courses: any[];
+    Courses: Course[];
+    Groups: Group[];
     constructor(
         username: string,
         password: string,
@@ -15,7 +18,7 @@
         roles: string[]
     ) {
 
-        this.Username = username;
+        this.UserName = username;
         this.Password = password;
         this.RememberMe = false;
         this.Name = name;

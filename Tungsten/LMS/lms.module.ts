@@ -35,6 +35,7 @@ import { AccountPage } from './pages/account/AccountPage.component';
 import { HomePage } from './pages/home/HomePage.component';
 import { RegisterPage } from './pages/register/register.component';
 import { Dashboard } from './pages/dashboard/dashboard.module';
+import { Dashboard_Index } from './pages/dashboard/dashboard.component';
 
 // directives
 import { Autofocus } from './directives/autofocus';
@@ -48,13 +49,14 @@ import { isloggedin } from './services/resolvers/isloggedin';
 import { usersresolver } from './services/resolvers/usersresolver';
 import { GroupsResolver } from './services/resolvers/groupsresolver';
 
+import { DASHBOARD_Routes } from './pages/dashboard/dashboard.routes';
+
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        LMS_Routes,
-        Dashboard
+        LMS_Routes
     ],
     declarations: [
         IndexPage,

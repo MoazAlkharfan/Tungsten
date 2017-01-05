@@ -41,7 +41,8 @@ export class HomePage implements OnInit {
             this.user = result;
         });
 
-        //console.log(userroles);
+        console.log('should load');
+        
         if (!userroles.length)
             this.router.navigate(['/dashboard', { outlets: { dashboard: ['student'] } }]);
 

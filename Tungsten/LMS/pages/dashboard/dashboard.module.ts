@@ -1,7 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 // routes
 import { DASHBOARD_Routes } from './dashboard.routes';
 
@@ -20,6 +20,7 @@ import { RemoveGroupPage } from './pages/removegroup/removegroup.component';
 import { CreateGroup } from './pages/creategroup/creategroup.component';
 import { CreateCourse } from './pages/createcourse/createcourse.component';
 import { CoursePage } from './pages/course/course.component';
+import { AddParticipantPage } from './pages/addparticipant/addparticipant.component';
 
 // components
 import { GroupsList } from '../../components/groupslist/GroupsList';
@@ -42,9 +43,12 @@ import { userresolver } from '../../services/resolvers/userresolver';
 import { homepageresolver } from '../../services/resolvers/homepageresolver';
 import { GroupResolver } from '../../services/resolvers/groupresolver';
 
+// Pipes
+import { FilterUserByNamePipe } from '../../pipes/filterPipe';
+
 @NgModule({
     imports: [
-        BrowserModule,
+        CommonModule,
         FormsModule,
         HttpModule,
         DASHBOARD_Routes
@@ -63,7 +67,9 @@ import { GroupResolver } from '../../services/resolvers/groupresolver';
         StudentHomePage,
         CoursePage,
         EditGroupPage,
-        RemoveGroupPage
+        RemoveGroupPage,
+        AddParticipantPage,
+        FilterUserByNamePipe
     ],
     providers: [
         UserAnnouncer,

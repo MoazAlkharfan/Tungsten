@@ -46,9 +46,9 @@ export class GroupService {
             .map(this.extractGroup);
     }
 
-    addUser(id: string) {
-        return this._http.post('/Home/AddUserToGroup', id)
-            .do(this.logData)
+    addUser(id: string, gid: string) {
+        return this._http.post('/Home/AddUserToGroup', { userid : id, groupid : gid})
+            //.do(this.logData)
             .catch(this.handleError)
             .map(result => {
                 return result.json();

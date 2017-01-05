@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using Tungsten.DataAccessLayer;
 using Tungsten.Models;
@@ -34,6 +35,32 @@ namespace Tungsten.Repositories
         public Course FindCourse(string id)
         {
             return db.Courses.FirstOrDefault(c => c.Id == id);
+        }
+
+        public async Task<bool> AddUserToGroup(string userid, string groupid) {
+
+            try
+            {
+                var user = db.Users.Find(userid);
+                Group group = db.Groups.Where(g => g.Id == groupid).FirstOrDefault();
+
+                int oldgrouplength = user.Groups.Count();
+
+                if (!user.Groups.Contains(group))
+                {
+                    user.Groups.Add(group);
+                    await db.SaveChangesAsync();
+                }
+                
+                if (oldgrouplength != user.Groups.Count())
+                    return true;
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool CreateGroup(Group group)

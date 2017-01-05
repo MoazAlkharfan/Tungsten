@@ -13,7 +13,7 @@ export class isAuthenticatedGuard implements CanActivate, CanActivateChild {
 
     canActivate(router: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this._membershipService.isUserAuthenticated()) {
-            //console.log('should gain access to route');
+            console.log('should gain access to route because he is authenticated');
             return true;
         } else {
             this.router.navigateByUrl('');

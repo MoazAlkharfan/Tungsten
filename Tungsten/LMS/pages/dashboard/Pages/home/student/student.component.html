@@ -3,16 +3,18 @@
         <dropdownbox [title]="'Assignments'" [content]="page.Assignments" [content-type]="'group'">
         </dropdownbox>
 
-        <dropdownbox [title]="'Schedule'">
-            <div ddb-item>
-                <lms-schedule-app [groupId]="page.Groups[0].Id" class="."></lms-schedule-app>
-            </div>
-        </dropdownbox>
-
         <div *ngFor="let item of page.Courses">
             <dropdownbox [title]="item.Description" [content]="item.Segments" [content-type]="'course'">
             </dropdownbox>
         </div>
+
+        <dropdownbox [title]="'Schedule'">
+            <div *ngIf="page.Groups && page.Groups[0] && page.Groups[0].Id">
+                <div ddb-item>
+                    <lms-schedule-app [groupId]="page.Groups[0].Id" class="."></lms-schedule-app>
+                </div>
+            </div>
+        </dropdownbox>
 
     </div>
 </div>

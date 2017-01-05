@@ -18,6 +18,7 @@ import { CreateCourse } from './pages/createcourse/createcourse.component';
 import { CoursePage } from './pages/course/course.component';
 import { EditGroupPage } from './pages/editgroup/editgroup.component';
 import { RemoveGroupPage } from './pages/removegroup/removegroup.component';
+import { AddParticipantPage } from './pages/addparticipant/addparticipant.component';
 
 
 // Routing Guards
@@ -31,21 +32,21 @@ import { homepageresolver } from '../../services/resolvers/homepageresolver';
 import { GroupResolver } from '../../services/resolvers/groupresolver';
 import { GroupsResolver } from '../../services/resolvers/groupsresolver';
 
+
 // Note:
 // implement is teacherguard, ( problem adding canActivate on a child )
 const routes: Routes = [
     {
-        path: 'dashboard', component: Dashboard_Index, canActivateChild: [isAuthenticatedGuard, isProperRoleGuard],
+        path: '', component: Dashboard_Index, canActivateChild: [isAuthenticatedGuard, isProperRoleGuard],
         children:
         [
-            { path: '', component: HomePage, outlet: 'dashboard' }, // base url
             { path: 'student', component: StudentHomePage, outlet: 'dashboard', resolve: { user: userresolver, pageModel: homepageresolver } },
             { path: 'teacher', component: TeacherHomePage, outlet: 'dashboard', resolve: { user: userresolver, pageModel: homepageresolver } },
             { path: 'admin', component: HomePage, outlet: 'dashboard' },
             { path: 'groups', component: GroupsPage, outlet: 'dashboard', resolve: { user: userresolver } },
             { path: 'group/:id', component: GroupPage, outlet: 'dashboard', resolve: { user: userresolver, group: GroupResolver } },
             { path: 'editgroup/:id', component: EditGroupPage, outlet: 'dashboard', resolve: { user: userresolver, group: GroupResolver } },
-            { path: 'addparticipant/:id', component: EditGroupPage, outlet: 'dashboard', resolve: { user: userresolver, users: usersresolver, group: GroupResolver } },
+            { path: 'addparticipant/:id', component: AddParticipantPage, outlet: 'dashboard', resolve: { user: userresolver, users: usersresolver, group: GroupResolver } },
             { path: 'removegroup/:id', component: RemoveGroupPage, outlet: 'dashboard', resolve: { user: userresolver, group: GroupResolver } },
             { path: 'creategroup', component: CreateGroup, outlet: 'dashboard', resolve: { user: userresolver } },
             { path: 'createcourse/:groupid', component: CreateCourse, outlet: 'dashboard' },

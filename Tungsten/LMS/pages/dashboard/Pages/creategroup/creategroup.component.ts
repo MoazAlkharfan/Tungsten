@@ -28,7 +28,7 @@ export class CreateGroup {
             () => {
                 if (this.group.Id)
                 {
-                    this._GroupService.addUser(this.user.Id).subscribe((result) => {
+                    this._GroupService.addUser(this.user.Id, this.group.Id).subscribe((result) => {
                         if (result.Success === true)
                             this.router.navigate(['/dashboard', { outlets: { dashboard: ['group', this.group.Id] } }]);
                         else
