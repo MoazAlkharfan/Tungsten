@@ -1,6 +1,6 @@
 ﻿<h1>Segments</h1>
 <div *ngIf="Course">
-    <button class="btn btn-primary" [routerLink]="['/dashboard', { outlets: { dashboard: ['createsegment', Course.Id] } }]">Create Segment</button>
+    <button class="btn btn-primary" [routerLink]="['/dashboard', 'createsegment', Course.Id]">Create Segment</button>
     <table>
         <thead>
             <tr>

@@ -17,7 +17,7 @@ export class CreateCourse implements OnInit {
     ngOnInit() {
         let id = this.route.snapshot.params['groupid'];
         if (!id)
-            this.router.navigate(['/dashboard', { outlets: { dashboard: ['groups'] } }]);
+            this.router.navigate(['/dashboard', 'groups']);
 
         this.course.GroupId = id;
     }
@@ -28,7 +28,7 @@ export class CreateCourse implements OnInit {
             () => {
                 if (this.course.Id)
                 {
-                    this.router.navigate(['/dashboard', { outlets: { dashboard: ['group', this.course.GroupId] } }]);
+                    this.router.navigate(['/dashboard', 'group', this.course.GroupId]);
                 }
                 else
                     console.log('Error creating group');

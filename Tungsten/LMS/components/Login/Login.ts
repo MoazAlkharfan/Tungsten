@@ -69,7 +69,6 @@ export class Login implements OnInit {
                         },
                         error => console.error('Error: ' + <any>error),
                         () => {
-                            console.log(this._user.Roles[0]);
                             if (!this._user.Roles[0])
                                 this._user.Roles[0] = 'student';
                             else
@@ -79,7 +78,7 @@ export class Login implements OnInit {
                             //this.userUpdated.emit(this._user);
 
                             localStorage.setItem('user', JSON.stringify(this._user));
-                            this.router.navigate(['/dashboard', { outlets: { dashboard: [(this._user && this._user.Roles && this._user.Roles[0]) ? this._user.Roles[0] : 'student'] } }]);
+                            this.router.navigate(['/dashboard']);
 
                             this.LoggedIn = _authenticationResult.Succeeded;
                         });

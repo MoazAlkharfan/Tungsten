@@ -129,7 +129,7 @@ namespace Tungsten.Controllers
 
                         page.Groups = user.Groups.ToList();
                         page.Assignments = assignments;
-                        page.Courses = user.Courses.Take(3);
+                        page.Courses = page.Groups.FirstOrDefault().Courses.Take(3);
                         page.Schedule = user.Groups.FirstOrDefault()?.Schedule;
 
 

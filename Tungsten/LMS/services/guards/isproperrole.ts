@@ -12,7 +12,7 @@ export class isProperRoleGuard implements CanActivateChild {
         let currentroute = route.routeConfig.path;
 
         if (this.getproperRoutes(this._membershipService.getLoggedInUser().Roles[0].toLowerCase()).indexOf(currentroute) != -1) {
-            console.log('should gain access to route because he is in proper role');
+            //console.log('should gain access to route because he is in proper role');
             return true;
         } else {
             this.router.navigateByUrl('');

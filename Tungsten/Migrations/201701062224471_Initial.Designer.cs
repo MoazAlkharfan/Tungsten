@@ -13,7 +13,7 @@ namespace Tungsten.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201701051309295_Initial"; }
+            get { return "201701062224471_Initial"; }
         }
         
         string IMigrationMetadata.Source

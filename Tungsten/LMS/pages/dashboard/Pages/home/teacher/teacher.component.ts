@@ -48,19 +48,7 @@ export class TeacherHomePage implements OnInit {
             this.page = data.pageModel;
         });
 
-        //this.user = this._ActivatedRoute.snapshot.data['user'];
         this.courses.emit(this.user.Courses as Array<Course>);
-        /*
-        this._groupService.getGroups()
-            .subscribe(Groups => {
-                this.groups = Groups;
-            },
-            error => console.error(error), () => {
-                //console.log('subscribtion finished');
-
-            });
-        */
-        
     }
 
 

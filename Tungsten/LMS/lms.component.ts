@@ -1,4 +1,4 @@
-﻿import { Component, Input, OnInit, ElementRef, Inject, ViewChild, AfterViewChecked, trigger } from '@angular/core';
+﻿import { Component, Input, OnInit, ElementRef, Inject, ViewChild, AfterViewChecked, animate, trigger, style, transition, state } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { GroupService } from './services/GroupService';
 import { MembershipService } from './services/membership.service';
@@ -14,7 +14,19 @@ import { Subscription } from 'rxjs/Subscription';
     providers: [GroupService, UserAnnouncer],
     host: { '[@routeAnimation]': 'true' },
     animations: [
-        trigger('routeAnimation', [])
+        trigger('routeAnimation', [
+            state('*', style({ opacity: 1 })),
+            state('void', style({ position: 'absolute' })),
+            transition('void => *', [
+                style({ opacity: 0, position: 'absolute' }),
+                animate('0.5s')
+            ]),
+            transition('* => void',
+                animate('0.5s', style({
+                    opacity: 0, position: 'absolute'
+                }))
+            )
+        ])
     ]
 })
 export class IndexPage implements OnInit, AfterViewChecked {

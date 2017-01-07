@@ -1,9 +1,11 @@
 ﻿import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
+
 // routes
-import { DASHBOARD_Routes } from './dashboard.routes';
+import { DASHBOARD_Routes, DashboardRoutingModule } from './dashboard.routes';
 
 // pages
 import { Dashboard_Index } from './dashboard.component';
@@ -51,7 +53,8 @@ import { FilterUserByNamePipe } from '../../pipes/filterPipe';
         CommonModule,
         FormsModule,
         HttpModule,
-        DASHBOARD_Routes
+        RouterModule,
+        DashboardRoutingModule
     ],
     declarations: [
         Dashboard_Index,

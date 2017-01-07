@@ -1,13 +1,13 @@
 ﻿<div class="row">
     <div class="col-xs-12 col-md-12">
         <dropdownbox [title]="'Groups'" [content]="page.Groups" [content-type]="'group'" [role]="user.Roles">
-            <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['creategroup'] } }]" ddb-create>
+            <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', 'creategroup']" ddb-create>
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </button>
         </dropdownbox>
 
         <dropdownbox [title]="'Assignments'" [content]="page.Assignments" [content-type]="'assignment'" *ngIf="page.Assignments?.length">
-            <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['createassignment'] } }]" ddb-create>
+            <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', 'createassignment']" ddb-create>
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </button>
         </dropdownbox>
@@ -20,7 +20,7 @@
 
         <div *ngFor="let item of page.Courses">
             <dropdownbox [title]="item.Description" [content]="item.Segments" [content-type]="'course'">
-                <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', { outlets: { dashboard: ['createcourse', item.GroupId] } }]" ddb-create>
+                <button class="btn btn-default btn-lg" [routerLink]="['/dashboard', 'createcourse', item.GroupId]" ddb-create>
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
             </dropdownbox>

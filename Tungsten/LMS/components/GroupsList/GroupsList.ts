@@ -25,7 +25,7 @@ export class GroupsList implements OnInit/*, Resolve<IGroup[]>*/ {
     }
 
     logGroupId(id) {
-        this.router.navigate([{ outlets: { dashboard: ['group', id] } }]);
+        this.router.navigate(['group', id]);
     }
     /*
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<Crisis> {

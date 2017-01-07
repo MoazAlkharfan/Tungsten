@@ -1,5 +1,6 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 //Pages
 // Home Pages
@@ -32,27 +33,40 @@ import { homepageresolver } from '../../services/resolvers/homepageresolver';
 import { GroupResolver } from '../../services/resolvers/groupresolver';
 import { GroupsResolver } from '../../services/resolvers/groupsresolver';
 
+import { DropdownBox } from '../../components/dropdownbox/dropdownbox';
+
+
 
 // Note:
 // implement is teacherguard, ( problem adding canActivate on a child )
 const routes: Routes = [
     {
-        path: '', component: Dashboard_Index, canActivateChild: [isAuthenticatedGuard, isProperRoleGuard],
+        path: '', component: Dashboard_Index, canActivateChild: [isProperRoleGuard], canActivate: [isAuthenticatedGuard],
+        resolve: { user: userresolver },
         children:
         [
-            { path: 'student', component: StudentHomePage, outlet: 'dashboard', resolve: { user: userresolver, pageModel: homepageresolver } },
-            { path: 'teacher', component: TeacherHomePage, outlet: 'dashboard', resolve: { user: userresolver, pageModel: homepageresolver } },
-            { path: 'admin', component: HomePage, outlet: 'dashboard' },
-            { path: 'groups', component: GroupsPage, outlet: 'dashboard', resolve: { user: userresolver } },
-            { path: 'group/:id', component: GroupPage, outlet: 'dashboard', resolve: { user: userresolver, group: GroupResolver } },
-            { path: 'editgroup/:id', component: EditGroupPage, outlet: 'dashboard', resolve: { user: userresolver, group: GroupResolver } },
-            { path: 'addparticipant/:id', component: AddParticipantPage, outlet: 'dashboard', resolve: { user: userresolver, users: usersresolver, group: GroupResolver } },
-            { path: 'removegroup/:id', component: RemoveGroupPage, outlet: 'dashboard', resolve: { user: userresolver, group: GroupResolver } },
-            { path: 'creategroup', component: CreateGroup, outlet: 'dashboard', resolve: { user: userresolver } },
-            { path: 'createcourse/:groupid', component: CreateCourse, outlet: 'dashboard' },
-            { path: 'course/:courseid', component: CoursePage, outlet: 'dashboard' }
+            { path: 'student', component: StudentHomePage, resolve: { user: userresolver, pageModel: homepageresolver } },
+            { path: 'teacher', component: TeacherHomePage, resolve: { user: userresolver, pageModel: homepageresolver } },
+            { path: 'admin', component: HomePage },
+            { path: 'groups', component: GroupsPage, resolve: { user: userresolver } },
+            { path: 'group/:id', component: GroupPage, resolve: { user: userresolver, group: GroupResolver } },
+            { path: 'editgroup/:id', component: EditGroupPage, resolve: { user: userresolver, group: GroupResolver } },
+            { path: 'addparticipant/:id', component: AddParticipantPage, resolve: { user: userresolver, users: usersresolver, group: GroupResolver } },
+            { path: 'removegroup/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } },
+            { path: 'creategroup', component: CreateGroup, resolve: { user: userresolver } },
+            { path: 'createcourse/:groupid', component: CreateCourse },
+            { path: 'course/:courseid', component: CoursePage }
         ]
     }
 ];
 
 export const DASHBOARD_Routes: ModuleWithProviders = RouterModule.forChild(routes);
+
+@NgModule({
+    imports: [
+        RouterModule.forChild(routes)
+    ],
+    exports: [RouterModule]
+})
+export class DashboardRoutingModule { }
+

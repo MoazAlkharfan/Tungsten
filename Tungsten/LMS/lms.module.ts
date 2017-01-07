@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import 'rxjs/Rx';
 
 // Routes
-import { LMS_Routes } from './lms.routes';
+import { RoutingModule } from './lms.routes';
 
 // Interfaces
 import { IGroup } from './interfaces/Group';
@@ -24,7 +24,6 @@ import { AccountService } from './services/account.service';
 import { UserAnnouncer } from './services/UserAnnouncer';
 
 // Components
-import { GroupsList } from './components/GroupsList/GroupsList';
 import { Login } from './components/Login/Login';
 import { DropdownBox } from './components/dropdownbox/dropdownbox';
 //import { course } from './components/course/course.component';
@@ -34,14 +33,13 @@ import { IndexPage } from './lms.component';
 import { AccountPage } from './pages/account/AccountPage.component';
 import { HomePage } from './pages/home/HomePage.component';
 import { RegisterPage } from './pages/register/register.component';
-import { Dashboard } from './pages/dashboard/dashboard.module';
-import { Dashboard_Index } from './pages/dashboard/dashboard.component';
 
 // directives
 import { Autofocus } from './directives/autofocus';
 
 // Routing Guards
 import { isAuthenticatedGuard } from './services/guards/isAuthenticated';
+import { isProperRoleGuard } from './services/guards/isproperrole';
 
 // Resolvers
 import { userresolver } from './services/resolvers/userresolver';
@@ -49,21 +47,19 @@ import { isloggedin } from './services/resolvers/isloggedin';
 import { usersresolver } from './services/resolvers/usersresolver';
 import { GroupsResolver } from './services/resolvers/groupsresolver';
 
-import { DASHBOARD_Routes } from './pages/dashboard/dashboard.routes';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        LMS_Routes
+        RoutingModule
     ],
     declarations: [
         IndexPage,
         HomePage,
         AccountPage,
         RegisterPage,
-        GroupsList,
         Login,
         Autofocus
     ],
@@ -78,7 +74,8 @@ import { DASHBOARD_Routes } from './pages/dashboard/dashboard.routes';
         userresolver,
         isloggedin,
         usersresolver,
-        GroupsResolver
+        GroupsResolver,
+        isProperRoleGuard
     ]
 })
 export class AppModule { }

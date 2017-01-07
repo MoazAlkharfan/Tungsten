@@ -29,10 +29,7 @@ export class EditGroupPage implements OnInit {
             this.Group = group;
             console.log(group);
         }, error => console.error(error), () => {
-            if (this.user.Roles)
-                this._Router.navigate(['/dashboard', { outlets: { dashboard: [this.user.Roles[0].toLowerCase()] } }]);
-            else
-                this._Router.navigate(['/dashboard', { outlets: { dashboard: ['student'] } }]);
+                this._Router.navigate(['/dashboard']);
         });
     }
 }
