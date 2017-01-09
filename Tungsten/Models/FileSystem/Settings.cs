@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace Tungsten.Models.FileSystem
 {
@@ -9,10 +6,17 @@ namespace Tungsten.Models.FileSystem
     {
         public static string RootDirectory { get; } = "~/App_Data/FileRepository/";
 
-        public static string AssignmentPath { get; } = "Assignments/";
+        public static Dictionary<string, string> Paths { get; set; }
 
-        public const int PriorityDefault                     = 0x00000000;
-        public const int PriorityTeacher                     = 0x00001000;
-        public const int PriorityAdministrator               = 0x0FFFFFFF;
+        public const int PriorityDefault                     =  0x00000000;
+        public const int PriorityTeacher                     =  0x00001000;
+        public const int PriorityAdministrator               =  0x0FFFFFFF;
+
+        public Settings()
+        {
+            Paths = new Dictionary<string, string>();
+            Paths.Add("SharedPath", "Shared/");
+            Paths.Add("AssignmentPath", "Assignments/");
+        }
     }
 }

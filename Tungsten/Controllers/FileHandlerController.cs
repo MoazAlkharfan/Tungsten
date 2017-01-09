@@ -27,17 +27,37 @@ namespace Tungsten.Controllers
             userManager = new UserManager<ApplicationUser>(userStore);
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public async Task<ActionResult> SharedIndex()
+        {
+            return await DirectoryIndex(appUser.CurrentGroup.ToString() + Settings.Paths["SharedPath"], true);
+        }
+
+        public async Task<ActionResult> AssignmentIndex()
+        {
+            return await DirectoryIndex(appUser.CurrentGroup.ToString() + Settings.Paths["AssignmentPath"], false);
+        }
+
         //
         // GET: /FileHandler/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> DirectoryIndex(string path, bool isShared)
         {
-            appUser = userManager.FindById(User.Identity.GetUserId());
-            var allFiles = await db.FileDetails.Include(f => f.Path == appUser.CurrentDirectory).ToListAsync();
-
             var roleStore = new RoleStore<IdentityRole>(db);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
+            appUser = userManager.FindById(User.Identity.GetUserId());
 
-            allFiles.ForEach(f => f.Priority = (userManager.IsInRole(f.OwnerId, "Administrator") ? Settings.PriorityAdministrator : (userManager.IsInRole(f.OwnerId, "Teacher") ? Settings.PriorityTeacher : Settings.PriorityDefault)));
+            bool isAdmin = userManager.IsInRole(appUser.Id, "Administrator");
+            bool isTeacher = userManager.IsInRole(appUser.Id, "Teacher");
+
+            bool showAll = isShared || isAdmin || isTeacher;
+
+            var allFiles = await db.FileDetails.Include(f => f.Path == path && (f.OwnerId == appUser.Id || showAll)).ToListAsync();
+
+            allFiles.ForEach(f => f.Priority = (userManager.IsInRole(f.OwnerId, "Administrator")) ? Settings.PriorityAdministrator : (userManager.IsInRole(f.OwnerId, "Teacher") ? Settings.PriorityTeacher : Settings.PriorityDefault));
             allFiles.Sort(delegate(FileDetail x, FileDetail y)
             {
                 if (x.Priority != y.Priority)
@@ -59,7 +79,7 @@ namespace Tungsten.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Upload()
+        public ActionResult Upload(int mode)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +109,7 @@ namespace Tungsten.Controllers
 
                         processAttempts++;
 
-                        var path = Path.Combine(Server.MapPath(HelperMethods.GeneratePath(appUser)), fileDetail.Id + fileDetail.Extension);
+                        var path = Path.Combine(Server.MapPath(HelperMethods.GeneratePath(appUser, mode)), fileDetail.Id + fileDetail.Extension);
                         try
                         {
                             file.SaveAs(path);
@@ -169,7 +189,7 @@ namespace Tungsten.Controllers
         [HttpPost]
         public JsonResult DeleteFile(string id)
         {
-            if (String.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json(new { Result = "Error" });
@@ -184,12 +204,18 @@ namespace Tungsten.Controllers
                     return Json(new { Result = "Error" });
                 }
 
+                if (fileDetail.Owner != appUser)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                    return Json(new { Result = "Error" });
+                }
+
                 //Remove from database
                 db.FileDetails.Remove(fileDetail);
                 db.SaveChanges();
 
                 //Delete file from the file system
-                var path = Path.Combine(Server.MapPath(HelperMethods.GeneratePath(appUser)), fileDetail.Id + fileDetail.Extension);
+                var path = Path.Combine(Server.MapPath(HelperMethods.GeneratePath(appUser, -1)), fileDetail.Id + fileDetail.Extension);
                 if (System.IO.File.Exists(path))
                 {
                     System.IO.File.Delete(path);

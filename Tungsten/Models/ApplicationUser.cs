@@ -14,6 +14,11 @@ namespace Tungsten.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+            CurrentGroup = Groups.First();
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -29,11 +34,11 @@ namespace Tungsten.Models
 
         public string Address { get; set; }
 
-        [NotMapped]
-        public string CurrentDirectory { get; set; } = "";
-
         public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
+
+        [NotMapped]
+        public Group CurrentGroup { get; set; }
 
         [JsonIgnore]
         public override string PasswordHash

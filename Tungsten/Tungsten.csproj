@@ -234,9 +234,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701051231224_Initial.cs" />
-    <Compile Include="Migrations\201701051231224_Initial.Designer.cs">
-      <DependentUpon>201701051231224_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201701090834259_Initial.cs" />
+    <Compile Include="Migrations\201701090834259_Initial.Designer.cs">
+      <DependentUpon>201701090834259_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -401,7 +401,7 @@
     <Content Include="Views\Dashboard\Edit.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\FileHandler\UploadSelector.cshtml" />
-    <Content Include="Views\FileHandler\Index.cshtml" />
+    <Content Include="Views\FileHandler\DirectoryIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -460,8 +460,8 @@
     <TypeScriptCompile Include="LMS\services\resolvers\userresolver.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701051231224_Initial.resx">
-      <DependentUpon>201701051231224_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701090834259_Initial.resx">
+      <DependentUpon>201701090834259_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

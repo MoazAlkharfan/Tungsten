@@ -84,12 +84,14 @@ namespace Tungsten.Migrations
             group1.Participants.Add(student3);
             group1.Participants.Add(student4);
             group1.Participants.Add(student5);
-            group1.Participants.Add(student6);
-            group1.Participants.Add(student7);
-            group1.Participants.Add(student8);
-            group1.Participants.Add(student9);
+
+            group2.Participants.Add(student6);
+            group2.Participants.Add(student7);
+            group2.Participants.Add(student8);
+            group2.Participants.Add(student9);
 
             group1.Participants.Add(teacher1);
+            group2.Participants.Add(teacher1);
 
 
             var course1 = new Course { Subject = "English", Level = "6", GroupId = group1.Id, Description = "Advanced English", Participants = new List<ApplicationUser> { teacher1 } };
