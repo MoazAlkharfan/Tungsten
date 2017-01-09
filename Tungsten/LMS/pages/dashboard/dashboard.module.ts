@@ -21,6 +21,7 @@ import { EditGroupPage } from './pages/editgroup/editgroup.component';
 import { RemoveGroupPage } from './pages/removegroup/removegroup.component';
 import { CreateGroup } from './pages/creategroup/creategroup.component';
 import { CreateCourse } from './pages/createcourse/createcourse.component';
+import { RemoveCoursePage } from './pages/removecourse/removecourse.component';
 import { CoursePage } from './pages/course/course.component';
 import { AddParticipantPage } from './pages/addparticipant/addparticipant.component';
 
@@ -44,6 +45,7 @@ import { isProperRoleGuard } from '../../services/guards/isproperrole';
 import { userresolver } from '../../services/resolvers/userresolver';
 import { homepageresolver } from '../../services/resolvers/homepageresolver';
 import { GroupResolver } from '../../services/resolvers/groupresolver';
+import { CourseResolver } from '../../services/resolvers/courseresolver';
 
 // Pipes
 import { FilterUserByNamePipe } from '../../pipes/filterPipe';
@@ -72,7 +74,8 @@ import { FilterUserByNamePipe } from '../../pipes/filterPipe';
         EditGroupPage,
         RemoveGroupPage,
         AddParticipantPage,
-        FilterUserByNamePipe
+        FilterUserByNamePipe,
+        RemoveCoursePage
     ],
     providers: [
         UserAnnouncer,
@@ -83,7 +86,8 @@ import { FilterUserByNamePipe } from '../../pipes/filterPipe';
         isProperRoleGuard,
         userresolver,
         homepageresolver,
-        GroupResolver
+        GroupResolver,
+        CourseResolver
     ]
 })
 export class Dashboard { }

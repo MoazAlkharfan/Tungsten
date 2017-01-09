@@ -11,13 +11,13 @@ export class CreateCourse implements OnInit {
     constructor(
         @Inject(CourseService) private _CourseService: CourseService,
         @Inject(Router) private router: Router,
-        @Inject(ActivatedRoute) private route: ActivatedRoute,
+        @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute,
     ) { }
 
     ngOnInit() {
-        let id = this.route.snapshot.params['groupid'];
+        let id = this._ActivatedRoute.snapshot.params['id'];
         if (!id)
-            this.router.navigate(['/dashboard', 'groups']);
+            this.router.navigate(['/dashboard']);
 
         this.course.GroupId = id;
     }

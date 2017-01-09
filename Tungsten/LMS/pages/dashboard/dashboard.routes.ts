@@ -16,10 +16,12 @@ import { GroupsPage } from './pages/groups/groups.component';
 import { GroupPage } from './pages/group/group.component';
 import { CreateGroup } from './pages/creategroup/creategroup.component';
 import { CreateCourse } from './pages/createcourse/createcourse.component';
+import { RemoveCoursePage } from './pages/removecourse/removecourse.component';
 import { CoursePage } from './pages/course/course.component';
 import { EditGroupPage } from './pages/editgroup/editgroup.component';
 import { RemoveGroupPage } from './pages/removegroup/removegroup.component';
 import { AddParticipantPage } from './pages/addparticipant/addparticipant.component';
+
 
 
 // Routing Guards
@@ -32,9 +34,7 @@ import { usersresolver } from '../../services/resolvers/usersresolver';
 import { homepageresolver } from '../../services/resolvers/homepageresolver';
 import { GroupResolver } from '../../services/resolvers/groupresolver';
 import { GroupsResolver } from '../../services/resolvers/groupsresolver';
-
-import { DropdownBox } from '../../components/dropdownbox/dropdownbox';
-
+import { CourseResolver } from '../../services/resolvers/courseresolver';
 
 
 // Note:
@@ -54,8 +54,10 @@ const routes: Routes = [
             { path: 'addparticipant/:id', component: AddParticipantPage, resolve: { user: userresolver, users: usersresolver, group: GroupResolver } },
             { path: 'removegroup/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } },
             { path: 'creategroup', component: CreateGroup, resolve: { user: userresolver } },
-            { path: 'createcourse/:groupid', component: CreateCourse },
-            { path: 'course/:courseid', component: CoursePage },
+            { path: 'createcourse/:id', component: CreateCourse },
+            { path: 'removecourse/:id', component: RemoveCoursePage, resolve: { course: CourseResolver } },
+            { path: 'editcourse/:id', component: CreateCourse, resolve: { course: CourseResolver } },
+            { path: 'course/:id', component: CoursePage, resolve: { course: CourseResolver } },
             { path: 'removeparticipant/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } }
         ]
     }

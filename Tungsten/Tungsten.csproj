@@ -306,6 +306,7 @@
     <Content Include="LMS\pages\dashboard\Pages\home\homepage.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\student\student.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\teacher\teacher.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\removecourse\removecourse.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\removegroup\removegroup.component.html" />
     <Content Include="LMS\pages\home\HomePage.html" />
     <Content Include="LMS\pages\register\RegisterPage.html" />
@@ -464,6 +465,7 @@
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\homepage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\student\student.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\teacher\teacher.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\removecourse\removecourse.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\removegroup\removegroup.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\removeparticipant\removeparticipant.component.ts" />
     <TypeScriptCompile Include="LMS\pages\home\HomePage.component.ts" />
