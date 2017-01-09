@@ -42,8 +42,8 @@ namespace Tungsten.Repositories
             try
             {
                 var user = db.Users.Find(userid);
-                Group group = db.Groups.Where(g => g.Id == groupid).FirstOrDefault();
-
+                Group group = await db.Groups.FindAsync(groupid);//db.Groups.Where(g => g.Id == groupid).FirstOrDefault();
+                
                 int oldgrouplength = user.Groups.Count();
 
                 if (!user.Groups.Contains(group))
