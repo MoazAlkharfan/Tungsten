@@ -55,6 +55,15 @@ export class GroupService {
             });
     }
 
+    removeUser(id: string, gid:string) {
+        return this._http.post('/Home/RemoveUserFromGroup', { userid: id, groupid: gid })
+            //.do(this.logData)
+            .catch(this.handleError)
+            .map(result => {
+                return result.json();
+            });
+    }
+
     private logData(data) {
         console.log(String(data));
     }

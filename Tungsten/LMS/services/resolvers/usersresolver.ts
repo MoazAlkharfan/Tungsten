@@ -15,7 +15,7 @@ export class usersresolver implements Resolve<User[]> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User[]> {
         let users: Observable<User[]> = this.http.get('/Home/GetUserList').map((result: Response) => {
-            return <User[]>JSON.parse(result.json());
+            return <User[]>result.json();
         }).first();
 
         if (users) {

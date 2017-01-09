@@ -54,6 +54,18 @@ namespace Tungsten.Controllers
             }
         }
 
+        public async Task<ApplicationUser> GetUserInfoById(string id)
+        {
+            try
+            {
+                return await UserManager.FindByIdAsync(id);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         [AllowAnonymous]
         public JsonResult IsAuthenticated()
         {

@@ -12,6 +12,7 @@ export class MembershipService {
     private _accountLoginAPI: string = '/Account/Login/';
     private _accountLogoutAPI: string = '/Account/LogOff/';
     private _accountUserInfo: string = '/Account/GetUserInfo/';
+    private _accountUserInfoById: string = '/Account/GetUserInfoById/';
 
 
     constructor( @Inject(DataService) public accountService: DataService) { }
@@ -55,6 +56,11 @@ export class MembershipService {
     getUserInfo(_user?: User): any {
         this.accountService.set(this._accountUserInfo);
         return this.accountService.post(_user);
+    }
+
+    getUserInfoById(id: string): any {
+        this.accountService.set(this._accountUserInfoById);
+        return this.accountService.post(id);
     }
 
 

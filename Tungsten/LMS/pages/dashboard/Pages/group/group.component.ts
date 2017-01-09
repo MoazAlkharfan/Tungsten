@@ -1,5 +1,5 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../../../../classes/user';
 import { GroupService } from '../../../../services/groupservice';
 import { IGroup } from '../../../../interfaces/group';
@@ -10,7 +10,7 @@ import 'rxjs/add/operator/switchMap';
     templateUrl: './lms/pages/dashboard/pages/group/group.component.html'
 })
 export class GroupPage implements OnInit {
-    private Group;
+    private Group: IGroup;
     private user: User;
 
     constructor(

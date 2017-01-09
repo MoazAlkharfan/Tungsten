@@ -35,15 +35,14 @@ export class AddParticipantPage implements OnInit {
 
     addUser(user: User): void {
         this._GroupService.addUser(user.Id, this.Group.Id).subscribe((result) => {
-            if (result.Success === true)
-            {
+            if (result.Success === true) {
                 this.users = this.users.filter((usertofilter) => {
                     return usertofilter.Id != user.Id;
                 })
             } else {
                 console.error('user was not added');
             }
-                
-        })
+
+        });
     }
 }

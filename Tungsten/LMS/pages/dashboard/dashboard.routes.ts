@@ -55,7 +55,8 @@ const routes: Routes = [
             { path: 'removegroup/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } },
             { path: 'creategroup', component: CreateGroup, resolve: { user: userresolver } },
             { path: 'createcourse/:groupid', component: CreateCourse },
-            { path: 'course/:courseid', component: CoursePage }
+            { path: 'course/:courseid', component: CoursePage },
+            { path: 'removeparticipant/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } }
         ]
     }
 ];

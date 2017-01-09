@@ -63,6 +63,31 @@ namespace Tungsten.Repositories
             }
         }
 
+        public async Task<bool> RemoveUserFromGroup(string userid, string groupid)
+        {
+            try
+            {
+                var user = db.Users.Find(userid);
+                Group group = await db.Groups.FindAsync(groupid);
+                int oldgrouplength = user.Groups.Count();
+
+                if (user.Groups.Contains(group))
+                {
+                    user.Groups.Remove(group);
+                    await db.SaveChangesAsync();
+                }
+
+                if (oldgrouplength != user.Groups.Count())
+                    return true;
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public bool CreateGroup(Group group)
         {
             try

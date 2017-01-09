@@ -234,9 +234,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701062224471_Initial.cs" />
-    <Compile Include="Migrations\201701062224471_Initial.Designer.cs">
-      <DependentUpon>201701062224471_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201701090814547_Initial.cs" />
+    <Compile Include="Migrations\201701090814547_Initial.Designer.cs">
+      <DependentUpon>201701090814547_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -350,6 +350,7 @@
     <Content Include="Content\_variables.scss" />
     <Content Include="Content\_mixins.scss" />
     <Content Include="LMS\components\dropdownbox\dropdownbox.scss" />
+    <Content Include="LMS\pages\dashboard\Pages\removeparticipant\removeparticipant.component.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -464,6 +465,7 @@
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\student\student.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\teacher\teacher.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\removegroup\removegroup.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\removeparticipant\removeparticipant.component.ts" />
     <TypeScriptCompile Include="LMS\pages\home\HomePage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\register\register.component.ts" />
     <TypeScriptCompile Include="LMS\pipes\filterPipe.ts" />
@@ -474,6 +476,8 @@
     <TypeScriptCompile Include="LMS\services\guards\isauthenticated.ts" />
     <TypeScriptCompile Include="LMS\services\guards\isproperrole.ts" />
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\courselistresolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\courseresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\groupsresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\groupresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\homepageresolver.ts" />
@@ -484,8 +488,8 @@
     <TypeScriptCompile Include="LMS\services\resolvers\userresolver.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701062224471_Initial.resx">
-      <DependentUpon>201701062224471_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701090814547_Initial.resx">
+      <DependentUpon>201701090814547_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

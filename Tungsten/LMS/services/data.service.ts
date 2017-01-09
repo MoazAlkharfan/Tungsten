@@ -37,7 +37,7 @@ export class DataService {
 
     post(data?: any) {
         return this.http.post(this._baseUri, data)
-            //.do(this.logData)
+            .do(this.logData)
             .catch(this.handleError)
             .map(this.extractData);
     }

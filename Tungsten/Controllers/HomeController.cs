@@ -42,13 +42,23 @@ namespace Tungsten.Controllers
         {
             return RedirectToAction("Index");
         }
-
-        public async Task<JsonResult> GetUserList()
+        [AllowAnonymous]
+        public async Task<string> GetUserList()
         {
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            List<ApplicationUser> users = UserManager.Users.ToList();//.Where(u => !user.Groups.Any(g => u.Groups.Contains(g))).ToList();
+            try
+            {
+                string userid = User.Identity.GetUserId();
+                ApplicationUser user = await UserManager.FindByIdAsync(userid);
+                var users = UserManager.Users.ToList();
 
-            return Json(JsonConvert.SerializeObject(users, Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+                var users1 = users.Where(u => !user.Groups.Any(g => u.Groups.Contains(g)));
+
+                return JsonConvert.SerializeObject(users, Formatting.Indented, jss);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
 
@@ -59,10 +69,14 @@ namespace Tungsten.Controllers
             return Json(JsonConvert.SerializeObject(user.Groups.ToList(), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
         }
 
-        [AllowAnonymous]
         public async Task<JsonResult> AddUserToGroup(string userid, string groupid)
         {
             return Json(new { Success = await repo.AddUserToGroup(userid, groupid) }, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<JsonResult> RemoveUserFromGroup(string userid, string groupid)
+        {
+            return Json(new { Success = await repo.RemoveUserFromGroup(userid, groupid) }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetGroup(string id)

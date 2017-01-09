@@ -1,5 +1,5 @@
 ﻿import { Component, Inject, OnInit, trigger } from '@angular/core';
-import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, NavigationEnd, NavigationError } from '@angular/router';
 import { User } from '../../classes/user';
 import { UserAnnouncer } from '../../services/UserAnnouncer';
 
@@ -18,8 +18,8 @@ export class Dashboard_Index implements OnInit {
         @Inject(Router) private router: Router
     ) { 
         router.events.subscribe((val) => {
-            if (val instanceof NavigationEnd) {
-                if (router.url === '/dashboard')
+            if (val instanceof NavigationEnd || val instanceof NavigationError) {
+                if (val.url === '/dashboard')
                     this.reRoute();
             }
         });
