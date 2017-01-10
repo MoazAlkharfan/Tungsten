@@ -14,13 +14,13 @@ import { StudentHomePage } from './pages/home/student/student.component';
 import { Dashboard_Index } from './dashboard.component';
 import { GroupsPage } from './pages/groups/groups.component';
 import { GroupPage } from './pages/group/group.component';
-import { CreateGroup } from './pages/creategroup/creategroup.component';
-import { CreateCourse } from './pages/createcourse/createcourse.component';
-import { RemoveCoursePage } from './pages/removecourse/removecourse.component';
+import { CreateGroup } from './pages/create/creategroup/creategroup.component';
+import { CreateCourse } from './pages/create/createcourse/createcourse.component';
+import { RemoveCoursePage } from './pages/delete/removecourse/removecourse.component';
 import { CoursePage } from './pages/course/course.component';
-import { EditGroupPage } from './pages/editgroup/editgroup.component';
-import { RemoveGroupPage } from './pages/removegroup/removegroup.component';
-import { AddParticipantPage } from './pages/addparticipant/addparticipant.component';
+import { EditGroupPage } from './pages/edit/editgroup/editgroup.component';
+import { RemoveGroupPage } from './pages/delete/removegroup/removegroup.component';
+import { CreateParticipantPage } from './pages/create/createparticipant/createparticipant.component';
 
 
 
@@ -51,7 +51,7 @@ const routes: Routes = [
             { path: 'groups', component: GroupsPage, resolve: { user: userresolver } },
             { path: 'group/:id', component: GroupPage, resolve: { user: userresolver, group: GroupResolver } },
             { path: 'editgroup/:id', component: EditGroupPage, resolve: { user: userresolver, group: GroupResolver } },
-            { path: 'addparticipant/:id', component: AddParticipantPage, resolve: { user: userresolver, users: usersresolver, group: GroupResolver } },
+            { path: 'createparticipant', component: CreateParticipantPage, resolve: { groups: GroupsResolver } },
             { path: 'removegroup/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } },
             { path: 'creategroup', component: CreateGroup, resolve: { user: userresolver } },
             { path: 'createcourse/:id', component: CreateCourse },

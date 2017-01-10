@@ -1,11 +1,11 @@
 ﻿import { Component, Inject } from '@angular/core';
-import { GroupService } from '../../../../services/groupservice';
-import { Group } from '../../../../classes/group';
-import { User } from '../../../../classes/user';
+import { GroupService } from '../../../../../services/groupservice';
+import { Group } from '../../../../../classes/group';
+import { User } from '../../../../../classes/user';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-    templateUrl: './lms/pages/dashboard/pages/creategroup/creategroup.component.html'
+    templateUrl: './lms/pages/dashboard/pages/create/creategroup/creategroup.component.html'
 })
 export class CreateGroup {
     private group: Group = new Group('', '');

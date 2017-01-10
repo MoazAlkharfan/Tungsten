@@ -1,14 +1,14 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../../../classes/user';
-import { GroupService } from '../../../../services/groupservice';
-import { IGroup } from '../../../../interfaces/group';
+import { User } from '../../../../../classes/user';
+import { IGroup } from '../../../../../interfaces/group';
+import { GroupService } from '../../../../../services/groupservice';
 
 @Component({
-    templateUrl: './lms/pages/dashboard/pages/removegroup/removegroup.component.html'
+    templateUrl: './lms/pages/dashboard/pages/edit/editgroup/editgroup.component.html'
 })
-export class RemoveGroupPage implements OnInit {
-    private Group;
+export class EditGroupPage implements OnInit {
+    private Group: IGroup;
     private user: User;
 
     constructor(
@@ -24,15 +24,12 @@ export class RemoveGroupPage implements OnInit {
         });
     }
 
-    Remove() {
-        this._GroupService.deleteGroup(this.Group.Id).subscribe((group) => {
+    Save() {
+        this._GroupService.editGroup(this.Group).subscribe((group) => {
             this.Group = group;
             console.log(group);
         }, error => console.error(error), () => {
-            if (this.user.Roles)
-                this._Router.navigate(['/dashboard', { outlets: { dashboard: [this.user.Roles[0].toLowerCase()] } }]);
-            else
-                this._Router.navigate(['/dashboard', { outlets: { dashboard: ['student'] } }]);
+                this._Router.navigate(['/dashboard']);
         });
     }
 }

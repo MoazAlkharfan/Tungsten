@@ -62,11 +62,9 @@ namespace Tungsten.Controllers
         }
 
 
-        public async Task<JsonResult> GetGroups()
+        public string GetGroups()
         {
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-
-            return Json(JsonConvert.SerializeObject(user.Groups.ToList(), Formatting.Indented, jss), JsonRequestBehavior.AllowGet);
+            return JsonConvert.SerializeObject(repo.GetGroups(), Formatting.Indented, jss);
         }
 
         public async Task<JsonResult> AddUserToGroup(string userid, string groupid)

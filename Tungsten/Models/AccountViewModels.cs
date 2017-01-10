@@ -63,7 +63,7 @@ namespace Tungsten.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        //[Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -80,15 +80,23 @@ namespace Tungsten.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
+        [Required]
         [RegularExpression("^([0-9]{6}([-+]).*)$")]
         [Display(Name = "Person Nr")]
         public string SSN { get; set; }
 
+        [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Display(Name = "Address")]
         public string Address { get; set; }
+
+        [Display(Name = "Groups")]
+        public List<Group> Groups { get; set; }
     }
 
     public class ResetPasswordViewModel

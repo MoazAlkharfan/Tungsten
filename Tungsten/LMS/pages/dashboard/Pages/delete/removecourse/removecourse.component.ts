@@ -1,10 +1,10 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { CourseService } from '../../../../services/course.service';
-import { Course } from '../../../../classes/course';
+import { CourseService } from '../../../../../services/course.service';
+import { Course } from '../../../../../classes/course';
 
 @Component({
-    templateUrl: './lms/pages/dashboard/pages/removecourse/removecourse.component.html'
+    templateUrl: './lms/pages/dashboard/pages/delete/removecourse/removecourse.component.html'
 })
 export class RemoveCoursePage implements OnInit {
     private course: Course;

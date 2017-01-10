@@ -1,11 +1,11 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../../../classes/user';
-import { IGroup } from '../../../../interfaces/group';
-import { GroupService } from '../../../../services/groupservice';
+import { User } from '../../../../../classes/user';
+import { IGroup } from '../../../../../interfaces/group';
+import { GroupService } from '../../../../../services/groupservice';
 
 @Component({
-    templateUrl: './lms/pages/dashboard/pages/editgroup/editgroup.component.html'
+    templateUrl: './lms/pages/dashboard/pages/edit/editgroup/editgroup.component.html'
 })
 export class EditGroupPage implements OnInit {
     private Group: IGroup;

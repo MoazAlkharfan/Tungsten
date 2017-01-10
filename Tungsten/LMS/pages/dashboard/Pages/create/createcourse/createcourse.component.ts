@@ -1,10 +1,10 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
-import { CourseService } from '../../../../services/course.service';
-import { Course } from '../../../../classes/Course';
+import { CourseService } from '../../../../../services/course.service';
+import { Course } from '../../../../../classes/Course';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-    templateUrl: './lms/pages/dashboard/pages/createcourse/createcourse.component.html'
+    templateUrl: './lms/pages/dashboard/pages/create/createcourse/createcourse.component.html'
 })
 export class CreateCourse implements OnInit {
     private course: Course = new Course('', '', '', '', '');

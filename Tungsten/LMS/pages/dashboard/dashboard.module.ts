@@ -17,13 +17,13 @@ import { StudentHomePage } from './pages/home/student/student.component';
 
 import { GroupsPage } from './pages/groups/groups.component';
 import { GroupPage } from './pages/group/group.component';
-import { EditGroupPage } from './pages/editgroup/editgroup.component';
-import { RemoveGroupPage } from './pages/removegroup/removegroup.component';
-import { CreateGroup } from './pages/creategroup/creategroup.component';
-import { CreateCourse } from './pages/createcourse/createcourse.component';
-import { RemoveCoursePage } from './pages/removecourse/removecourse.component';
+import { EditGroupPage } from './pages/edit/editgroup/editgroup.component';
+import { RemoveGroupPage } from './pages/delete/removegroup/removegroup.component';
+import { CreateGroup } from './pages/create/creategroup/creategroup.component';
+import { CreateCourse } from './pages/create/createcourse/createcourse.component';
+import { RemoveCoursePage } from './pages/delete/removecourse/removecourse.component';
 import { CoursePage } from './pages/course/course.component';
-import { AddParticipantPage } from './pages/addparticipant/addparticipant.component';
+import { CreateParticipantPage } from './pages/create/createparticipant/createparticipant.component';
 
 // components
 import { GroupsList } from '../../components/groupslist/GroupsList';
@@ -73,7 +73,7 @@ import { FilterUserByNamePipe } from '../../pipes/filterPipe';
         CoursePage,
         EditGroupPage,
         RemoveGroupPage,
-        AddParticipantPage,
+        CreateParticipantPage,
         FilterUserByNamePipe,
         RemoveCoursePage
     ],

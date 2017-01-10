@@ -1,12 +1,12 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from '../../../../services/account.service';
-import { User } from '../../../../classes/user';
-import { GroupService } from '../../../../services/groupservice';
-import { IGroup } from '../../../../interfaces/group';
+import { AccountService } from '../../../../../services/account.service';
+import { User } from '../../../../../classes/user';
+import { GroupService } from '../../../../../services/groupservice';
+import { IGroup } from '../../../../../interfaces/group';
 
 @Component({
-    templateUrl: './lms/pages/dashboard/pages/removeparticipant/removeparticipant.component.html'
+    templateUrl: './lms/pages/dashboard/pages/delete/removeparticipant/removeparticipant.component.html'
 })
 export class RemoveParticipantPage implements OnInit {
     private user: User;

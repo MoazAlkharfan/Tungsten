@@ -24,7 +24,7 @@ namespace Tungsten.Repositories
 
         public IEnumerable<Group> GetGroups()
         {
-            return db.Groups;
+            return db.Groups.ToList();
         }
 
         public Group FindGroup(string id)

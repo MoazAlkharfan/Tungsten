@@ -7,6 +7,7 @@ export class User {
     Email: string;
     Roles: string[];
     Password: string;
+    ConfirmPassword: string;
     RememberMe: boolean;
     Courses: Course[];
     Groups: Group[];
