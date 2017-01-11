@@ -22,6 +22,7 @@ import { DataService } from './services/data.service';
 import { MembershipService } from './services/membership.service';
 import { AccountService } from './services/account.service';
 import { UserAnnouncer } from './services/UserAnnouncer';
+import { WindowSize } from './services/windowsize';
 
 // Components
 import { Login } from './components/Login/Login';
@@ -65,6 +66,7 @@ import { GroupsResolver } from './services/resolvers/groupsresolver';
     ],
     bootstrap: [IndexPage],
     providers: [
+        WindowSize,
         UserAnnouncer,
         GroupService,
         DataService,

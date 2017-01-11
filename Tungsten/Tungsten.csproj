@@ -509,7 +509,7 @@
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\assignment.resolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\assignments.resolver.ts" />
-    <TypeScriptCompile Include="LMS\services\resolvers\courselistresolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\courses.resolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\courseresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\groupsresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\groupresolver.ts" />
@@ -524,6 +524,7 @@
     <TypeScriptCompile Include="LMS\services\segment.service.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\userresolver.ts" />
+    <TypeScriptCompile Include="LMS\services\WindowSize.ts" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201701090814547_Initial.resx">

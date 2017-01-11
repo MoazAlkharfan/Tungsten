@@ -56,6 +56,9 @@ import { GroupService } from '../../services/groupservice';
 import { ScheduleService } from '../../services/schedule.service';
 import { CourseService } from '../../services/course.service';
 import { MembershipService } from '../../services/membership.service';
+import { SegmentService } from '../../services/segment.service';
+import { LessonService } from '../../services/lesson.service';
+import { AssignmentService } from '../../services/assignment.service';
 
 // routing guards
 import { isProperRoleGuard } from '../../services/guards/isproperrole';
@@ -63,8 +66,22 @@ import { isProperRoleGuard } from '../../services/guards/isproperrole';
 // resolvers
 import { userresolver } from '../../services/resolvers/userresolver';
 import { homepageresolver } from '../../services/resolvers/homepageresolver';
+
 import { GroupResolver } from '../../services/resolvers/groupresolver';
+import { GroupsResolver } from '../../services/resolvers/groupsresolver';
+
 import { CourseResolver } from '../../services/resolvers/courseresolver';
+import { CoursesResolver } from '../../services/resolvers/courses.resolver';
+
+import { LessonResolver } from '../../services/resolvers/lesson.resolver';
+import { LessonsResolver } from '../../services/resolvers/lessons.resolver';
+
+import { SegmentResolver } from '../../services/resolvers/segment.resolver';
+import { SegmentsResolver } from '../../services/resolvers/segments.resolver';
+
+import { AssignmentResolver } from '../../services/resolvers/assignment.resolver';
+import { AssignmentsResolver } from '../../services/resolvers/assignments.resolver';
+
 
 // Pipes
 import { FilterUserByNamePipe } from '../../pipes/filterPipe';
@@ -116,6 +133,15 @@ import { FilterUserByNamePipe } from '../../pipes/filterPipe';
         
     ],
     providers: [
+        LessonResolver,
+        LessonsResolver,
+        SegmentResolver,
+        SegmentsResolver,
+        AssignmentResolver,
+        AssignmentsResolver,
+        AssignmentService,
+        LessonService,
+        SegmentService,
         UserAnnouncer,
         MembershipService,
         GroupService,
@@ -125,7 +151,9 @@ import { FilterUserByNamePipe } from '../../pipes/filterPipe';
         userresolver,
         homepageresolver,
         GroupResolver,
-        CourseResolver
+        CourseResolver,
+        GroupsResolver,
+        CoursesResolver
     ]
 })
 export class Dashboard { }

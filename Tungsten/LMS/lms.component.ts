@@ -1,11 +1,12 @@
 ﻿import { Component, Input, OnInit, ElementRef, Inject, ViewChild, AfterViewChecked, animate, trigger, style, transition, state } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Renderer } from '@angular/core';
 import { GroupService } from './services/GroupService';
 import { MembershipService } from './services/membership.service';
 import { Login } from './components/Login/Login';
 import { User } from './classes/User';
 import { UserAnnouncer } from './services/UserAnnouncer';
 import { Subscription } from 'rxjs/Subscription';
+import { WindowSize } from './services/windowsize';
 
 @Component({
     selector: 'lms-index',
@@ -34,16 +35,20 @@ export class IndexPage implements OnInit, AfterViewChecked {
     public user: User;
     @ViewChild(Login) LoginView: Login;
     subscription: Subscription;
+    @ViewChild('navmenu') NavMenu: ElementRef;
     
 
     constructor( @Inject(ElementRef) private elementRef: ElementRef,
         @Inject(MembershipService) public membershipService: MembershipService,
         @Inject(ChangeDetectorRef) public changeDetectorRef: ChangeDetectorRef,
-        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer
+        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer,
+        @Inject(Renderer) private renderer: Renderer,
+        @Inject(WindowSize) private windowSize: WindowSize
 
     ) {
         this.user = this.membershipService.getLoggedInUser() || new User('', '', '', '', []);
         this.isuserloggedin = this.isUserLoggedIn();
+
     }
     
     isUserLoggedIn(): boolean {
@@ -65,7 +70,13 @@ export class IndexPage implements OnInit, AfterViewChecked {
     ngAfterViewChecked() {
         if (this.LoginView && this.LoginView.LoggedIn && this.isuserloggedin != this.LoginView.LoggedIn)
             this.isuserloggedin = this.LoginView.LoggedIn;
-        
+
+        this.windowSize.width$.subscribe(size => {
+            this.renderer.setElementClass(this.NavMenu.nativeElement, 'offcanvas', (size <= 768));
+        });
+
+        //this.renderer.setElementClass(this.NavMenu.nativeElement, 'offcanvas', (window.innerWidth <= 768));
+
         this.changeDetectorRef.detectChanges();
     }
 

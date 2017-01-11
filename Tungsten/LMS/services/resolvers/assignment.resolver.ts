@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Rx';
 
 
 @Injectable()
-export class LessonResolver implements Resolve<Assignment> {
+export class AssignmentResolver implements Resolve<Assignment> {
 
     constructor(
         @Inject(AssignmentService) private _AssignmentService: AssignmentService,
