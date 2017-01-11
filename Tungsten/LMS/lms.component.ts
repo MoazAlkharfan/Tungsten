@@ -34,6 +34,7 @@ export class IndexPage implements OnInit, AfterViewChecked {
     public user: User;
     @ViewChild(Login) LoginView: Login;
     subscription: Subscription;
+    
 
     constructor( @Inject(ElementRef) private elementRef: ElementRef,
         @Inject(MembershipService) public membershipService: MembershipService,
@@ -64,8 +65,15 @@ export class IndexPage implements OnInit, AfterViewChecked {
     ngAfterViewChecked() {
         if (this.LoginView && this.LoginView.LoggedIn && this.isuserloggedin != this.LoginView.LoggedIn)
             this.isuserloggedin = this.LoginView.LoggedIn;
-
+        
         this.changeDetectorRef.detectChanges();
+    }
+
+    navmenuclass() {
+        if (window.innerWidth <= 992)
+            return true;
+
+        return false;
     }
 
     userUpdated(updatedUser: User) {

@@ -123,4 +123,31 @@ body {
     *** Dropdownbox Component
     ***
 */
+html, body {
+  height: 100%; }
+
+.navbar-toggle {
+  float: left;
+  margin-left: 15px; }
+
+@media (min-width: 0) {
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ }
+  .navbar {
+    display: block; } }
+
+@media (min-width: 992px) {
+  body {
+    padding: 0; }
+  .body-content {
+    padding-right: 315px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ }
+  .navbar {
+    right: auto;
+    background: none;
+    border: none;
+    display: none; } }
 
