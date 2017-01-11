@@ -13,8 +13,8 @@ import { ScheduleService } from '../../services/schedule.service';
     selector: 'lms-schedule-app',
     styleUrls: ['./lms/components/Schedule/Schedule.css'],
     template: `
-    <div class="schedule-wrapper">
-        <div class="content">
+    <div class="schedule-wrapper" id="shedule-wrapper">
+        <div class="content" id="content">
             <canvas id="schedule-canvas" style="">
                 Your browser does not support HTML5 Canvas.
             </canvas>
@@ -39,6 +39,7 @@ export class Schedule implements AfterViewInit {
     // DOM Variables
     private htmlCanvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
+    private content: HTMLDivElement;
 
     // Schedule Size Information
     private height: number;
@@ -64,6 +65,7 @@ export class Schedule implements AfterViewInit {
         // DOM Setup
         this.htmlCanvas = <HTMLCanvasElement>document.getElementById('schedule-canvas');
         this.ctx = this.htmlCanvas.getContext('2d');
+        this.content = <HTMLDivElement>document.getElementById("content");
 
         // Add EventListener to Re-render on Resize. Perhaps set a timeout on this?
         window.addEventListener('resize', (e) => this.drawSchedule(segments));
@@ -75,8 +77,8 @@ export class Schedule implements AfterViewInit {
     drawSchedule(segments: ScheduleSegment[]): void {
 
         // Scaling Workaround
-        this.width = this.ctx.canvas.width = this.htmlCanvas.offsetWidth;
-        this.height = this.ctx.canvas.height = this.htmlCanvas.offsetHeight;
+        this.width = this.ctx.canvas.width = this.content.offsetWidth;
+        this.height = this.ctx.canvas.height = this.content.offsetHeight;
 
         // Setup Dynamic Properties
         this.hourHeight = this.height / this.dayLength;

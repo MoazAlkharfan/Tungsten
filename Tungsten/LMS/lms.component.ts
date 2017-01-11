@@ -72,7 +72,8 @@ export class IndexPage implements OnInit, AfterViewChecked {
             this.isuserloggedin = this.LoginView.LoggedIn;
 
         this.windowSize.width$.subscribe(size => {
-            this.renderer.setElementClass(this.NavMenu.nativeElement, 'offcanvas', (size <= 768));
+            if (this.NavMenu)
+                this.renderer.setElementClass(this.NavMenu.nativeElement, 'offcanvas', (size <= 768));
         });
 
         //this.renderer.setElementClass(this.NavMenu.nativeElement, 'offcanvas', (window.innerWidth <= 768));

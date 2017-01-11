@@ -55,6 +55,7 @@
 
 :host /deep/ .item {
   display: flex;
+  position: relative;
   flex-flow: row;
   background-color: rgba(228, 106, 26, 0.21);
   margin-top: 1px;
