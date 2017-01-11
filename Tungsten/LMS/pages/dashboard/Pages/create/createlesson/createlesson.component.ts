@@ -1,9 +1,6 @@
 ﻿import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AccountService } from '../../../../../services/account.service';
-import { IGroup } from '../../../../../interfaces/group';
-import { User } from '../../../../../classes/user';
-import { OperationResult } from '../../../../../classes/operationResult';
+import { LessonService } from '../../../../../services/lesson.service';
 import { Lesson } from '../../../../../classes/lesson';
 import { Course } from '../../../../../classes/course';
 
@@ -17,30 +14,33 @@ export class CreateLessonPage implements OnInit {
 
     constructor(
         @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute,
-        @Inject(AccountService) private _AccountService: AccountService,
+        @Inject(LessonService) private _LessonService: LessonService,
         @Inject(Router) private _Router: Router
     )
     { }
 
     ngOnInit() {
-        this._ActivatedRoute.data.subscribe((data: { courses: Course[] }) => {
-            this.courses = data.courses;
-        }, error => console.error(error), () => {
+        let id = this._ActivatedRoute.snapshot.params['id'];
+        if (id) {
+            this.lesson.CourseId = id;
+        }
+        else {
+            this._ActivatedRoute.data.subscribe((data: { courses: Course[] }) => {
+                this.courses = data.courses;
+            }, error => console.error(error), () => {
 
-            if (!this.courses.length)
-                this._Router.navigate(['../']);
-        });
+                if (!this.courses.length)
+                    this._Router.navigate(['/dashboard']);
+            });
+        }
     }
 
     create() {
-        console.log('sub');
-        /*
-        // TODO: submit created lesson
-        this._AccountService.CreateAccount(this.user).subscribe((result: OperationResult) => {
-            if (result.Succeeded === true)
+        this._LessonService.Create(this.lesson).subscribe((result) => {
+            if (result.CourseId)
                 this._Router.navigate(['../']);
             else
-                this.statusmessage = result.Message;
-        });*/
+                this.statusmessage = 'failed try again!';
+        });
     }
 }

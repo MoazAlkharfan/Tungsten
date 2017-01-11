@@ -78,12 +78,12 @@ export class Schedule implements AfterViewInit {
 
         // Scaling Workaround
         this.width = this.ctx.canvas.width = this.content.offsetWidth;
-        this.height = this.ctx.canvas.height = this.content.offsetHeight;
+        this.height = this.ctx.canvas.height = Math.floor(this.content.offsetWidth * 0.5625);
 
         // Setup Dynamic Properties
-        this.hourHeight = this.height / this.dayLength;
-        this.smallFont = this.width / 72 + 'px ' + this.fontName;
-        this.largeFont = this.width / 56 + 'px ' + this.fontName;
+        this.hourHeight = Math.round(this.height / this.dayLength);
+        this.smallFont = Math.round(this.width / 72) + 'px ' + this.fontName;
+        this.largeFont = Math.round(this.width / 56) + 'px ' + this.fontName;
 
         // Fill Background
         // this.ctx.fillStyle = this.backgroundColor;

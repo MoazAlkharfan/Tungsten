@@ -11,12 +11,16 @@
         </div>
     </div>
     <hr>
-    <div class="form-group form-group-lg">
-        <select name="Segment" [ngModel]="assignment.SegmentId" class="form-control" required>
-            <option *ngFor="let segment of segments" [value]="segment.Id" title="Required">
-                {{segment.Name}}
-            </option>
-        </select>
+    <div *ngIf="segments">
+        <div class="form-group form-group-lg">
+            <select name="Segment" [ngModel]="assignment.SegmentId" class="form-control" required>
+                <option *ngFor="let segment of segments" [value]="segment.Id" title="Required">
+                    {{segment.Name}}
+                </option>
+            </select>
+        </div>
+        <hr>
     </div>
+    
     <button class="btn btn-primary" [disabled]="!caForm.form.valid" (click)="Create()">Create</button>
 </form>

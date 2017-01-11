@@ -1,6 +1,7 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
-import { CourseService } from '../../../../../services/course.service';
+import { SegmentService } from '../../../../../services/segment.service';
 import { Segment } from '../../../../../classes/segment';
+import { Course } from '../../../../../classes/course';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,21 +9,37 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CreateSegmentPage implements OnInit {
     private segment: Segment;
+    private statusmessage: string;
+    private courses: Course[];
+
     constructor(
-        @Inject(CourseService) private _CourseService: CourseService,
-        @Inject(Router) private router: Router,
+        @Inject(SegmentService) private _SegmentService: SegmentService,
+        @Inject(Router) private _Router: Router,
         @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute,
     ) { }
 
     ngOnInit() {
         let id = this._ActivatedRoute.snapshot.params['id'];
-        if (!id)
-            this.router.navigate(['/dashboard']);
+        if (id) {
+            this.segment.CourseId = id;
+        }
+        else {
+            this._ActivatedRoute.data.subscribe((data: { courses: Course[] }) => {
+                this.courses = data.courses;
+            }, error => console.error(error), () => {
 
-        this.segment.CourseId = id;
+                if (!this.courses.length)
+                    this._Router.navigate(['/dashboard']);
+            });
+        }
     }
 
     Create() {
-        // TODO: segment.service.createsegment
+        this._SegmentService.Create(this.segment).subscribe((result) => {
+            if (result.Id)
+                this._Router.navigate(['../']);
+            else
+                this.statusmessage = 'failed try again!';
+        });
     }
 }

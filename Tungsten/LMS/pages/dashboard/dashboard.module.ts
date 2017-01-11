@@ -64,8 +64,10 @@ import { AssignmentService } from '../../services/assignment.service';
 import { isProperRoleGuard } from '../../services/guards/isproperrole';
 
 // resolvers
-import { userresolver } from '../../services/resolvers/userresolver';
 import { homepageresolver } from '../../services/resolvers/homepageresolver';
+
+import { userresolver } from '../../services/resolvers/userresolver';
+import { usersresolver } from '../../services/resolvers/usersresolver';
 
 import { GroupResolver } from '../../services/resolvers/groupresolver';
 import { GroupsResolver } from '../../services/resolvers/groupsresolver';
