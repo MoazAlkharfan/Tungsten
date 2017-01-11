@@ -5,9 +5,9 @@ import { IGroup } from '../../../../../interfaces/group';
 import { GroupService } from '../../../../../services/groupservice';
 
 @Component({
-    templateUrl: './lms/pages/dashboard/pages/edit/editgroup/editgroup.component.html'
+    templateUrl: './lms/pages/dashboard/pages/edit/editsegment/editsegment.component.html'
 })
-export class EditGroupPage implements OnInit {
+export class EditSegmentPage implements OnInit {
     private Group: IGroup;
     private user: User;
 

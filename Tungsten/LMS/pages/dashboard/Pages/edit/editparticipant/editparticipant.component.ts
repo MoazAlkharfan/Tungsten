@@ -8,7 +8,7 @@ import { OperationResult } from '../../../../../classes/operationResult';
 @Component({
     templateUrl: 'lms/pages/dashboard/pages/create/createparticipant/createparticipant.component.html'
 })
-export class CreateParticipantPage implements OnInit {
+export class EditParticipantPage implements OnInit {
     private groups: IGroup[];
     private user: User = new User('', '', '', '', ['Student']);
     private statusmessage: string;

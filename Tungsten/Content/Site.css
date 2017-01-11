@@ -123,9 +123,6 @@ body {
     *** Dropdownbox Component
     ***
 */
-html, body {
-  height: 100%; }
-
 .navbar-toggle {
   float: left;
   margin-left: 15px; }
@@ -137,7 +134,7 @@ html, body {
   .navbar {
     display: block; } }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   body {
     padding: 0; }
   .body-content {
@@ -146,8 +143,5 @@ html, body {
     display: block;
     /* force showing the toggle */ }
   .navbar {
-    right: auto;
-    background: none;
-    border: none;
     display: none; } }
 

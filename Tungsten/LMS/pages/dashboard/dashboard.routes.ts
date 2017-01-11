@@ -9,18 +9,36 @@ import { TeacherHomePage } from './pages/home/teacher/teacher.component';
 import { StudentHomePage } from './pages/home/student/student.component';
 //import { HomePage } from './pages/home/admin/admin.component';
 
-
-//Other Pages
+//  Other Pages
 import { Dashboard_Index } from './dashboard.component';
 import { GroupsPage } from './pages/groups/groups.component';
 import { GroupPage } from './pages/group/group.component';
+import { CoursePage } from './pages/course/course.component';
+
+// Create Pages
 import { CreateGroup } from './pages/create/creategroup/creategroup.component';
 import { CreateCourse } from './pages/create/createcourse/createcourse.component';
-import { RemoveCoursePage } from './pages/delete/removecourse/removecourse.component';
-import { CoursePage } from './pages/course/course.component';
-import { EditGroupPage } from './pages/edit/editgroup/editgroup.component';
-import { RemoveGroupPage } from './pages/delete/removegroup/removegroup.component';
 import { CreateParticipantPage } from './pages/create/createparticipant/createparticipant.component';
+import { CreateLessonPage } from './pages/create/createlesson/createlesson.component';
+import { CreateSegmentPage } from './pages/create/createsegment/createsegment.component';
+import { CreateAssignmentPage } from './pages/create/createassignment/createassignment.component';
+
+// Edit Pages
+import { EditGroupPage } from './pages/edit/editgroup/editgroup.component';
+import { EditAssignmentPage } from './pages/edit/editassignment/editassignment.component';
+import { EditCoursePage } from './pages/edit/editcourse/editcourse.component';
+import { EditLessonPage } from './pages/edit/editlesson/editlesson.component';
+import { EditParticipantPage } from './pages/edit/editparticipant/editparticipant.component';
+import { EditSegmentPage } from './pages/edit/editsegment/editsegment.component';
+
+// Delete Pages
+import { RemoveCoursePage } from './pages/delete/removecourse/removecourse.component';
+import { RemoveGroupPage } from './pages/delete/removegroup/removegroup.component';
+import { RemoveAssignmentPage } from './pages/delete/removeassignment/removeassignment.component';
+import { RemoveLessonPage } from './pages/delete/removelesson/removelesson.component';
+import { RemoveParticipantPage } from './pages/delete/removeparticipant/removeparticipant.component';
+import { RemoveSegmentPage } from './pages/delete/removesegment/removesegment.component';
+
 
 
 
@@ -50,15 +68,31 @@ const routes: Routes = [
             { path: 'admin', component: HomePage },
             { path: 'groups', component: GroupsPage, resolve: { user: userresolver } },
             { path: 'group/:id', component: GroupPage, resolve: { user: userresolver, group: GroupResolver } },
-            { path: 'editgroup/:id', component: EditGroupPage, resolve: { user: userresolver, group: GroupResolver } },
+            { path: 'course/:id', component: CoursePage, resolve: { course: CourseResolver } },
+
+            // Create Routes
             { path: 'createparticipant', component: CreateParticipantPage, resolve: { groups: GroupsResolver } },
-            { path: 'removegroup/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } },
             { path: 'creategroup', component: CreateGroup, resolve: { user: userresolver } },
             { path: 'createcourse/:id', component: CreateCourse },
+            { path: 'createassignment', component: CreateAssignmentPage },
+            { path: 'createlesson', component: CreateLessonPage },
+            { path: 'createsegment', component: CreateSegmentPage },
+
+            // Edit Routes
+            { path: 'editgroup/:id', component: EditGroupPage, resolve: { user: userresolver, group: GroupResolver } },
+            { path: 'editcourse/:id', component: EditCoursePage, resolve: { course: CourseResolver } },
+            { path: 'editassignment/:id', component: EditAssignmentPage },
+            { path: 'editlesson/:id', component: EditLessonPage },
+            { path: 'editparticipant/:id', component: EditParticipantPage },
+            { path: 'editsegment/:id', component: EditSegmentPage },
+
+            // Delete Routes
+            { path: 'removegroup/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } },
             { path: 'removecourse/:id', component: RemoveCoursePage, resolve: { course: CourseResolver } },
-            { path: 'editcourse/:id', component: CreateCourse, resolve: { course: CourseResolver } },
-            { path: 'course/:id', component: CoursePage, resolve: { course: CourseResolver } },
-            { path: 'removeparticipant/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } }
+            { path: 'removeparticipant/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } },
+            { path: 'removeassignment/:id', component: RemoveAssignmentPage },
+            { path: 'removelesson/:id', component: RemoveLessonPage },
+            { path: 'removesegment/:id', component: RemoveSegmentPage },
         ]
     }
 ];

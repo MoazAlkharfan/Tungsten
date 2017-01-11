@@ -310,7 +310,7 @@
     <Content Include="LMS\pages\dashboard\Pages\edit\editgroup\editgroup.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\edit\editlesson\editlesson.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\edit\editparticipant\editparticipant.component.html" />
-    <Content Include="LMS\pages\dashboard\Pages\edit\editsegment\editgroup.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\edit\editsegment\editsegment.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\groups\groups.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\group\group.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\homepage.component.html" />
@@ -483,7 +483,7 @@
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editgroup\editgroup.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editlesson\editlesson.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editparticipant\editparticipant.component.ts" />
-    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editsegment\editgroup.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editsegment\editsegment.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\groups\groups.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\group\group.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\homepage.component.ts" />

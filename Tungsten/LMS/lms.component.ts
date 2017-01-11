@@ -70,7 +70,7 @@ export class IndexPage implements OnInit, AfterViewChecked {
     }
 
     navmenuclass() {
-        if (window.innerWidth <= 992)
+        if (window.innerWidth <= 768)
             return true;
 
         return false;
