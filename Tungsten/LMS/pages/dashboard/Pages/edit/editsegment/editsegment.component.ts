@@ -1,35 +1,50 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../../../../classes/user';
-import { IGroup } from '../../../../../interfaces/group';
-import { GroupService } from '../../../../../services/groupservice';
+import { Course } from '../../../../../classes/course';
+import { Segment } from '../../../../../classes/segment';
+import { SegmentService } from '../../../../../services/segment.service';
 
 @Component({
     templateUrl: './lms/pages/dashboard/pages/edit/editsegment/editsegment.component.html'
 })
 export class EditSegmentPage implements OnInit {
-    private Group: IGroup;
-    private user: User;
+    private segment: Segment;
+    private segments: Segment[];
+    private courses: Course[];
 
     constructor(
         @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute,
-        @Inject(GroupService) private _GroupService: GroupService,
+        @Inject(SegmentService) private _SegmentService: SegmentService,
         @Inject(Router) private _Router: Router
     ) { };
 
     ngOnInit() {
-        this._ActivatedRoute.data.subscribe((data: { user: User, group: IGroup }) => {
-            this.Group = data.group;
-            this.user = data.user;
-        });
+        let id = this._ActivatedRoute.snapshot.params['id'];
+        if (id) {
+            this._ActivatedRoute.data.subscribe((data: { segment: Segment, courses: Course[] }) => {
+                this.segment = data.segment;
+                this.courses = data.courses;
+            }, error => console.error(error), () => {
+                if (!this.segments.length || !this.courses.length)
+                    this._Router.navigate(['../']);
+            });
+        }
+        else {
+            this._ActivatedRoute.data.subscribe((data: { segments: Segment[], courses: Course[] }) => {
+                this.segments = data.segments;
+                this.courses = data.courses;
+            }, error => console.error(error), () => {
+                if (!this.segments.length || !this.courses.length)
+                    this._Router.navigate(['../']);
+            });
+        }
     }
 
     Save() {
-        this._GroupService.editGroup(this.Group).subscribe((group) => {
-            this.Group = group;
-            console.log(group);
+        this._SegmentService.Edit(this.segment).subscribe((segment) => {
+            this.segment = segment;
         }, error => console.error(error), () => {
-                this._Router.navigate(['/dashboard']);
+                this._Router.navigate(['../']);
         });
     }
 }

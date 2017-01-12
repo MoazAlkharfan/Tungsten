@@ -10,6 +10,7 @@ import { Group } from '../../../../../classes/group';
 })
 export class EditCoursePage implements OnInit {
     private course: Course;
+    private courses: Course[];
     private groups: Group[];
 
     constructor(
@@ -19,10 +20,23 @@ export class EditCoursePage implements OnInit {
     ) { };
 
     ngOnInit() {
-        this._ActivatedRoute.data.subscribe((data: { course: Course, groups: Group[] }) => {
-            this.course = data.course;
-            this.groups = data.groups;
-        });
+        let id = this._ActivatedRoute.snapshot.params['id'];
+        if (id) {
+            this._ActivatedRoute.data.subscribe((data: { course: Course, groups: Group[] }) => {
+                this.course = data.course;
+                this.groups = data.groups;
+            });
+        }
+        else {
+            this._ActivatedRoute.data.subscribe((data: { courses: Course[], groups: Group[] }) => {
+                this.courses = data.courses;
+                this.groups = data.groups;
+            }, error => console.error(error), () => {
+
+                if (!this.courses.length)
+                    this._Router.navigate(['../']);
+            });
+        }
     }
 
     Save() {

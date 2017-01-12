@@ -2,29 +2,51 @@
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Lesson } from '../../../../../classes/lesson';
 import { Course } from '../../../../../classes/course';
-import { GroupService } from '../../../../../services/groupservice';
+import { LessonService } from '../../../../../services/lesson.service';
 
 @Component({
     templateUrl: './lms/pages/dashboard/pages/edit/editlesson/editlesson.component.html'
 })
 export class EditLessonPage implements OnInit {
     private lesson: Lesson;
+    private lessons: Lesson[];
     private courses: Course[];
+    private statusmessage: string;
 
     constructor(
         @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute,
-        @Inject(GroupService) private _GroupService: GroupService,
+        @Inject(LessonService) private _LessonService: LessonService,
         @Inject(Router) private _Router: Router
     ) { };
 
     ngOnInit() {
-        this._ActivatedRoute.data.subscribe((data: { lesson: Lesson, courses: Course[] }) => {
-            this.lesson = data.lesson;
-            this.courses = data.courses;
-        });
+        let id = this._ActivatedRoute.snapshot.params['id'];
+        if (id) {
+            this._ActivatedRoute.data.subscribe((data: { lesson: Lesson, courses: Course[] }) => {
+                this.lesson = data.lesson;
+                this.courses = data.courses;
+            });
+        }
+        else {
+            this._ActivatedRoute.data.subscribe((data: { lessons: Lesson[], courses: Course[] }) => {
+                this.lessons = data.lessons;
+                this.courses = data.courses;
+            }, error => console.error(error), () => {
+
+                if (!this.lessons.length)
+                    this._Router.navigate(['../']);
+            });
+        }
+
+        
     }
 
     Save() {
-        // TODO: lesson.service.edit
+        this._LessonService.Edit(this.lesson).subscribe((result) => {
+            if (result.Id)
+                this._Router.navigate(['../']);
+            else
+                this.statusmessage = 'failed try again!';
+        });
     }
 }

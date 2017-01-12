@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class AccountPage implements OnInit {
     user: User;
-    newuser: EditModel = new EditModel('', '', '', '', '');
+    newuser: User = new User('', '', '', '', []);
     subscription: Subscription;
 
     constructor( @Inject(MembershipService) private _MembershipService: MembershipService,

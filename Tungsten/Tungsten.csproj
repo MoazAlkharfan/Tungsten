@@ -445,7 +445,6 @@
     <TypeScriptCompile Include="LMS\classes\assignment.ts" />
     <TypeScriptCompile Include="LMS\classes\ChangeInfo.ts" />
     <TypeScriptCompile Include="LMS\classes\Course.ts" />
-    <TypeScriptCompile Include="LMS\classes\EditModel.ts" />
     <TypeScriptCompile Include="LMS\classes\Group.ts" />
     <TypeScriptCompile Include="LMS\classes\HomePageModel.ts" />
     <TypeScriptCompile Include="LMS\classes\Lesson.ts" />

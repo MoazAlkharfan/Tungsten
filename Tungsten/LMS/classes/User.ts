@@ -8,6 +8,9 @@ export class User {
     Roles: string[];
     Password: string;
     ConfirmPassword: string;
+    OldPassword: string;
+    NewPassword: string;
+    NewPasswordConfirm: string;
     RememberMe: boolean;
     Courses: Course[];
     Groups: Group[];

@@ -32,9 +32,9 @@ export class AssignmentService {
             .map(this.extractData);
     }
 
-    Create(group: Assignment) {
+    Create(assignment: Assignment) {
         this._DataService.set(this._AssignmentCreateAPI);
-        return this._DataService.post(group)
+        return this._DataService.post(assignment)
             //.do(this.logData)
             .catch(this.handleError)
             .map(this.extractData);
@@ -47,9 +47,9 @@ export class AssignmentService {
             .catch(this.handleError);
     }
 
-    Edit(group: Assignment) {
+    Edit(assignment: Assignment) {
         this._DataService.set(this._AssignmentEditAPI);
-        return this._DataService.post(group)
+        return this._DataService.post(assignment)
             //.do(this.logData)
             .catch(this.handleError)
             .map(this.extractData);
@@ -88,7 +88,7 @@ export class AssignmentService {
             });
             return null;
         }
-        let body = <Assignment>JSON.parse(res.json());
+        let body = <Assignment>res.json();
         return body || null;
     }
 }

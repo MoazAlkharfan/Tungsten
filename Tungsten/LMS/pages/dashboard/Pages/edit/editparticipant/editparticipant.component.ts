@@ -11,6 +11,7 @@ import { OperationResult } from '../../../../../classes/operationResult';
 export class EditParticipantPage implements OnInit {
     private groups: IGroup[];
     private user: User = new User('', '', '', '', ['Student']);
+    private users: User[];
     private statusmessage: string;
 
     constructor(
@@ -21,25 +22,36 @@ export class EditParticipantPage implements OnInit {
     { }
 
     ngOnInit() {
-        this._ActivatedRoute.data.subscribe((data: { groups: IGroup[] }) => {
-            this.groups = data.groups;
-            //console.info(data.groups);
-        }, error => console.error(error), () => {
+        let id = this._ActivatedRoute.snapshot.params['id'];
+        if (id) {
+            this._ActivatedRoute.data.subscribe((data: { user: User, groups: IGroup[] }) => {
+                this.user = data.user;
+                this.groups = data.groups;
+            }, error => console.error(error), () => {
+                if (!this.user)
+                    this._Router.navigate(['../']);
+            });
+        }
+        else {
+            this._ActivatedRoute.data.subscribe((data: { users: User[], groups: IGroup[] }) => {
+                this.users = data.users;
+                this.groups = data.groups;
+            }, error => console.error(error), () => {
 
-            if (!this.groups.length)
-                this._Router.navigate(['../']);
-        });
+                if (!this.users.length)
+                    this._Router.navigate(['../']);
+            });
+        }
     }
 
     save() {
-        /*
         this.user.ConfirmPassword = this.user.Password;
         this._AccountService.EditAccount(this.user).subscribe((result: OperationResult) => {
             if (result.Succeeded === true)
                 this._Router.navigate(['../']);
             else
                 this.statusmessage = result.Message;
-        });*/
+        });
     }
 
     generateUsername() {

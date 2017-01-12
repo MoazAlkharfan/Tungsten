@@ -1,30 +1,46 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../../../../classes/user';
-import { IGroup } from '../../../../../interfaces/group';
-import { GroupService } from '../../../../../services/groupservice';
+import { AssignmentService } from '../../../../../services/assignment.service';
 import { Assignment } from '../../../../../classes/assignment';
 
 @Component({
     templateUrl: './lms/pages/dashboard/pages/edit/editassignment/editassignment.component.html'
 })
 export class EditAssignmentPage implements OnInit {
-    private Group: IGroup;
     private assignment: Assignment;
+    private assignments: Assignment[];
+    private statusmessage: string;
 
     constructor(
         @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute,
-        @Inject(GroupService) private _GroupService: GroupService,
+        @Inject(AssignmentService) private _AssignmentService: AssignmentService,
         @Inject(Router) private _Router: Router
     ) { };
 
     ngOnInit() {
-        this._ActivatedRoute.data.subscribe((data: { assignment: Assignment }) => {
-            this.assignment= data.assignment;
-        });
+        let id = this._ActivatedRoute.snapshot.params['id'];
+        if (id) {
+            this._ActivatedRoute.data.subscribe((data: { assignment: Assignment }) => {
+                this.assignment = data.assignment;
+            });
+        }
+        else {
+            this._ActivatedRoute.data.subscribe((data: { assignments: Assignment[] }) => {
+                this.assignments = data.assignments;
+            }, error => console.error(error), () => {
+
+                if (!this.assignments.length)
+                    this._Router.navigate(['../']);
+            });
+        }
     }
 
     Save() {
-        // TODO: assignment.service.save
+        this._AssignmentService.Edit(this.assignment).subscribe((result) => {
+            if (result.Id)
+                this._Router.navigate(['../']);
+            else
+                this.statusmessage = 'failed try again!';
+        });
     }
 }

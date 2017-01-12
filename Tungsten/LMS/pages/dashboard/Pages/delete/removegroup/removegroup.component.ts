@@ -8,8 +8,8 @@ import { IGroup } from '../../../../../interfaces/group';
     templateUrl: './lms/pages/dashboard/pages/delete/removegroup/removegroup.component.html'
 })
 export class RemoveGroupPage implements OnInit {
-    private Group;
-    private user: User;
+    private Group: IGroup;
+    private Groups: IGroup[];
 
     constructor(
         @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute,
@@ -18,21 +18,27 @@ export class RemoveGroupPage implements OnInit {
     ) { };
 
     ngOnInit() {
-        this._ActivatedRoute.data.subscribe((data: { user: User, group: IGroup }) => {
-            this.Group = data.group;
-            this.user = data.user;
-        });
+        let id = this._ActivatedRoute.snapshot.params['id'];
+        if (id) {
+            this._ActivatedRoute.data.subscribe((data: { Group: IGroup }) => {
+                this.Group = data.Group;
+            });
+        }
+        else {
+            this._ActivatedRoute.data.subscribe((data: { Groups: IGroup[] }) => {
+                this.Groups = data.Groups;
+            }, error => console.error(error), () => {
+                if (!this.Groups.length)
+                    this._Router.navigate(['../']);
+            });
+        }
     }
 
     Remove() {
         this._GroupService.deleteGroup(this.Group.Id).subscribe((group) => {
             this.Group = group;
-            console.log(group);
         }, error => console.error(error), () => {
-            if (this.user.Roles)
-                this._Router.navigate(['/dashboard', { outlets: { dashboard: [this.user.Roles[0].toLowerCase()] } }]);
-            else
-                this._Router.navigate(['/dashboard', { outlets: { dashboard: ['student'] } }]);
+            this._Router.navigate(['../']);
         });
     }
 }

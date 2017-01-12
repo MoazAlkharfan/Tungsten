@@ -31,7 +31,7 @@ export class RemoveParticipantPage implements OnInit {
             if (result.Success === true) {
                 this._Router.navigate(['../']);
             } else {
-                console.error('user was not added');
+                console.error('user was not removed');
             }
 
         });

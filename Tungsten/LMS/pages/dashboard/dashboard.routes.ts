@@ -103,24 +103,41 @@ const routes: Routes = [
             { path: 'createsegment/:id', component: CreateSegmentPage },
 
             // Edit Routes
+            { path: 'editgroup', component: EditGroupPage, resolve: { user: userresolver, groups: GroupsResolver } },
             { path: 'editgroup/:id', component: EditGroupPage, resolve: { user: userresolver, group: GroupResolver } },
 
-            { path: 'editcourse/:id', component: EditCoursePage, resolve: { course: CourseResolver } },
+            { path: 'editcourse', component: EditCoursePage, resolve: { courses: CoursesResolver, groups: GroupsResolver } },
+            { path: 'editcourse/:id', component: EditCoursePage, resolve: { course: CourseResolver, groups: GroupsResolver } },
 
+            { path: 'editassignment', component: EditAssignmentPage, resolve: { assignments: AssignmentsResolver } },
             { path: 'editassignment/:id', component: EditAssignmentPage, resolve: { assignment: AssignmentResolver } },
 
-            { path: 'editlesson/:id', component: EditLessonPage, resolve: { lesson: LessonResolver } },
+            { path: 'editlesson', component: EditLessonPage, resolve: { lessons: LessonsResolver, courses: CoursesResolver } },
+            { path: 'editlesson/:id', component: EditLessonPage, resolve: { lesson: LessonResolver, courses: CoursesResolver } },
 
+            { path: 'editparticipant', component: EditParticipantPage, resolve: { users: usersresolver, groups: GroupsResolver } },
             { path: 'editparticipant/:id', component: EditParticipantPage, resolve: { user: userresolver, groups: GroupsResolver } },
 
-            { path: 'editsegment/:id', component: EditSegmentPage, resolve: { segment: SegmentResolver } },
+            { path: 'editsegment', component: EditSegmentPage, resolve: { segments: SegmentsResolver, courses: CoursesResolver } },
+            { path: 'editsegment/:id', component: EditSegmentPage, resolve: { segment: SegmentResolver, courses: CoursesResolver } },
 
             // Delete Routes
+            { path: 'removegroup', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupsResolver } },
             { path: 'removegroup/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } },
+
+            { path: 'removecourse', component: RemoveCoursePage, resolve: { courses: CoursesResolver } },
             { path: 'removecourse/:id', component: RemoveCoursePage, resolve: { course: CourseResolver } },
-            { path: 'removeparticipant/:id', component: RemoveGroupPage, resolve: { user: userresolver, group: GroupResolver } },
+
+            { path: 'removeparticipant', component: RemoveParticipantPage, resolve: { users: userresolver, group: GroupResolver } },
+            { path: 'removeparticipant/:id', component: RemoveParticipantPage, resolve: { user: userresolver, group: GroupResolver } },
+
+            { path: 'removeassignment', component: RemoveAssignmentPage, resolve: { assignments: AssignmentsResolver } },
             { path: 'removeassignment/:id', component: RemoveAssignmentPage, resolve: { assignment: AssignmentResolver } },
+
+            { path: 'removelesson', component: RemoveLessonPage, resolve: { lessons: LessonsResolver } },
             { path: 'removelesson/:id', component: RemoveLessonPage, resolve: { lesson: LessonResolver } },
+
+            { path: 'removesegment', component: RemoveSegmentPage, resolve: { segments: SegmentsResolver } },
             { path: 'removesegment/:id', component: RemoveSegmentPage, resolve: { segment: SegmentResolver } },
         ]
     }

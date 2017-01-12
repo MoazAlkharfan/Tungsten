@@ -9,6 +9,7 @@ import { GroupService } from '../../../../../services/groupservice';
 })
 export class EditGroupPage implements OnInit {
     private Group: IGroup;
+    private Groups: IGroup[];
     private user: User;
 
     constructor(
@@ -18,10 +19,25 @@ export class EditGroupPage implements OnInit {
     ) { };
 
     ngOnInit() {
-        this._ActivatedRoute.data.subscribe((data: { user: User, group: IGroup }) => {
-            this.Group = data.group;
-            this.user = data.user;
-        });
+        let id = this._ActivatedRoute.snapshot.params['id'];
+        if (id) {
+            this._ActivatedRoute.data.subscribe((data: { user: User, group: IGroup }) => {
+                this.Group = data.group;
+                this.user = data.user;
+            });
+        }
+        else {
+            this._ActivatedRoute.data.subscribe((data: { user: User, groups: IGroup[] }) => {
+                this.Groups = data.groups;
+                this.user = data.user;
+            }, error => console.error(error), () => {
+
+                if (!this.Groups.length)
+                    this._Router.navigate(['../']);
+            });
+        }
+
+        
     }
 
     Save() {
@@ -29,7 +45,7 @@ export class EditGroupPage implements OnInit {
             this.Group = group;
             console.log(group);
         }, error => console.error(error), () => {
-                this._Router.navigate(['/dashboard']);
+                this._Router.navigate(['../']);
         });
     }
 }

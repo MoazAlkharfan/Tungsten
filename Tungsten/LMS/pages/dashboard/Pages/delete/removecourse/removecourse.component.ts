@@ -8,6 +8,7 @@ import { Course } from '../../../../../classes/course';
 })
 export class RemoveCoursePage implements OnInit {
     private course: Course;
+    private courses: Course[];
 
     constructor(
         @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute,
@@ -16,16 +17,27 @@ export class RemoveCoursePage implements OnInit {
     ) { };
 
     ngOnInit() {
-        this._ActivatedRoute.data.subscribe((data: { course: Course}) => {
-            this.course = data.course;
-        });
+        let id = this._ActivatedRoute.snapshot.params['id'];
+        if (id) {
+            this._ActivatedRoute.data.subscribe((data: { course: Course }) => {
+                this.course = data.course;
+            });
+        }
+        else {
+            this._ActivatedRoute.data.subscribe((data: { courses: Course[] }) => {
+                this.courses = data.courses;
+            }, error => console.error(error), () => {
+                if (!this.courses.length)
+                    this._Router.navigate(['../']);
+            });
+        }
     }
 
     Remove() {
         this._CourseService.deleteCourse(this.course.Id).subscribe((course) => {
             this.course = course;
         }, error => console.error(error), () => {
-                this._Router.navigate(['/dashboard']);
+                this._Router.navigate(['../']);
         });
     }
 }
