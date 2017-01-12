@@ -1,4 +1,4 @@
-ï»¿namespace Tungsten.Migrations
+namespace Tungsten.Migrations
 {
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
