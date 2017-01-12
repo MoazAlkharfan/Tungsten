@@ -1,4 +1,4 @@
-namespace Tungsten.Migrations
+ï»¿namespace Tungsten.Migrations
 {
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
@@ -48,48 +48,48 @@ namespace Tungsten.Migrations
             );
 
             // Group 1
-            var student0 = new ApplicationUser { Groups = new List<Group>(), SSN = "010622-4256", PhoneNumber = "+46702312467", UserName = "kurt3", Name = "Kurt Janson", Email = "kurt.jannssson@fakemail.com", Address = "V�stra G�gatan 33, 93791 Burtr�sk" };
-            var student1 = new ApplicationUser { Groups = new List<Group>(), SSN = "010322-8634", PhoneNumber = "+46701234567", UserName = "haxxxor33", Name = "Victor Jonsson", Email = "haxxxor33@fakemail.com", Address = "S�dra G�gatan 33, 93791 Burtr�sk" };
-            var student2 = new ApplicationUser { Groups = new List<Group>(), SSN = "010421-3124", PhoneNumber = "+46701852567", UserName = "elite120", Name = "Johan Andersson", Email = "elite120@fakemail.com", Address = "Norra G�gatan 12, 93791 Burtr�sk" };
-            var student3 = new ApplicationUser { Groups = new List<Group>(), SSN = "010415-3752", PhoneNumber = "+46701212367", UserName = "l33t32", Name = "Philip Pettersson", Email = "l33t32@fakemail.com", Address = "S�dra E4an 24, 93791 Burtr�sk" };
-            var student4 = new ApplicationUser { Groups = new List<Group>(), SSN = "011205-7921", PhoneNumber = "+46701233217", UserName = "tommy", Name = "Tommy Lundqvist", Email = "tommy@fakemail.com", Address = "Gulgatan 15, 93791 Burtr�sk" };
-            var student5 = new ApplicationUser { Groups = new List<Group>(), SSN = "011222-6475", PhoneNumber = "+46731233567", UserName = "kittenlover1", Name = "Erik Lindqvist", Email = "kittenlover1@fakemail.com", Address = "Gr�ngatan 55, 93791 Burtr�sk" };
-            var student6 = new ApplicationUser { Groups = new List<Group>(), SSN = "010324-3217", PhoneNumber = "+46701276547", UserName = "engulsparris", Name = "Wiktor T", Email = "engulsparris@fakemail.com", Address = "Cykelv�gen 38, 93791 Burtr�sk" };
-            var student7 = new ApplicationUser { Groups = new List<Group>(), SSN = "010727-8212", PhoneNumber = "+46701235468", UserName = "martinpettersson", Name = "Martin Pettersson", Email = "martinpettersson@fakemail.com", Address = "Bakgatan 34, 93791 Burtr�sk" };
-            var student8 = new ApplicationUser { Groups = new List<Group>(), SSN = "011124-3578", PhoneNumber = "+46701315648", UserName = "petterisbest", Name = "Niclas Jonsson", Email = "petterisbest@fakemail.com", Address = "S�dragatan  11, 93791 Burtr�sk" };
-            var student9 = new ApplicationUser { Groups = new List<Group>(), SSN = "010625-9545", PhoneNumber = "+46701275321", UserName = "trekkzer", Name = "Jon P�rsson", Email = "trekkzer@fakemail.com", Address = "Patrikgr�nd 1, 93791 Burtr�sk" };
+            var student0 = new ApplicationUser { Groups = new List<Group>(), SSN = "010622-4256", PhoneNumber = "+46702312467", UserName = "kurt3", Name = "Kurt Janson", Email = "kurt.jannssson@fakemail.com", Address = "Västra Gågatan 33, 93791 Burträsk" };
+            var student1 = new ApplicationUser { Groups = new List<Group>(), SSN = "010322-8634", PhoneNumber = "+46701234567", UserName = "haxxxor33", Name = "Victor Jonsson", Email = "haxxxor33@fakemail.com", Address = "Södra Gågatan 33, 93791 Burträsk" };
+            var student2 = new ApplicationUser { Groups = new List<Group>(), SSN = "010421-3124", PhoneNumber = "+46701852567", UserName = "elite120", Name = "Johan Andersson", Email = "elite120@fakemail.com", Address = "Norra Gågatan 12, 93791 Burträsk" };
+            var student3 = new ApplicationUser { Groups = new List<Group>(), SSN = "010415-3752", PhoneNumber = "+46701212367", UserName = "l33t32", Name = "Philip Pettersson", Email = "l33t32@fakemail.com", Address = "Södra E4an 24, 93791 Burträsk" };
+            var student4 = new ApplicationUser { Groups = new List<Group>(), SSN = "011205-7921", PhoneNumber = "+46701233217", UserName = "tommy", Name = "Tommy Lundqvist", Email = "tommy@fakemail.com", Address = "Gulgatan 15, 93791 Burträsk" };
+            var student5 = new ApplicationUser { Groups = new List<Group>(), SSN = "011222-6475", PhoneNumber = "+46731233567", UserName = "kittenlover1", Name = "Erik Lindqvist", Email = "kittenlover1@fakemail.com", Address = "Gröngatan 55, 93791 Burträsk" };
+            var student6 = new ApplicationUser { Groups = new List<Group>(), SSN = "010324-3217", PhoneNumber = "+46701276547", UserName = "engulsparris", Name = "Wiktor T", Email = "engulsparris@fakemail.com", Address = "Cykelvägen 38, 93791 Burträsk" };
+            var student7 = new ApplicationUser { Groups = new List<Group>(), SSN = "010727-8212", PhoneNumber = "+46701235468", UserName = "martinpettersson", Name = "Martin Pettersson", Email = "martinpettersson@fakemail.com", Address = "Bakgatan 34, 93791 Burträsk" };
+            var student8 = new ApplicationUser { Groups = new List<Group>(), SSN = "011124-3578", PhoneNumber = "+46701315648", UserName = "petterisbest", Name = "Niclas Jonsson", Email = "petterisbest@fakemail.com", Address = "Södragatan  11, 93791 Burträsk" };
+            var student9 = new ApplicationUser { Groups = new List<Group>(), SSN = "010625-9545", PhoneNumber = "+46701275321", UserName = "trekkzer", Name = "Jon Pärsson", Email = "trekkzer@fakemail.com", Address = "Patrikgränd 1, 93791 Burträsk" };
 
-            var teacher1 = new ApplicationUser { Groups = new List<Group>(), SSN = "531124-4375", PhoneNumber = "+46703334567", UserName = "lena.lundmark", Name = "Lena Lundmark", Email = "lena.lundmark@skola.com", Address = "Tv�rs�vergatan 39, 93793 Burtr�sk" };
+            var teacher1 = new ApplicationUser { Groups = new List<Group>(), SSN = "531124-4375", PhoneNumber = "+46703334567", UserName = "lena.lundmark", Name = "Lena Lundmark", Email = "lena.lundmark@skola.com", Address = "Tvärsövergatan 39, 93793 Burträsk" };
 
 
             // Group 2
-            var student10 = new ApplicationUser { Groups = new List<Group>(), SSN = "010730-3458", PhoneNumber = "+46701235422", UserName = "kurt6", Name = "Kurt Bred", Email = "kurt.bred@fakemail.com", Address = "V�stra G�gatan 33, 93791 Burtr�sk" };
-            var student11 = new ApplicationUser { Groups = new List<Group>(), SSN = "010201-8214", PhoneNumber = "+46701253212", UserName = "trek5", Name = "Victor Jonsson", Email = "trek5@fakemail.com", Address = "S�dra G�gatan 33, 93791 Burtr�sk" };
-            var student12 = new ApplicationUser { Groups = new List<Group>(), SSN = "010302-3212", PhoneNumber = "+46701545667", UserName = "pratbubblan", Name = "Johan Andersson", Email = "pratbubblan@fakemail.com", Address = "Norra G�gatan 12, 93791 Burtr�sk" };
-            var student13 = new ApplicationUser { Groups = new List<Group>(), SSN = "010517-4356", PhoneNumber = "+46701245427", UserName = "klasgoran", Name = "Philip Pettersson", Email = "klasgoran@fakemail.com", Address = "S�dra E4an 24, 93791 Burtr�sk" };
-            var student14 = new ApplicationUser { Groups = new List<Group>(), SSN = "011231-7328", PhoneNumber = "+46701256456", UserName = "tony", Name = "Tommy Lundqvist", Email = "tony@fakemail.com", Address = "Gulgatan 15, 93791 Burtr�sk" };
-            var student15 = new ApplicationUser { Groups = new List<Group>(), SSN = "011214-6458", PhoneNumber = "+46731232317", UserName = "gortbort", Name = "Erik Lindqvist", Email = "gortbort@fakemail.com", Address = "Gr�ngatan 55, 93791 Burtr�sk" };
-            var student16 = new ApplicationUser { Groups = new List<Group>(), SSN = "010312-3214", PhoneNumber = "+46701212107", UserName = "hjulgris", Name = "Wiktor T", Email = "hjulgris@fakemail.com", Address = "Cykelv�gen 38, 93791 Burtr�sk" };
-            var student17 = new ApplicationUser { Groups = new List<Group>(), SSN = "010724-8322", PhoneNumber = "+46701123468", UserName = "stolpiller", Name = "Martin Pettersson", Email = "stolpiller@fakemail.com", Address = "Bakgatan 34, 93791 Burtr�sk" };
-            var student18 = new ApplicationUser { Groups = new List<Group>(), SSN = "011025-3677", PhoneNumber = "+46701312128", UserName = "mejja", Name = "Niclas Jonsson", Email = "mejja@fakemail.com", Address = "S�dragatan  11, 93791 Burtr�sk" };
-            var student19 = new ApplicationUser { Groups = new List<Group>(), SSN = "010907-9678", PhoneNumber = "+46701234877", UserName = "patricia", Name = "Jon P�rsson", Email = "patricia@fakemail.com", Address = "Patrikgr�nd 1, 93791 Burtr�sk" };
+            var student10 = new ApplicationUser { Groups = new List<Group>(), SSN = "010730-3458", PhoneNumber = "+46701235422", UserName = "kurt6", Name = "Kurt Bred", Email = "kurt.bred@fakemail.com", Address = "Västra Gågatan 33, 93791 Burträsk" };
+            var student11 = new ApplicationUser { Groups = new List<Group>(), SSN = "010201-8214", PhoneNumber = "+46701253212", UserName = "trek5", Name = "Victor Jonsson", Email = "trek5@fakemail.com", Address = "Södra Gågatan 33, 93791 Burträsk" };
+            var student12 = new ApplicationUser { Groups = new List<Group>(), SSN = "010302-3212", PhoneNumber = "+46701545667", UserName = "pratbubblan", Name = "Johan Andersson", Email = "pratbubblan@fakemail.com", Address = "Norra Gågatan 12, 93791 Burträsk" };
+            var student13 = new ApplicationUser { Groups = new List<Group>(), SSN = "010517-4356", PhoneNumber = "+46701245427", UserName = "klasgoran", Name = "Philip Pettersson", Email = "klasgoran@fakemail.com", Address = "Södra E4an 24, 93791 Burträsk" };
+            var student14 = new ApplicationUser { Groups = new List<Group>(), SSN = "011231-7328", PhoneNumber = "+46701256456", UserName = "tony", Name = "Tommy Lundqvist", Email = "tony@fakemail.com", Address = "Gulgatan 15, 93791 Burträsk" };
+            var student15 = new ApplicationUser { Groups = new List<Group>(), SSN = "011214-6458", PhoneNumber = "+46731232317", UserName = "gortbort", Name = "Erik Lindqvist", Email = "gortbort@fakemail.com", Address = "Gröngatan 55, 93791 Burträsk" };
+            var student16 = new ApplicationUser { Groups = new List<Group>(), SSN = "010312-3214", PhoneNumber = "+46701212107", UserName = "hjulgris", Name = "Wiktor T", Email = "hjulgris@fakemail.com", Address = "Cykelvägen 38, 93791 Burträsk" };
+            var student17 = new ApplicationUser { Groups = new List<Group>(), SSN = "010724-8322", PhoneNumber = "+46701123468", UserName = "stolpiller", Name = "Martin Pettersson", Email = "stolpiller@fakemail.com", Address = "Bakgatan 34, 93791 Burträsk" };
+            var student18 = new ApplicationUser { Groups = new List<Group>(), SSN = "011025-3677", PhoneNumber = "+46701312128", UserName = "mejja", Name = "Niclas Jonsson", Email = "mejja@fakemail.com", Address = "Södragatan  11, 93791 Burträsk" };
+            var student19 = new ApplicationUser { Groups = new List<Group>(), SSN = "010907-9678", PhoneNumber = "+46701234877", UserName = "patricia", Name = "Jon Pärsson", Email = "patricia@fakemail.com", Address = "Patrikgränd 1, 93791 Burträsk" };
 
-            var teacher2 = new ApplicationUser { Groups = new List<Group>(), SSN = "550203-4645", PhoneNumber = "+46703334652", UserName = "kurt.wiklund", Name = "Kurt Wiklund", Email = "kurt.wiklund@skola.com", Address = "Norrb�le 39, 93793 Burtr�sk" };
+            var teacher2 = new ApplicationUser { Groups = new List<Group>(), SSN = "550203-4645", PhoneNumber = "+46703334652", UserName = "kurt.wiklund", Name = "Kurt Wiklund", Email = "kurt.wiklund@skola.com", Address = "Norrböle 39, 93793 Burträsk" };
 
 
             // Group 1
-            var student20 = new ApplicationUser { Groups = new List<Group>(), SSN = "010622-3456", PhoneNumber = "+46701235467", UserName = "patte", Name = "Kurt Janson", Email = "patte@fakemail.com", Address = "V�stra G�gatan 33, 93791 Burtr�sk" };
-            var student21 = new ApplicationUser { Groups = new List<Group>(), SSN = "010322-4568", PhoneNumber = "+46701223127", UserName = "nisse43", Name = "Victor Jonsson", Email = "nisse43@fakemail.com", Address = "S�dra G�gatan 33, 93791 Burtr�sk" };
-            var student22 = new ApplicationUser { Groups = new List<Group>(), SSN = "010421-4562", PhoneNumber = "+46701812127", UserName = "trakis", Name = "Johan Andersson", Email = "trakis@fakemail.com", Address = "Norra G�gatan 12, 93791 Burtr�sk" };
-            var student23 = new ApplicationUser { Groups = new List<Group>(), SSN = "010415-3215", PhoneNumber = "+46701321327", UserName = "gurkmajjo", Name = "Philip Pettersson", Email = "l33t32@fakemail.com", Address = "S�dra E4an 24, 93791 Burtr�sk" };
-            var student24 = new ApplicationUser { Groups = new List<Group>(), SSN = "011205-3754", PhoneNumber = "+46701239717", UserName = "ikaros", Name = "Tommy Lundqvist", Email = "ikaros@fakemail.com", Address = "Gulgatan 15, 93791 Burtr�sk" };
-            var student25 = new ApplicationUser { Groups = new List<Group>(), SSN = "011222-5456", PhoneNumber = "+46731253758", UserName = "patrik", Name = "Erik Lindqvist", Email = "patrik@fakemail.com", Address = "Gr�ngatan 55, 93791 Burtr�sk" };
-            var student26 = new ApplicationUser { Groups = new List<Group>(), SSN = "010324-1285", PhoneNumber = "+46701278654", UserName = "freidrich", Name = "Wiktor T", Email = "freidrich@fakemail.com", Address = "Cykelv�gen 38, 93791 Burtr�sk" };
-            var student27 = new ApplicationUser { Groups = new List<Group>(), SSN = "010727-4520", PhoneNumber = "+46701238878", UserName = "qwerty", Name = "Martin Pettersson", Email = "qwerty@fakemail.com", Address = "Bakgatan 34, 93791 Burtr�sk" };
-            var student28 = new ApplicationUser { Groups = new List<Group>(), SSN = "011124-0258", PhoneNumber = "+46701313254", UserName = "thebest01", Name = "Niclas Jonsson", Email = "thebest01@fakemail.com", Address = "S�dragatan  11, 93791 Burtr�sk" };
-            var student29 = new ApplicationUser { Groups = new List<Group>(), SSN = "010625-5046", PhoneNumber = "+46701275654", UserName = "xX_crazy_russin_Xx", Name = "Jon P�rsson", Email = "crazyrussin@fakemail.com", Address = "Patrikgr�nd 1, 93791 Burtr�sk" };
+            var student20 = new ApplicationUser { Groups = new List<Group>(), SSN = "010622-3456", PhoneNumber = "+46701235467", UserName = "patte", Name = "Kurt Janson", Email = "patte@fakemail.com", Address = "Västra Gågatan 33, 93791 Burträsk" };
+            var student21 = new ApplicationUser { Groups = new List<Group>(), SSN = "010322-4568", PhoneNumber = "+46701223127", UserName = "nisse43", Name = "Victor Jonsson", Email = "nisse43@fakemail.com", Address = "Södra Gågatan 33, 93791 Burträsk" };
+            var student22 = new ApplicationUser { Groups = new List<Group>(), SSN = "010421-4562", PhoneNumber = "+46701812127", UserName = "trakis", Name = "Johan Andersson", Email = "trakis@fakemail.com", Address = "Norra Gågatan 12, 93791 Burträsk" };
+            var student23 = new ApplicationUser { Groups = new List<Group>(), SSN = "010415-3215", PhoneNumber = "+46701321327", UserName = "gurkmajjo", Name = "Philip Pettersson", Email = "l33t32@fakemail.com", Address = "Södra E4an 24, 93791 Burträsk" };
+            var student24 = new ApplicationUser { Groups = new List<Group>(), SSN = "011205-3754", PhoneNumber = "+46701239717", UserName = "ikaros", Name = "Tommy Lundqvist", Email = "ikaros@fakemail.com", Address = "Gulgatan 15, 93791 Burträsk" };
+            var student25 = new ApplicationUser { Groups = new List<Group>(), SSN = "011222-5456", PhoneNumber = "+46731253758", UserName = "patrik", Name = "Erik Lindqvist", Email = "patrik@fakemail.com", Address = "Gröngatan 55, 93791 Burträsk" };
+            var student26 = new ApplicationUser { Groups = new List<Group>(), SSN = "010324-1285", PhoneNumber = "+46701278654", UserName = "freidrich", Name = "Wiktor T", Email = "freidrich@fakemail.com", Address = "Cykelvägen 38, 93791 Burträsk" };
+            var student27 = new ApplicationUser { Groups = new List<Group>(), SSN = "010727-4520", PhoneNumber = "+46701238878", UserName = "qwerty", Name = "Martin Pettersson", Email = "qwerty@fakemail.com", Address = "Bakgatan 34, 93791 Burträsk" };
+            var student28 = new ApplicationUser { Groups = new List<Group>(), SSN = "011124-0258", PhoneNumber = "+46701313254", UserName = "thebest01", Name = "Niclas Jonsson", Email = "thebest01@fakemail.com", Address = "Södragatan  11, 93791 Burträsk" };
+            var student29 = new ApplicationUser { Groups = new List<Group>(), SSN = "010625-5046", PhoneNumber = "+46701275654", UserName = "xX_crazy_russin_Xx", Name = "Jon Pärsson", Email = "crazyrussin@fakemail.com", Address = "Patrikgränd 1, 93791 Burträsk" };
 
-            var teacher3  = new ApplicationUser { Groups = new List<Group>(), SSN = "531124-4375", PhoneNumber = "+46703399867", UserName = "petter.blank", Name = "Petter Blank", Email = "petter.blank@skola.com", Address = "Fingatan 39, 93793 Burtr�sk" };
+            var teacher3  = new ApplicationUser { Groups = new List<Group>(), SSN = "531124-4375", PhoneNumber = "+46703399867", UserName = "petter.blank", Name = "Petter Blank", Email = "petter.blank@skola.com", Address = "Fingatan 39, 93793 Burträsk" };
 
             userManager.Create(student0,  "Default123#");
             userManager.Create(student1,  "Default123#");
@@ -163,7 +163,7 @@ namespace Tungsten.Migrations
             group2.Participants.Add(student17);
             group2.Participants.Add(student18);
             group2.Participants.Add(student19);
-                 
+
             group2.Participants.Add(teacher2);
 
             group1.Participants.Add(student20);

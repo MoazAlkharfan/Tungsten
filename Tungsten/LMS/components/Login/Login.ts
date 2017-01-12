@@ -2,6 +2,7 @@
 import { Router } from '@angular/router';
 
 import { User } from '../../classes/User';
+import { LoginModel } from '../../classes/LoginModel';
 import { OperationResult } from '../../classes/operationResult';
 import { MembershipService } from '../../services/membership.service';
 import { Autofocus } from '../../directives/autofocus';
@@ -19,6 +20,7 @@ export class Login implements OnInit {
     Timeout: any;
 
     public _user: User;
+    public loginmodel: LoginModel;
     LoggedIn: boolean;
     @Output() userUpdated = new EventEmitter();
 
@@ -28,7 +30,7 @@ export class Login implements OnInit {
         /*@Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer*/) { }
 
     ngOnInit() {
-        this._user = new User('', '', '', '', []);
+        this.loginmodel = new LoginModel('', '');
         this.LoggedIn = this.membershipService.isUserAuthenticated();
     }
 
@@ -54,20 +56,19 @@ export class Login implements OnInit {
 
     login(): void {
         var _authenticationResult: OperationResult = new OperationResult(false, '');
-        this.membershipService.login(this._user)
+        this.membershipService.login({ Username: this.loginmodel.Username, Password: this.loginmodel.Password, RememberMe: this.loginmodel.RememberMe })
             .subscribe(res => {
                 _authenticationResult = res;
             },
             error => console.error('Error: ' + <any>error),
             () => {
                 if (_authenticationResult.Succeeded) {
-                    this.membershipService.getUserInfo(this._user)
+                    this.membershipService.getUserInfo()
                         .subscribe(ress => {
                             this._user = ress;
                         },
                         error => console.error('Error: ' + <any>error),
                         () => {
-                            console.log(this._user.Roles[0]);
                             if (!this._user.Roles[0])
                                 this._user.Roles[0] = 'student';
                             else

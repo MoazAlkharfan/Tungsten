@@ -1,5 +1,5 @@
 ﻿import { Component, Inject, OnInit, animate, trigger, style, transition, state } from '@angular/core';
-import { Router, Resolve } from '@angular/router';
+import { Router, Resolve, ActivatedRoute } from '@angular/router';
 import { MembershipService } from '../../../../services/membership.service';
 import { UserAnnouncer } from '../../../../services/userannouncer';
 import { User } from '../../../../classes/user';
@@ -11,18 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
     host: { '[@routeAnimation]': 'true' },
     styles: [':host { display: block; position: absolute; }'],//[':host { width: 300px; display: block; position: absolute; }'],
     animations: [
-        trigger('routeAnimation', [
-            state('*', style({ opacity: 1 })),
-            transition('void => *', [
-                style({ opacity: 0, position: 'absolute', display: 'block'  }),
-                animate('0.5s')
-            ]),
-            transition('* => void',
-                animate('0.5s', style({
-                    opacity: 0, position: 'absolute', display: 'block'
-                }))
-            )
-        ])
+        trigger('routeAnimation', [])
     ]
 })
 export class HomePage implements OnInit {
@@ -31,33 +20,37 @@ export class HomePage implements OnInit {
     constructor(
         @Inject(Router) private router: Router,
         @Inject(MembershipService) private _membershipService: MembershipService,
-        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer
+        @Inject(ActivatedRoute) private _ActivatedRoute: ActivatedRoute
     ) { }
 
     ngOnInit() {
-        let userroles = this._membershipService.getLoggedInUser().Roles;
+        this._ActivatedRoute.data.subscribe((data: { user: User }) => {
+            this.user = data.user;
 
-        this.subscription = this._UserAnnouncer.userAnnounced.subscribe((result) => {
-            this.user = result;
-        });
+            let userroles = this._membershipService.getLoggedInUser().Roles;
 
-        //console.log(userroles);
-        if (!userroles.length)
-            this.router.navigate(['/dashboard', { outlets: { dashboard: ['student'] } }]);
+            console.log('should load');
 
-        userroles.forEach((val, index, obj) => {
-            if (val == "Teacher") {
-                this.router.navigate(['/dashboard', { outlets: { dashboard: ['teacher'] } }]);
-                console.log('redirected to teacher');
-            }
-            else if (val == 'Admin') {
-                this.router.navigate(['/dashboard', { outlets: { dashboard: ['admin'] } }]);
-                console.log('redirected to admin');
-            }
-            else {
-                this.router.navigate(['/dashboard', { outlets: { dashboard: ['student'] } }]);
-                console.log('redirected to student');
-            }
+            if (!userroles.length)
+                this.router.navigate(['student']);
+
+            userroles.forEach((val, index, obj) => {
+                if (val == "Teacher") {
+                    this.router.navigate(['teacher']);
+                    console.log('redirected to teacher');
+                }
+                else if (val == 'Admin') {
+                    this.router.navigate(['admin']);
+                    console.log('redirected to admin');
+                }
+                else {
+                    this.router.navigate(['student']);
+                    console.log('redirected to student');
+                }
+            });
+        }, error => console.error(error), () => {
+            
+
         });
     }
 

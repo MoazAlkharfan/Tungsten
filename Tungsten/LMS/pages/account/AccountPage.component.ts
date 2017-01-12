@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class AccountPage implements OnInit {
     user: User;
-    newuser: EditModel = new EditModel('', '', '', '', '');
+    newuser: User = new User('', '', '', '', []);
     subscription: Subscription;
 
     constructor( @Inject(MembershipService) private _MembershipService: MembershipService,
@@ -42,10 +42,10 @@ export class AccountPage implements OnInit {
                 if (_authenticationResult.Succeeded) {
                     if (this.newuser.Email)
                         this.user.Email = this.newuser.Email;
-                    if (this.newuser.Username)
+                    if (this.newuser.UserName)
                     {
-                        this.user.Username = this.newuser.Username;
-                        this.user.Name = this.newuser.Username;
+                        this.user.UserName = this.newuser.UserName;
+                        this.user.Name = this.newuser.UserName;
                     }
 
                     this._UserAnnouncer.announceUser(this.user);

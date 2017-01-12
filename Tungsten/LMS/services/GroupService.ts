@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 import { IGroup } from '../interfaces/Group';
 import { DataService } from './data.service';
+import { User } from '../classes/user';
 
 import 'rxjs/rx';
 
@@ -45,6 +46,24 @@ export class GroupService {
             .map(this.extractGroup);
     }
 
+    addUser(id: string, gid: string) {
+        return this._http.post('/Home/AddUserToGroup', { userid : id, groupid : gid})
+            //.do(this.logData)
+            .catch(this.handleError)
+            .map(result => {
+                return result.json();
+            });
+    }
+
+    removeUser(id: string, gid:string) {
+        return this._http.post('/Home/RemoveUserFromGroup', { userid: id, groupid: gid })
+            //.do(this.logData)
+            .catch(this.handleError)
+            .map(result => {
+                return result.json();
+            });
+    }
+
     private logData(data) {
         console.log(String(data));
     }
@@ -64,7 +83,7 @@ export class GroupService {
             });
             return null;
         }
-        let body = <IGroup[]>JSON.parse(res.json());
+        let body = <IGroup[]>res.json();
         return body || [];
     }
 

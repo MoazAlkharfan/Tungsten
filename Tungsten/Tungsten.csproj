@@ -234,9 +234,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701031826054_Initial.cs" />
-    <Compile Include="Migrations\201701031826054_Initial.Designer.cs">
-      <DependentUpon>201701031826054_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201701090814547_Initial.cs" />
+    <Compile Include="Migrations\201701090814547_Initial.Designer.cs">
+      <DependentUpon>201701090814547_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -270,6 +270,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
     </Content>
@@ -280,8 +281,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index-JustForReference-DeleteIt.html" />
-    <Content Include="LMS\components\dropdownbox\dropdownbox.css" />
+    <Content Include="LMS\components\dropdownbox\dropdownbox.css">
+      <DependentUpon>dropdownbox.scss</DependentUpon>
+    </Content>
     <Content Include="LMS\components\dropdownbox\dropdownbox.html" />
+    <Content Include="LMS\components\dropdownbox\dropdownbox.min.css">
+      <DependentUpon>dropdownbox.css</DependentUpon>
+    </Content>
     <Content Include="LMS\components\GroupsList\GroupsList.css" />
     <Content Include="LMS\components\GroupsList\GroupsList.html" />
     <Content Include="LMS\components\Login\Login.css" />
@@ -291,19 +297,34 @@
     <Content Include="LMS\index.html" />
     <Content Include="LMS\pages\account\AccountPage.html" />
     <Content Include="LMS\pages\dashboard\index.html" />
+    <Content Include="LMS\pages\dashboard\Pages\addparticipant\addparticipant.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\course\course.component.html" />
-    <Content Include="LMS\pages\dashboard\Pages\createcourse\createcourse.component.html" />
-    <Content Include="LMS\pages\dashboard\Pages\creategroup\creategroup.component.html" />
-    <Content Include="LMS\pages\dashboard\Pages\editgroup\editgroup.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\create\createassignment\createassignment.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\create\createcourse\createcourse.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\create\creategroup\creategroup.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\create\createlesson\createlesson.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\create\createparticipant\createparticipant.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\create\createsegment\createsegment.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\edit\editassignment\editassignment.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\edit\editcourse\editcourse.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\edit\editgroup\editgroup.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\edit\editlesson\editlesson.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\edit\editparticipant\editparticipant.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\edit\editsegment\editsegment.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\groups\groups.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\group\group.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\homepage.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\student\student.component.html" />
     <Content Include="LMS\pages\dashboard\Pages\home\teacher\teacher.component.html" />
-    <Content Include="LMS\pages\dashboard\Pages\removegroup\removegroup.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\delete\removeassignment\removeassignment.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\delete\removecourse\removecourse.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\delete\removegroup\removegroup.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\delete\removelesson\removelesson.component.html" />
+    <Content Include="LMS\pages\dashboard\Pages\delete\removesegment\removesegment.component.html" />
     <Content Include="LMS\pages\home\HomePage.html" />
     <Content Include="LMS\pages\register\RegisterPage.html" />
     <Content Include="Reinforced.Typings.settings.xml" />
+    <Content Include="Scripts\jasny-bootstrap.js" />
     <Content Include="typings.json" />
     <Content Include="tslint.json" />
     <Content Include="Scripts\bootstrap.js" />
@@ -343,6 +364,8 @@
     </None>
     <Content Include="Content\_variables.scss" />
     <Content Include="Content\_mixins.scss" />
+    <Content Include="LMS\components\dropdownbox\dropdownbox.scss" />
+    <Content Include="LMS\pages\dashboard\Pages\delete\removeparticipant\removeparticipant.component.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -422,9 +445,10 @@
     <TypeScriptCompile Include="LMS\classes\assignment.ts" />
     <TypeScriptCompile Include="LMS\classes\ChangeInfo.ts" />
     <TypeScriptCompile Include="LMS\classes\Course.ts" />
-    <TypeScriptCompile Include="LMS\classes\EditModel.ts" />
     <TypeScriptCompile Include="LMS\classes\Group.ts" />
     <TypeScriptCompile Include="LMS\classes\HomePageModel.ts" />
+    <TypeScriptCompile Include="LMS\classes\Lesson.ts" />
+    <TypeScriptCompile Include="LMS\classes\LoginModel.ts" />
     <TypeScriptCompile Include="LMS\classes\operationResult.ts" />
     <TypeScriptCompile Include="LMS\classes\Registration.ts" />
     <TypeScriptCompile Include="LMS\classes\Segment.ts" />
@@ -445,31 +469,66 @@
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.module.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\dashboard.routes.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\addparticipant\addparticipant.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\course\course.component.ts" />
-    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\createcourse\createcourse.component.ts" />
-    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\creategroup\creategroup.component.ts" />
-    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\editgroup\editgroup.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\create\createassignment\createassignment.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\create\createcourse\createcourse.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\create\creategroup\creategroup.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\create\createlesson\createlesson.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\create\createparticipant\createparticipant.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\create\createsegment\createsegment.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editassignment\editassignment.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editcourse\editcourse.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editgroup\editgroup.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editlesson\editlesson.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editparticipant\editparticipant.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\edit\editsegment\editsegment.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\groups\groups.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\group\group.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\homepage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\student\student.component.ts" />
     <TypeScriptCompile Include="LMS\pages\dashboard\Pages\home\teacher\teacher.component.ts" />
-    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\removegroup\removegroup.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\delete\removeassignment\removeassignment.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\delete\removecourse\removecourse.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\delete\removegroup\removegroup.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\delete\removelesson\removelesson.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\delete\removeparticipant\removeparticipant.component.ts" />
+    <TypeScriptCompile Include="LMS\pages\dashboard\Pages\delete\removesegment\removesegment.component.ts" />
     <TypeScriptCompile Include="LMS\pages\home\HomePage.component.ts" />
     <TypeScriptCompile Include="LMS\pages\register\register.component.ts" />
+    <TypeScriptCompile Include="LMS\pipes\filterPipe.ts" />
     <TypeScriptCompile Include="LMS\services\account.service.ts" />
+    <TypeScriptCompile Include="LMS\services\assignment.service.ts" />
     <TypeScriptCompile Include="LMS\services\course.service.ts" />
     <TypeScriptCompile Include="LMS\services\data.service.ts" />
     <TypeScriptCompile Include="LMS\services\GroupService.ts" />
     <TypeScriptCompile Include="LMS\services\guards\isauthenticated.ts" />
     <TypeScriptCompile Include="LMS\services\guards\isproperrole.ts" />
+    <TypeScriptCompile Include="LMS\services\lesson.service.ts" />
     <TypeScriptCompile Include="LMS\services\membership.service.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\assignment.resolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\assignments.resolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\courses.resolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\courseresolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\groupsresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\groupresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\homepageresolver.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\isloggedin.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\lesson.resolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\lessons.resolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\segment.resolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\segments.resolver.ts" />
+    <TypeScriptCompile Include="LMS\services\resolvers\usersresolver.ts" />
     <TypeScriptCompile Include="LMS\services\schedule.service.ts" />
+    <TypeScriptCompile Include="LMS\services\segment.service.ts" />
     <TypeScriptCompile Include="LMS\services\UserAnnouncer.ts" />
     <TypeScriptCompile Include="LMS\services\resolvers\userresolver.ts" />
+    <TypeScriptCompile Include="LMS\services\WindowSize.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701090814547_Initial.resx">
+      <DependentUpon>201701090814547_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201701031826054_Initial.resx">

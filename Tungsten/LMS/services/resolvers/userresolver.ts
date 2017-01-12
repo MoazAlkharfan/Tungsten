@@ -12,13 +12,19 @@ export class userresolver implements Resolve<User> {
         @Inject(Router) private _Router: Router) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
-        let user = this._MembershipService.getUserInfo();
+        var _user: any = localStorage.getItem('user');
+        if (_user != null)
+            return Observable.of(JSON.parse(_user));
+        else {
+            let user = this._MembershipService.getUserInfo();
 
-        if (user) {
-            return user;
-        } else {
-            this._Router.navigate(['/']);
-            return null;
+            if (user) {
+                localStorage.setItem('user', JSON.stringify(user));
+                return user;
+            } else {
+                this._Router.navigate(['/']);
+                return null;
+            }
         }
     }
 

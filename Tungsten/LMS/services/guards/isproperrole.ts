@@ -12,6 +12,7 @@ export class isProperRoleGuard implements CanActivateChild {
         let currentroute = route.routeConfig.path;
 
         if (this.getproperRoutes(this._membershipService.getLoggedInUser().Roles[0].toLowerCase()).indexOf(currentroute) != -1) {
+            //console.log('should gain access to route because he is in proper role');
             return true;
         } else {
             this.router.navigateByUrl('');
@@ -22,11 +23,44 @@ export class isProperRoleGuard implements CanActivateChild {
     getproperRoutes(role: string) {
         let routes = [];
 
-        routes['student'] = ['student', 'assignments', 'groups', 'group/:id', 'creategroup', 'createcourse/:groupid','course/:courseid'];
-        routes['teacher'] = ['teacher', 'assignments', 'groups', 'group/:id', 'editgroup/:id', 'removegroup/:id', 'creategroup', 'createcourse/:groupid', 'course/:courseid'];
-        routes['admin'] = ['admin', 'assignments', 'groups', 'group/:id', 'creategroup', 'createcourse/:groupid', 'course/:courseid'];
+        routes['student'] = ['dashboard', 'student', 'assignments', 'groups', 'group/:id', 'course/:courseid'];
+        routes['teacher'] = [
+            'dashboard',
+            'teacher',
+            'assignments',
+            'groups',
+            'group/:id',
+            'course/:id',
+
+            // Create
+            'creategroup',
+            'createcourse/:id',
+            'createparticipant',
+            'createassignment',
+            'createlesson',
+            'createsegment',
+
+            // Edit
+            'editgroup/:id',
+            'editcourse/:id',
+            'editassignment/:id',
+            'editlesson/:id',
+            'editparticipant/:id',
+            'editsegment/:id',
+
+            // Delete
+            'removegroup/:id',
+            'removecourse/:id',
+            'removeassignment/:id',
+            'removelesson/:id',
+            'removeparticipant/:id',
+            'removesegment/:id'
+
+
+        ];
+
+        routes['admin'] = ['dashboard', 'teacher', 'assignments', 'groups', 'group/:id', 'editgroup/:id', 'removegroup/:id', 'creategroup', 'createcourse/:id', 'course/:id'];
 
         return routes[role];
     }
-    
 }

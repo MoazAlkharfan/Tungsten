@@ -1,11 +1,12 @@
-﻿import { Component, Input, OnInit, ElementRef, Inject, ViewChild, AfterViewChecked, trigger } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
+﻿import { Component, Input, OnInit, ElementRef, Inject, ViewChild, AfterViewChecked, animate, trigger, style, transition, state } from '@angular/core';
+import { ChangeDetectorRef, Renderer } from '@angular/core';
 import { GroupService } from './services/GroupService';
 import { MembershipService } from './services/membership.service';
 import { Login } from './components/Login/Login';
 import { User } from './classes/User';
 import { UserAnnouncer } from './services/UserAnnouncer';
 import { Subscription } from 'rxjs/Subscription';
+import { WindowSize } from './services/windowsize';
 
 @Component({
     selector: 'lms-index',
@@ -14,7 +15,19 @@ import { Subscription } from 'rxjs/Subscription';
     providers: [GroupService, UserAnnouncer],
     host: { '[@routeAnimation]': 'true' },
     animations: [
-        trigger('routeAnimation', [])
+        trigger('routeAnimation', [
+            state('*', style({ opacity: 1 })),
+            state('void', style({ position: 'absolute' })),
+            transition('void => *', [
+                style({ opacity: 0, position: 'absolute' }),
+                animate('0.5s')
+            ]),
+            transition('* => void',
+                animate('0.5s', style({
+                    opacity: 0, position: 'absolute'
+                }))
+            )
+        ])
     ]
 })
 export class IndexPage implements OnInit, AfterViewChecked {
@@ -22,15 +35,20 @@ export class IndexPage implements OnInit, AfterViewChecked {
     public user: User;
     @ViewChild(Login) LoginView: Login;
     subscription: Subscription;
+    @ViewChild('navmenu') NavMenu: ElementRef;
+    
 
     constructor( @Inject(ElementRef) private elementRef: ElementRef,
         @Inject(MembershipService) public membershipService: MembershipService,
         @Inject(ChangeDetectorRef) public changeDetectorRef: ChangeDetectorRef,
-        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer
+        @Inject(UserAnnouncer) private _UserAnnouncer: UserAnnouncer,
+        @Inject(Renderer) private renderer: Renderer,
+        @Inject(WindowSize) private windowSize: WindowSize
 
     ) {
         this.user = this.membershipService.getLoggedInUser() || new User('', '', '', '', []);
         this.isuserloggedin = this.isUserLoggedIn();
+
     }
     
     isUserLoggedIn(): boolean {
@@ -53,7 +71,21 @@ export class IndexPage implements OnInit, AfterViewChecked {
         if (this.LoginView && this.LoginView.LoggedIn && this.isuserloggedin != this.LoginView.LoggedIn)
             this.isuserloggedin = this.LoginView.LoggedIn;
 
+        this.windowSize.width$.subscribe(size => {
+            if (this.NavMenu)
+                this.renderer.setElementClass(this.NavMenu.nativeElement, 'offcanvas', (size <= 768));
+        });
+
+        //this.renderer.setElementClass(this.NavMenu.nativeElement, 'offcanvas', (window.innerWidth <= 768));
+
         this.changeDetectorRef.detectChanges();
+    }
+
+    navmenuclass() {
+        if (window.innerWidth <= 768)
+            return true;
+
+        return false;
     }
 
     userUpdated(updatedUser: User) {

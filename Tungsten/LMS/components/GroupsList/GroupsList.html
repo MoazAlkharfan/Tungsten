@@ -37,7 +37,7 @@
                 {{group.Description}}
             </td>
             <td>
-                <button class="btn btn-primary" [routerLink]="['/dashboard', { outlets: { dashboard: ['group', group.Id] } }]">Open</button>
+                <button class="btn btn-primary" [routerLink]="['/dashboard', 'group', group.Id]">Open</button>
             </td>
         </tr>
     </tbody>

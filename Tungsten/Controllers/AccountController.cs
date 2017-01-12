@@ -54,6 +54,18 @@ namespace Tungsten.Controllers
             }
         }
 
+        public async Task<ApplicationUser> GetUserInfoById(string id)
+        {
+            try
+            {
+                return await UserManager.FindByIdAsync(id);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         [AllowAnonymous]
         public JsonResult IsAuthenticated()
         {
@@ -78,15 +90,16 @@ namespace Tungsten.Controllers
                                 assignments.AddRange(segment.Assignments);
                             }
                         }
-                        List<Group> groups = user.Groups.ToList();
+
                         assignments = assignments.OrderBy(a => a.EndTime).Take(5).ToList();
-                        TeacherHomePage page = new TeacherHomePage
-                        {
-                            Groups = groups,
-                            Assignments = assignments,
-                            Courses = user.Courses.Take(3),
-                            Schedule = user.Groups.First().Schedule
-                        };
+
+                        TeacherHomePage page = new TeacherHomePage();
+
+                        page.Groups = user.Groups.ToList();
+                        page.Assignments = assignments;
+                        page.Courses = user.Courses.Take(3);
+                        page.Schedule = user.Groups.FirstOrDefault()?.Schedule;
+
 
                         return JsonConvert.SerializeObject(page, Formatting.Indented, jss);
                     }
@@ -123,13 +136,14 @@ namespace Tungsten.Controllers
                         }
 
                         assignments = assignments.OrderBy(a => a.EndTime).Take(5).ToList();
-                        StudentHomePage page = new StudentHomePage
-                        {
-                            Groups = user.Groups.ToList(),
-                            Assignments = assignments,
-                            Courses = user.Courses.Take(3),
-                            Schedule = user.Groups.First().Schedule
-                        };
+
+                        StudentHomePage page = new StudentHomePage();
+
+                        page.Groups = user.Groups.ToList();
+                        page.Assignments = assignments;
+                        page.Courses = page.Groups.FirstOrDefault().Courses.Take(3);
+                        page.Schedule = user.Groups.FirstOrDefault()?.Schedule;
+
 
                         return JsonConvert.SerializeObject(page, Formatting.Indented, jss);
                     }
@@ -147,17 +161,34 @@ namespace Tungsten.Controllers
         [Authorize]
         public async Task<string> GetUserInfo()
         {
-            var currentUserId = User.Identity.GetUserId();
-            ApplicationUser user1 = await UserManager.FindByIdAsync(currentUserId);
-            var user = new
+            if (User.Identity.IsAuthenticated)
             {
-                Name = User.Identity.Name,
-                Username = User.Identity.GetUserName(),
-                Email = UserManager.GetEmailAsync(currentUserId).Result,
-                Roles = await UserManager.GetRolesAsync(currentUserId),
-                Courses = user1.Courses
-            };
-            return JsonConvert.SerializeObject(user, Formatting.Indented, jss); //Json(user, JsonRequestBehavior.AllowGet);
+                var currentUserId = User.Identity.GetUserId();
+                ApplicationUser user1 = await UserManager.FindByIdAsync(currentUserId);
+
+                var userid = currentUserId;
+                var userName = User.Identity.Name;
+                var userUsername = User.Identity.GetUserName();
+                var userEmail = UserManager.GetEmailAsync(currentUserId).Result;
+                var userRoles = await UserManager.GetRolesAsync(currentUserId);
+                var userCourses = user1.Courses;
+
+                var user = new
+                {
+                    Id = user1.Id,
+                    Name = User.Identity.Name,
+                    Username = User.Identity.GetUserName(),
+                    Email = UserManager.GetEmailAsync(currentUserId).Result,
+                    Roles = await UserManager.GetRolesAsync(currentUserId),
+                    Courses = user1.Courses
+                };
+                return JsonConvert.SerializeObject(user, Formatting.Indented, jss); //Json(user, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(null, Formatting.Indented, jss); //Json(user, JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
         ////
@@ -254,30 +285,32 @@ namespace Tungsten.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Address = model.Address, Name = model.Name, SSN = model.SSN };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, Address = model.Address, Name = model.Name, SSN = model.SSN };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    // TODO: repo.addusertogroups
+
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    return Json(new { Succeeded = true, Message = "Register Success" });
+                    return Json(new { Succeeded = true, Message = "User Created" });
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return Json(model);
         }
 
         //

@@ -3,6 +3,7 @@ import { Injectable, Inject } from '@angular/core';
 import { DataService } from './data.service';
 import { Registration } from '../classes/registration';
 import { User } from '../classes/User';
+import { LoginModel } from '../classes/LoginModel';
 
 @Injectable()
 export class MembershipService {
@@ -11,6 +12,7 @@ export class MembershipService {
     private _accountLoginAPI: string = '/Account/Login/';
     private _accountLogoutAPI: string = '/Account/LogOff/';
     private _accountUserInfo: string = '/Account/GetUserInfo/';
+    private _accountUserInfoById: string = '/Account/GetUserInfoById/';
 
 
     constructor( @Inject(DataService) public accountService: DataService) { }
@@ -22,7 +24,7 @@ export class MembershipService {
         return this.accountService.post(newUser);
     }
 
-    login(creds: User): any {
+    login(creds: LoginModel): any {
         this.accountService.set(this._accountLoginAPI);
         return this.accountService.post(creds);
     }
@@ -54,6 +56,11 @@ export class MembershipService {
     getUserInfo(_user?: User): any {
         this.accountService.set(this._accountUserInfo);
         return this.accountService.post(_user);
+    }
+
+    getUserInfoById(id: string): any {
+        this.accountService.set(this._accountUserInfoById);
+        return this.accountService.post(id);
     }
 
 

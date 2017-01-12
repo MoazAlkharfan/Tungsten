@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 using Tungsten.Models;
+using System.Threading.Tasks;
 
 namespace Tungsten.DataAccessLayer
 {
@@ -27,6 +25,42 @@ namespace Tungsten.DataAccessLayer
             return new ApplicationDbContext();
         }
 
+        public override IDbSet<ApplicationUser> Users
+        {
+            get
+            {
+                return base.Users;
+            }
+
+            set
+            {
+                base.Users = value;
+            }
+        }
+
+        public override Task<int> SaveChangesAsync()
+        {
+            return base.SaveChangesAsync();
+        }
+
+        public override IDbSet<IdentityRole> Roles
+        {
+            get
+            {
+                return base.Roles;
+            }
+
+            set
+            {
+                base.Roles = value;
+            }
+        }
+
+        public override DbSet Set(Type entityType)
+        {
+            return base.Set(entityType);
+        }
+        
         //public System.Data.Entity.DbSet<Tungsten.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
