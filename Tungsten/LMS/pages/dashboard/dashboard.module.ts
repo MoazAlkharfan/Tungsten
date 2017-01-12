@@ -19,6 +19,7 @@ import { Dashboard_Index } from './dashboard.component';
 import { GroupsPage } from './pages/groups/groups.component';
 import { GroupPage } from './pages/group/group.component';
 import { CoursePage } from './pages/course/course.component';
+import { AddParticipantPage } from './pages/addparticipant/addparticipant.component';
 
 // Create Pages
 import { CreateGroup } from './pages/create/creategroup/creategroup.component';
@@ -105,6 +106,7 @@ import { FilterUserByNamePipe } from '../../pipes/filterPipe';
         TeacherHomePage,
         StudentHomePage,
         CoursePage,
+        AddParticipantPage,
 
         // Create
         CreateGroup,
